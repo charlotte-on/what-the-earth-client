@@ -80,7 +80,13 @@ export class NavMain extends React.Component {
                 À propos
               </Link>
             </nav>
-            <div className="logout" onClick={this.handleLogout}>
+            <div
+              className="logout"
+              onClick={() => {
+                this.handleLogout();
+                this.toggleClass();
+              }}
+            >
               <img src="/media/logout.png" alt="logout icon" />{" "}
               <p>Se déconnecter</p>
             </div>
