@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
 import Redirect from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class FormSignup extends Component {
   static contextType = UserContext;
@@ -40,40 +42,46 @@ class FormSignup extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
-        <input
-          onChange={this.handleChange}
+      <form className="form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        <TextField
           value={this.state.firstName}
+          label="Prénom"
           type="text"
           id="firstName"
           name="firstName"
+          variant="outlined"
+          style={{ margin: "10px" }}
         />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
           value={this.state.lastName}
+          label="Nom de famille"
           type="text"
           id="lastName"
           name="lastName"
+          variant="outlined"
+          style={{ margin: "10px" }}
         />
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
           value={this.state.email}
+          label="Email"
           type="email"
           id="email"
           name="email"
+          variant="outlined"
+          style={{ margin: "10px" }}
         />
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
           value={this.state.password}
+          label="Mot de passe"
           type="password"
           id="password"
           name="password"
+          variant="outlined"
+          style={{ margin: "10px" }}
         />
-        <button>Submit</button>
+        <Button style={{ margin: "10px" }} type="submit" variant="contained">
+          S'inscrire
+        </Button>
       </form>
     );
   }

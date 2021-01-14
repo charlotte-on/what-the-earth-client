@@ -17,13 +17,8 @@ export class ProducerLandingPage extends Component {
             height: "50vh",
             width: "100vw",
           }}
-        >
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ "icon-image": "marker-15" }}
-          ></Layer>
-        </Map>
+          center={[2.3315, 48.8567]}
+        ></Map>
       </div>
     );
   }

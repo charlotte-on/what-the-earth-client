@@ -22,3 +22,10 @@ a {
 ul {
   list-style-type: none;
 }
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
