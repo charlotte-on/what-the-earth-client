@@ -10,18 +10,17 @@ export class NavMain extends React.Component {
     user: null,
     active: true,
   };
-  // const { context } = this.props;
 
-  // handleLogout() {
-  //   apiHandler
-  //     .logout()
-  //     .then(() => {
-  //       context.removeUser();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  handleLogout = () => {
+    apiHandler
+      .logout()
+      .then(() => {
+        this.props.context.removeUser();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   toggleClass = () => {
     const currentState = this.state.active;
@@ -88,7 +87,7 @@ export class NavMain extends React.Component {
           </div>
           <div className="opacity"></div>
         </div>
-        <NavLink exact to="/">
+        <NavLink onClick={this.handleLogout}>
           <h3 className="logo">What the Earth</h3>
         </NavLink>
         {/* <ul className="nav-list">
