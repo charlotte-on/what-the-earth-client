@@ -10,6 +10,8 @@ class FormSignup extends Component {
   state = {
     email: "",
     password: "",
+    firstName: "",
+    lastName: "",
   };
 
   handleChange = (event) => {
@@ -39,6 +41,22 @@ class FormSignup extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        <label htmlFor="firstName">First Name</label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.firstName}
+          type="text"
+          id="firstName"
+          name="firstName"
+        />
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.lastName}
+          type="text"
+          id="lastName"
+          name="lastName"
+        />
         <label htmlFor="email">Email</label>
         <input
           onChange={this.handleChange}

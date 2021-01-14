@@ -8,6 +8,7 @@ import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
 import "bootstrap/dist/css/bootstrap.min.css";
+import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/producers" component={ProducerLandingPage} />
+        <Route
+          exact
+          path="/companies/register"
+          component={FormRegisterCompany}
+        />
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>
