@@ -49,4 +49,4 @@ class UserPage extends React.Component {
   }
 }
 
-export default OneHeroPage;
+export default UserPage;

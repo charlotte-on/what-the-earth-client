@@ -7,7 +7,7 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products";
 import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Profile from "./pages/Profile";
+import UserPage from "./pages/User/UserPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 
@@ -26,7 +26,7 @@ function App() {
           component={FormRegisterCompany}
         />
         <Route exact path="/products" component={Products} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/profile" component={UserPage} />
       </Switch>
     </div>
   );
