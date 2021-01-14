@@ -23,7 +23,7 @@ export class NavMain extends React.Component {
   //     });
   // }
 
-  toggleClass = (event) => {
+  toggleClass = () => {
     const currentState = this.state.active;
     this.setState({ active: !currentState });
   };
@@ -33,17 +33,14 @@ export class NavMain extends React.Component {
       <nav className="NavMain">
         <img
           className="burger-icon"
-          src="media/burger-icon.png"
+          src="/media/burger-icon.png"
           alt="burger menu"
           onClick={this.toggleClass}
         />
         <div className={this.state.active ? "hidden" : null}>
           <div className="lateral-menu">
-            <div
-              style={{ fontSize: "5vh", color: "black" }}
-              onClick={this.toggleClass}
-            >
-              ✕
+            <div className="cross" onClick={this.toggleClass}>
+              <img src="/media/cross.png" alt="" />
             </div>
             <h3>Bonjour</h3>
 
@@ -84,6 +81,10 @@ export class NavMain extends React.Component {
                 À propos
               </Link>
             </nav>
+            <div className="logout">
+              <img src="/media/logout.png" alt="logout icon" />{" "}
+              <p>Se déconnecter</p>
+            </div>
           </div>
           <div className="opacity"></div>
         </div>
