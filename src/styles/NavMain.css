@@ -33,14 +33,16 @@ nav {
 .lateral-menu {
   box-sizing: border-box;
   padding-left: 5vw;
+  padding-right: 5vw;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(231, 230, 230);
-  width: 40vw;
+  background-color: white;
+  width: 70vw;
   height: 100vh;
   color: #87a878;
   font-size: 6vw;
+  z-index: 10;
 }
 
 .lateral-menu h3 {
@@ -55,4 +57,19 @@ nav {
 
 .lateral-link {
   display: inline-block;
+}
+
+.lateral-menu hr {
+  margin: 2px;
+}
+
+.opacity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 70%;
+  z-index: 10;
 }
