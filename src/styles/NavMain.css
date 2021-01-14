@@ -42,6 +42,7 @@ nav {
   height: 100vh;
   color: #87a878;
   font-size: 6vw;
+  z-index: 10;
 }
 
 .lateral-menu h3 {
@@ -70,4 +71,5 @@ nav {
   height: 100vh;
   background-color: black;
   opacity: 70%;
+  z-index: 10;
 }
