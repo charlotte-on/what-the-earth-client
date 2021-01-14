@@ -2,10 +2,7 @@ import React, { Component } from "react";
 
 class UserUpdate extends Component {
   state = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    user: null,
   };
 
   handleChange = (event) => {

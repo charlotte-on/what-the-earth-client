@@ -67,7 +67,7 @@ export default {
 
   getUserInfos(userId) {
     return service
-      .get(`/users/${userId}`)
+      .get(`/api/users/${userId}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },

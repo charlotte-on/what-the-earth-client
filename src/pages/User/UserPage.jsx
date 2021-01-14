@@ -1,27 +1,11 @@
 import React from "react";
 import axios from "axios";
+import { withUser } from "../../components/Auth/withUser";
+import apiHandler from "../../api/apiHandler";
 
 class UserPage extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    email: "",
-  };
-
-  componentDidMount() {
-    // console.log(this.props.match.params.id);
-    const userId = this.props.match.params.id;
-
-    axios.get("http://localhost:4000/users/" + userId).then((apiResponse) => {
-      //   console.log(apiResponse);
-      this.setState({
-        user: apiResponse.data,
-      });
-    });
-  }
-
   render() {
-    if (!this.state.user) {
+    if (!this.props.context.user) {
       return <div>Loading...</div>;
     }
 
@@ -30,15 +14,15 @@ class UserPage extends React.Component {
         <h2>Compte 🌿</h2>
 
         <div>
-          <h3>{this.state.user.firstName}</h3>
+          <h3>{this.props.context.user.firstName}</h3>
         </div>
 
         <div>
-          <h3>{this.state.user.lastName}</h3>
+          <h3>{this.props.context.user.lastName}</h3>
         </div>
 
         <div>
-          <h3>{this.state.user.email}</h3>
+          <h3>{this.props.context.user.email}</h3>
         </div>
 
         <button>Updater mon profil</button>
@@ -49,4 +33,4 @@ class UserPage extends React.Component {
   }
 }
 
-export default OneHeroPage;
+export default withUser(UserPage);
