@@ -43,7 +43,7 @@ class FormSignin extends Component {
 
     return (
       <form
-        className="form"
+        className="center-column"
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
       >

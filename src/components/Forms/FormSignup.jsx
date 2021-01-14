@@ -42,7 +42,11 @@ class FormSignup extends Component {
     }
 
     return (
-      <form className="form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+      <form
+        className="center-column"
+        onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
+      >
         <TextField
           value={this.state.firstName}
           label="Prénom"
