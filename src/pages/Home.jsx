@@ -1,20 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+import Button from "@material-ui/core/Button";
 
 class Home extends React.Component {
+  componentDidMount() {
+    document.title = "What the Earth — Accueil";
+  }
+
   render() {
     return (
-      <div>
-        <Button variant="primary">Chercher un produit</Button>
-        <Link to="/producers">
-          <Button variant="primary">Chercher un producteur</Button>
+      <div className="center-column">
+        <Link to="/products">
+          <Button style={{ margin: "10px" }} variant="contained">
+            Liste des produits
+          </Button>
         </Link>
-        <p>
+        <Link to="/producers">
+          <Button style={{ margin: "10px" }} variant="contained">
+            Chercher un producteur
+          </Button>
+        </Link>
+        <p style={{ padding: "10px", textAlign: "center" }}>
           Bienvenue sur What the Earth, base de données interactive super
-          géniale. Wanna know more about our project,{" "}
+          géniale. Pour en savoir plus sur notre projet,{" "}
           <Link className="link-underlined" to="/">
-            click here
+            cliquez ici
           </Link>
           .
         </p>
