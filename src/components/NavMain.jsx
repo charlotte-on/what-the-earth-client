@@ -25,7 +25,6 @@ export class NavMain extends React.Component {
 
   toggleClass = (event) => {
     const currentState = this.state.active;
-    console.log(event.target);
     this.setState({ active: !currentState });
   };
 
