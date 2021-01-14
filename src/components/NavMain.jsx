@@ -1,30 +1,66 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 
 import "../styles/NavMain.css";
 
-const NavMain = (props) => {
-  const { context } = props;
+export class NavMain extends React.Component {
+  state = {
+    user: null,
+    active: true,
+  };
+  // const { context } = this.props;
 
-  function handleLogout() {
-    apiHandler
-      .logout()
-      .then(() => {
-        context.removeUser();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // handleLogout() {
+  //   apiHandler
+  //     .logout()
+  //     .then(() => {
+  //       context.removeUser();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  return (
-    <nav className="NavMain">
-      <NavLink exact to="/">
-        <h3 className="logo">What the Earth</h3>
-      </NavLink>
-      {/* <ul className="nav-list">
+  toggleClass = (event) => {
+    const currentState = this.state.active;
+    console.log(event.target);
+    this.setState({ active: !currentState });
+  };
+
+  render() {
+    return (
+      <nav className="NavMain">
+        <img
+          className="burger-icon"
+          src="media/burger-icon.png"
+          alt="burger menu"
+          onClick={this.toggleClass}
+        />
+        <div className={this.state.active ? "hidden" : null}>
+          <div className="lateral-menu">
+            <div
+              style={{ fontSize: "5vh", color: "black" }}
+              onClick={this.toggleClass}
+            >
+              ✕
+            </div>
+            <h3>Bonjour</h3>
+            <nav>
+              <Link className="lateral-link">Accueil</Link>
+              <Link className="lateral-link">Produits</Link>
+              <Link className="lateral-link">Producteurs</Link>
+              <Link className="lateral-link">À propos</Link>
+            </nav>
+
+            <div></div>
+          </div>
+        </div>
+        <NavLink exact to="/">
+          <h3 className="logo">What the Earth</h3>
+        </NavLink>
+        {/* <ul className="nav-list">
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
@@ -48,8 +84,9 @@ const NavMain = (props) => {
           </React.Fragment>
         )}
       </ul> */}
-    </nav>
-  );
-};
+      </nav>
+    );
+  }
+}
 
 export default withUser(NavMain);

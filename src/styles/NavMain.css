@@ -15,3 +15,44 @@
 .NavMain .nav-list li:not(:last-child) {
   margin-right: 20px;
 }
+
+.burger-icon {
+  height: 5vh;
+  width: auto;
+  padding-right: 5vw;
+}
+
+nav {
+  display: flex;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.lateral-menu {
+  box-sizing: border-box;
+  padding-left: 5vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(231, 230, 230);
+  width: 40vw;
+  height: 100vh;
+  color: #87a878;
+  font-size: 6vw;
+}
+
+.lateral-menu h3 {
+  font-size: 8vw;
+  padding-bottom: 5vh;
+}
+
+.lateral-menu nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.lateral-link {
+  display: inline-block;
+}
