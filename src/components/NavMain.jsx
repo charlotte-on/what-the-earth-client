@@ -80,14 +80,14 @@ export class NavMain extends React.Component {
                 À propos
               </Link>
             </nav>
-            <div className="logout">
+            <div className="logout" onClick={this.handleLogout}>
               <img src="/media/logout.png" alt="logout icon" />{" "}
               <p>Se déconnecter</p>
             </div>
           </div>
           <div className="opacity"></div>
         </div>
-        <NavLink onClick={this.handleLogout}>
+        <NavLink to="/">
           <h3 className="logo">What the Earth</h3>
         </NavLink>
         {/* <ul className="nav-list">
