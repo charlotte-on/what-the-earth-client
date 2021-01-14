@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { UserContext } from "../Auth/UserContext";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
-import Redirect from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -28,7 +27,6 @@ class FormSignin extends Component {
       .signin(this.state)
       .then((data) => {
         this.context.setUser(data);
-        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);

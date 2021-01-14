@@ -22,7 +22,7 @@ function App() {
         <Route exact path="/producers" component={ProducerLandingPage} />
         <Route
           exact
-          path="/companies/register"
+          path="/producers/register"
           component={FormRegisterCompany}
         />
         <Route exact path="/products" component={Products} />
