@@ -5,6 +5,10 @@
   align-items: center;
   padding: 20px;
   height: 60px;
+  width: 100vw;
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 
 .NavMain .nav-list {
@@ -16,7 +20,8 @@
   margin-right: 20px;
 }
 
-.burger-icon {
+.burger-icon,
+.logout img {
   height: 5vh;
   width: auto;
   padding-right: 5vw;
@@ -42,12 +47,19 @@ nav {
   height: 100vh;
   color: #87a878;
   font-size: 6vw;
-  z-index: 10;
+}
+
+.cross img {
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: 7vh;
+  width: auto;
 }
 
 .lateral-menu h3 {
   font-size: 8vw;
   padding-bottom: 5vh;
+  color: black;
 }
 
 .lateral-menu nav {
@@ -71,5 +83,9 @@ nav {
   height: 100vh;
   background-color: black;
   opacity: 70%;
-  z-index: 10;
+}
+
+.logout {
+  display: flex;
+  padding-top: 40vh;
 }
