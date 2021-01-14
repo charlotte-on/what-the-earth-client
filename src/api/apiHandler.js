@@ -57,4 +57,18 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+
+  updateUser(userId, data) {
+    return service
+      .patch(`/users/${userId}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getUserInfos(userId) {
+    return service
+      .get(`/users/${userId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };
