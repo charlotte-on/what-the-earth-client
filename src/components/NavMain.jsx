@@ -46,18 +46,46 @@ export class NavMain extends React.Component {
               ✕
             </div>
             <h3>Bonjour</h3>
+
             <nav>
-              <Link className="lateral-link">Accueil</Link>
-              <Link className="lateral-link">Produits</Link>
-              <Link className="lateral-link">Producteurs</Link>
-              <Link to="/profile" className="lateral-link">
+              <Link to="/" className="lateral-link" onClick={this.toggleClass}>
+                Accueil
+              </Link>
+              <hr />
+              <Link
+                to="/products"
+                className="lateral-link"
+                onClick={this.toggleClass}
+              >
+                Produits
+              </Link>
+              <hr />
+              <Link className="lateral-link" onClick={this.toggleClass}>
+                Simulateur
+              </Link>
+              <hr />
+              <Link
+                to="/producers"
+                className="lateral-link"
+                onClick={this.toggleClass}
+              >
+                Producteurs
+              </Link>
+              <hr />
+              <Link
+                to="/profile"
+                className="lateral-link"
+                onClick={this.toggleClass}
+              >
                 Mon profil
               </Link>
-              <Link className="lateral-link">À propos</Link>
+              <hr />
+              <Link className="lateral-link" onClick={this.toggleClass}>
+                À propos
+              </Link>
             </nav>
-
-            <div></div>
           </div>
+          <div className="opacity"></div>
         </div>
         <NavLink exact to="/">
           <h3 className="logo">What the Earth</h3>
