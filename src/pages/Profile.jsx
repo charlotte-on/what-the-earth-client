@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Profile = (props) => {
-  return (
-    <div>
-      <h1>Protected profile</h1>
-    </div>
-  );
-};
+export class Profile extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Mon profil</h1>
+      </div>
+    );
+  }
+}
 
 export default Profile;

@@ -50,6 +50,9 @@ export class NavMain extends React.Component {
               <Link className="lateral-link">Accueil</Link>
               <Link className="lateral-link">Produits</Link>
               <Link className="lateral-link">Producteurs</Link>
+              <Link to="/profile" className="lateral-link">
+                Mon profil
+              </Link>
               <Link className="lateral-link">À propos</Link>
             </nav>
 
