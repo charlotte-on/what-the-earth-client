@@ -31,7 +31,7 @@ export class ProducerLandingPage extends Component {
         <Map
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
-            height: "50vh",
+            height: "80vh",
             width: "100vw",
           }}
           center={[2.3315, 48.8567]}
@@ -40,20 +40,20 @@ export class ProducerLandingPage extends Component {
             <Marker
               key={producer._id}
               coordinates={producer.location.coordinates}
-              anchor="bottom"
-              style={{ backgroundColor: "white", border: "1px solid black" }}
-              onClick={() => {
-                if (this.state.selectedProducer === null) {
-                  this.setState({ selectedProducer: producer });
-                } else {
-                  this.setState({ selectedProducer: null });
-                }
-              }}
+              offsetTop={-48}
+              offsetLeft={-24}
+              // onClick={() => {
+              //   if (this.state.selectedProducer === null) {
+              //     this.setState({ selectedProducer: producer });
+              //   } else {
+              //     this.setState({ selectedProducer: null });
+              //   }
+              // }}
             >
               <img
-                style={{ width: "50px" }}
-                src="../../../public/media/mapbox-icon.png"
-                alt={producer.name}
+                style={{ width: "40px" }}
+                src="/media/marker.png"
+                alt={producer.companyName}
               />
             </Marker>
           ))}

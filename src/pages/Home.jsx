@@ -43,14 +43,19 @@ class Home extends React.Component {
         </p>
         {!this.props.context.user && (
           <div className="center-column">
+            <h5>Je suis un particulier</h5>
             <Link className="link-underlined" to="/signup">
               Créer un compte
             </Link>
             <Link className="link-underlined" to="/signin">
               Me connecter
             </Link>
+            <h5>Je suis un professionnel</h5>
             <Link className="link-underlined" to="/producers/register">
               Enregistrer mon commerce
+            </Link>
+            <Link className="link-underlined" to="/producers/login">
+              J'accède à mon espace
             </Link>
           </div>
         )}

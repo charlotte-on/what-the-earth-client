@@ -21,7 +21,6 @@ class LocationAutoComplete extends Component {
   }
 
   handleSearchChange(e) {
-    console.log(e.target.value);
     this.setState({
       search: e.target.value,
       isLoading: true,

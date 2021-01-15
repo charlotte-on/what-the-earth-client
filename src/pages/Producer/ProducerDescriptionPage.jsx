@@ -3,6 +3,8 @@ import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
 import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import EmailIcon from "@material-ui/icons/Email";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -10,7 +12,7 @@ const Map = ReactMapboxGl({
 
 export class ProducerDescriptionPage extends Component {
   state = {
-    producer: "",
+    producer: [],
   };
 
   componentDidMount() {
@@ -30,7 +32,7 @@ export class ProducerDescriptionPage extends Component {
             <img
               style={{ filter: "brightness(50%)" }}
               src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
-              alt="{this.state.producer.companyName}"
+              alt={this.state.producer.companyName}
             />
           </div>
           <div>
@@ -42,8 +44,12 @@ export class ProducerDescriptionPage extends Component {
         <p>{this.state.producer.type}</p>
         <p>Description : {this.state.producer.description}</p>
         <p>Horaires : {this.state.producer.schedule}</p>
-        <Button variant="contained">{this.state.producer.phoneNumber}</Button>
-        <Button variant="contained">{this.state.producer.email}</Button>
+        <Button variant="contained" startIcon={<PhoneIphoneIcon />}>
+          {this.state.producer.phoneNumber}
+        </Button>
+        <Button variant="contained" startIcon={<EmailIcon />}>
+          {this.state.producer.email}
+        </Button>
         <h2>Où acheter ?</h2>
         <Map
           style="mapbox://styles/mapbox/light-v10"
@@ -51,11 +57,11 @@ export class ProducerDescriptionPage extends Component {
             height: "30vh",
             width: "100vw",
           }}
-          // center={this.state.producer.location.coordinates}
+          // center={[2.390628, 48.851733]}
         >
           {/* <Marker
             key={this.state.producer._id}
-            // coordinates={this.state.producer.location.coordinates}
+            coordinates={this.state.producer.location.coordinates}
             anchor="bottom"
             style={{ backgroundColor: "white", border: "1px solid black" }}
           >
