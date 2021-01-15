@@ -38,7 +38,8 @@ export class ProductPage extends Component {
     return (
       <div>
         <h1>{this.state.product.Nom_du_Produit_en_Français}</h1>
-        <p>
+        <h5>Catégorie: {this.state.product["Sous-groupe_d'aliment"]}</h5>
+        <h3>
           {" "}
           Score EPF:{" "}
           <span
@@ -53,7 +54,180 @@ export class ProductPage extends Component {
               this.state.product["Score_unique_EF_(mPt/kg_de_produit)"]
             )}
           </span>
-        </p>
+        </h3>
+        <div></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Indicateur</th>
+              <th>Mesure</th>
+              <th>Unité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Score unique EF</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product["Score_unique_EF_(mPt/kg_de_produit)"]
+                )}
+              </td>
+              <td>mPt/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Changement climatique</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Changement_climatique_(kg_CO2_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>kg CO2 eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Appauvrissement de la couche d'ozone</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Appauvrissement_de_la_couche_d'ozone_(E-06_kg_CVC11_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-06 kg CVC11 eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Rayonnements ionisants</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Rayonnements_ionisants_(kBq_U-235_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>kBq U-235 eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Formation photochimique d'ozone</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Formation_photochimique_d'ozone_(E-03_kg_NMVOC_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-03 kg NMVOC eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Particules</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Particules_(E-06_disease_inc_/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-06 disease inc./kg de produit</td>
+            </tr>
+            <tr>
+              <td>Acidification terrestre et eaux douces</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Acidification_terrestre_et_eaux_douces_(mol_H+_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>mol H+ eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Eutrophisation terreste</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Eutrophisation_terreste_(mol_N_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>mol N eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Eutrophisation eaux douces</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Eutrophisation_eaux_douces_(E-03_kg_P_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-03 kg P eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Eutrophisation marine</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Eutrophisation_marine_(E-03_kg_N_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-03 kg N eq/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Utilisation du sol</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product["Utilisation_du_sol_(Pt/kg_de_produit)"]
+                )}
+              </td>
+              <td>Pt/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Écotoxicité pour écosystèmes aquatiques d'eau douce</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Écotoxicité_pour_écosystèmes_aquatiques_d'eau_douce_(CTUe/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>CTUe/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Épuisement des ressources eau</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Épuisement_des_ressources_eau_(m3_depriv_/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>m3 depriv./kg de produit</td>
+            </tr>
+            <tr>
+              <td>Épuisement des ressources énergétiques</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Épuisement_des_ressources_énergétiques_(MJ/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>MJ/kg de produit</td>
+            </tr>
+            <tr>
+              <td>Épuisement des ressources minéraux</td>
+              <td>
+                {this.roundNumber(
+                  this.state.product[
+                    "Épuisement_des_ressources_minéraux_(E-06_kg_Sb_eq/kg_de_produit)"
+                  ]
+                )}
+              </td>
+              <td>E-06 kg Sb eq/kg de produit</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }

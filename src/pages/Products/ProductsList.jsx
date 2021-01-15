@@ -10,7 +10,6 @@ export class ProductsList extends React.Component {
 
   handleSearch = (event) => {
     const value = event.target.value;
-    console.log(this.state.products);
     this.setState({
       search: value,
       filteredProducts: this.state.products.filter((product) =>

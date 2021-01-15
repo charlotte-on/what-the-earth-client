@@ -7,3 +7,13 @@ h1 {
   text-decoration: underline;
   margin-bottom: 20px;
 }
+
+table {
+  margin: 10px 10px;
+  padding: 0 10px;
+  border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+  background-color: #87a878a2;
+}
