@@ -23,9 +23,23 @@ export default {
       .catch(errorHandler);
   },
 
-  registerCompany(companyInfo) {
+  registerProducer(companyInfo) {
     return service
       .post("/api/companies/signup", companyInfo)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getProducers() {
+    return service
+      .get("/api/companies/")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getOneProducer(id) {
+    return service
+      .get("/api/companies/" + id)
       .then((res) => res.data)
       .catch(errorHandler);
   },
