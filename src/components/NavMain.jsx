@@ -10,18 +10,17 @@ export class NavMain extends React.Component {
     user: null,
     active: true,
   };
-  // const { context } = this.props;
 
-  // handleLogout() {
-  //   apiHandler
-  //     .logout()
-  //     .then(() => {
-  //       context.removeUser();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  handleLogout = () => {
+    apiHandler
+      .logout()
+      .then(() => {
+        this.props.context.removeUser();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   toggleClass = () => {
     const currentState = this.state.active;
@@ -42,7 +41,13 @@ export class NavMain extends React.Component {
             <div className="cross" onClick={this.toggleClass}>
               <img src="/media/cross.png" alt="" />
             </div>
-            <h3>Bonjour</h3>
+            <div>
+              {!this.props.context.user ? (
+                <h4>Bonjour</h4>
+              ) : (
+                <h4>Bonjour {this.props.context.user.firstName}</h4>
+              )}
+            </div>
 
             <nav>
               <Link to="/" className="lateral-link" onClick={this.toggleClass}>
@@ -86,13 +91,26 @@ export class NavMain extends React.Component {
               </Link>
             </nav>
             <div className="logout">
-              <img src="/media/logout.png" alt="logout icon" />{" "}
-              <p>Se déconnecter</p>
+              {!this.props.context.user ? (
+                <Link to="/signin" onClick={this.toggleClass}>
+                  Me connecter
+                </Link>
+              ) : (
+                <div
+                  onClick={() => {
+                    this.handleLogout();
+                    this.toggleClass();
+                  }}
+                >
+                  <img src="/media/logout.png" alt="logout icon" />{" "}
+                  <p>Se déconnecter</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="opacity"></div>
         </div>
-        <NavLink exact to="/">
+        <NavLink to="/">
           <h3 className="logo">What the Earth</h3>
         </NavLink>
         {/* <ul className="nav-list">

@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
 import Redirect from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 class FormRegisterCompany extends Component {
   static contextType = UserContext;
@@ -44,72 +46,86 @@ class FormRegisterCompany extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor="companyName">Company Name</label>
-        <input
-          onChange={this.handleChange}
+      <form
+        onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
+        className="center-column"
+      >
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Nom de l'entreprise"
           value={this.state.companyName}
           type="text"
           id="companyName"
           name="companyName"
         />
-        <label htmlFor="producerName">Producer Name</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Nom du producteur"
           value={this.state.producerName}
           type="text"
           id="producerName"
           name="producerName"
         />
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Email"
           value={this.state.email}
           type="email"
           id="email"
           name="email"
         />
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Mot de passe"
           value={this.state.password}
           type="password"
           id="password"
           name="password"
         />
-        <label htmlFor="phoneNumber">Phone Number</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Numéro de téléphone"
           value={this.state.phoneNumber}
           type="text"
           id="phoneNumber"
           name="phoneNumber"
         />
-        <label htmlFor="schedule">Schedule</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Horaires"
           value={this.state.schedule}
           type="text"
           id="schedule"
           name="schedule"
         />
-        <label htmlFor="field">Field</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Type"
           value={this.state.field}
           type="text"
           id="field"
           name="field"
         />
-        <label htmlFor="description">Description</label>
-        <input
-          onChange={this.handleChange}
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Description"
           value={this.state.description}
           type="text"
           id="description"
           name="description"
         />
-        <button>Submit</button>
+        <Button style={{ margin: "10px" }} type="submit" variant="contained">
+          Créer entreprise
+        </Button>
       </form>
     );
   }
