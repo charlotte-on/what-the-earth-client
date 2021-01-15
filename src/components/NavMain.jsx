@@ -82,7 +82,11 @@ export class NavMain extends React.Component {
                 Mon profil
               </Link>
               <hr />
-              <Link className="lateral-link" onClick={this.toggleClass}>
+              <Link
+                to="/about"
+                className="lateral-link"
+                onClick={this.toggleClass}
+              >
                 À propos
               </Link>
             </nav>

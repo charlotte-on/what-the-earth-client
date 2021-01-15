@@ -1,52 +1,58 @@
 import React from "react";
-import axios from "axios";
+import { withUser } from "../../components/Auth/withUser";
+import apiHandler from "../../api/apiHandler";
 
 class UserPage extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    email: "",
+  handleChange = (event) => {
+    event.preventDefault();
   };
 
-  componentDidMount() {
-    // console.log(this.props.match.params.id);
-    const userId = this.props.match.params.id;
-
-    axios.get("http://localhost:4000/users/" + userId).then((apiResponse) => {
-      //   console.log(apiResponse);
-      this.setState({
-        user: apiResponse.data,
+  handleLogout = () => {
+    apiHandler
+      .logout()
+      .then(() => {
+        this.props.context.removeUser();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    });
-  }
+  };
 
   render() {
-    if (!this.state.user) {
+    if (!this.props.context.user) {
       return <div>Loading...</div>;
     }
 
     return (
       <div>
         <h2>Compte 🌿</h2>
-
+        <br />
         <div>
-          <h3>{this.state.user.firstName}</h3>
+          <h3>{this.props.context.user.firstName}</h3>
         </div>
 
         <div>
-          <h3>{this.state.user.lastName}</h3>
+          <h3>{this.props.context.user.lastName}</h3>
         </div>
 
         <div>
-          <h3>{this.state.user.email}</h3>
+          <h3>{this.props.context.user.email}</h3>
         </div>
 
-        <button>Updater mon profil</button>
+        <div>
+          <button to="/profile/${userId}" onClick={this.handleChange}>
+            Updater mon profil
+          </button>
+        </div>
 
-        <button>Se déconnecter</button>
+        <div onClick={this.handleLogout}>
+          <button>Se déconnecter</button>
+        </div>
       </div>
     );
   }
 }
 
-export default UserPage;
+export default withUser(UserPage);
+
+// how to add the userId in the route?

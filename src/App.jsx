@@ -8,9 +8,12 @@ import Products from "./pages/Products/Products";
 import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProducerDescriptionPage from "./pages/Producer/ProducerDescriptionPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "bootstrap/dist/css/bootstrap.min.css";
 import UserPage from "./pages/User/UserPage";
+import UserUpdate from "./pages/User/UserUpdate";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 import ProducerProfilePage from "./pages/Producer/ProducerProfilePage";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -38,6 +41,12 @@ function App() {
           component={ProducerDescriptionPage}
         />
         <ProtectedRoute exact path="/profile" component={UserPage} />
+        <ProtectedRoute
+          exact
+          path="/profile/{this.props.context.user._id}"
+          component={UserUpdate}
+        />
+        <Route exact path="/about" component={About} />
       </Switch>
     </div>
   );

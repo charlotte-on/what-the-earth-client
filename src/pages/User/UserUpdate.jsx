@@ -1,23 +1,77 @@
 import React, { Component } from "react";
+import { withUser } from "../../components/Auth/withUser";
+import apiHandler from "../../api/apiHandler";
 
 class UserUpdate extends Component {
   state = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    user: null,
+    httpResponse: null,
+    isLoading: true,
   };
+
+  componentDidMount() {
+    console.log(this.props.context.user._id);
+    apiHandler
+      .getUserInfos(this.props.context.user._id)
+      .then((data) => {
+        this.setState({ user: data, isLoading: false });
+      })
+      .catch((error) => {
+        this.setState({
+          isLoading: false,
+          httpResponse: {
+            status: "failure",
+            message: "Failure, please try again later",
+          },
+        });
+      });
+  }
 
   handleChange = (event) => {
     const key = event.target.name;
     const value = event.target.value;
-    this.setState({
-      [key]: value,
-    });
+    this.setState({ user: { ...this.state.user, [key]: value } });
+  };
+
+  checkError = () => {
+    for (const key in this.state.user) {
+      if (this.state[key] === "") {
+        return true;
+      }
+    }
+    return false;
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    apiHandler
+      .updateUser(this.props.context.user._id, this.state)
+      .then((data) => {
+        this.context.setUser(data);
+        this.setState({
+          httpResponse: {
+            status: "success",
+            message: "Profile successfully updated.",
+          },
+        });
+
+        this.timeoutId = setTimeout(() => {
+          this.setState({ httpResponse: null });
+        }, 2000);
+      })
+      .catch((error) => {
+        this.setState({
+          httpResponse: {
+            status: "failure",
+            message: "Failure, try again later",
+          },
+        });
+
+        this.timeoutId = setTimeout(() => {
+          this.setState({ httpResponse: null });
+        }, 2000);
+      });
   };
 
   render() {
@@ -26,40 +80,48 @@ class UserUpdate extends Component {
         <h3>Updater mon profil</h3>
 
         <div>
-          <label htmlFor="">Prénom</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="firstName">Prénom</label>
+            <input
+              type="text"
+              name="firstName"
+              value={this.state.user.firstName}
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="">Nom</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="lastName">Nom</label>
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.user.lastName}
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="">Email</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.user.email}
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="">Mot de passe</label>
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
+          <div>
+            <label htmlFor="password">Mot de passe</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.user.password}
+              onChange={this.handleChange}
+            />
+          </div>
         </div>
 
-        <button>Updater</button>
+        <button disabled={this.checkError()}>Mettre à jour</button>
       </form>
     );
   }
