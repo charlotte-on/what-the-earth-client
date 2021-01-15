@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/User/UserPage";
 import UserUpdate from "./pages/User/UserUpdate";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
+import ProducerProfilePage from "./pages/Producer/ProducerProfilePage";
 import About from "./pages/About";
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
           component={FormRegisterCompany}
         />
         <Route exact path="/products" component={Products} />
+        <ProtectedRoute
+          exact
+          path="/producers/profile"
+          component={ProducerProfilePage}
+        />
         <Route
           exact
           path="/producers/:id"

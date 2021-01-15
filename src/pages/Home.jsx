@@ -65,6 +65,9 @@ class Home extends React.Component {
             <Link className="link-underlined" to="/profile">
               Mon compte
             </Link>
+            <Link className="link-underlined" to="/producers/profile">
+              Producer Profile Page
+            </Link>
             <p onClick={this.handleLogout} className="link-underlined">
               Se déconnecter
             </p>
