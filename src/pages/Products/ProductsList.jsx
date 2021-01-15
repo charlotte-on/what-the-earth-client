@@ -23,7 +23,7 @@ export class ProductsList extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar handleSearch={this.props.handleSearch} />
+        <SearchBar handleSearch={this.handleSearch} />
         {this.state.filteredProducts.map((product) => {
           return (
             <div key={product._id}>
