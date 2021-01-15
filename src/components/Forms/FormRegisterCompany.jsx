@@ -1,37 +1,43 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
-import Redirect from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import LocationAutoComplete from "./LocationAutoComplete";
 
 class FormRegisterCompany extends Component {
   static contextType = UserContext;
 
   state = {
+    producerFirstName: "",
+    producerLastName: "",
     companyName: "",
-    producerName: "",
-    email: "",
-    password: "",
     phoneNumber: "",
     schedule: "",
     field: "",
     description: "",
+    email: "",
+    password: "",
+    location: {
+      coordinates: [],
+    },
   };
 
   handleChange = (event) => {
-    const value = event.target.value;
-    const key = event.target.name;
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-    this.setState({ [key]: value });
+  handlePlace = (place) => {
+    const location = place.geometry;
+    this.setState({ location, formattedAddress: place.place_name });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
     apiHandler
-      .registerCompany(this.state)
+      .registerProducer(this.state)
       .then((data) => {
         this.context.setUser(data);
       })
@@ -60,14 +66,24 @@ class FormRegisterCompany extends Component {
           id="companyName"
           name="companyName"
         />
+        <LocationAutoComplete name="location" onSelect={this.handlePlace} />
         <TextField
           style={{ margin: "10px" }}
           variant="outlined"
-          label="Nom du producteur"
-          value={this.state.producerName}
+          label="Prénom"
+          value={this.state.producerFirstName}
           type="text"
-          id="producerName"
-          name="producerName"
+          id="producerFirstName"
+          name="producerFirstName"
+        />
+        <TextField
+          style={{ margin: "10px" }}
+          variant="outlined"
+          label="Nom de famille"
+          value={this.state.producerLastName}
+          type="text"
+          id="producerLastName"
+          name="producerLastName"
         />
         <TextField
           style={{ margin: "10px" }}
