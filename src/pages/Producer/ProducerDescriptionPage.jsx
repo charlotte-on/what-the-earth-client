@@ -12,7 +12,7 @@ const Map = ReactMapboxGl({
 
 export class ProducerDescriptionPage extends Component {
   state = {
-    producer: [],
+    producer: "",
   };
 
   componentDidMount() {
@@ -32,7 +32,7 @@ export class ProducerDescriptionPage extends Component {
             <img
               style={{ filter: "brightness(50%)" }}
               src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
-              alt={this.state.producer.companyName}
+              alt="{this.state.producer.companyName}"
             />
           </div>
           <div>
@@ -57,11 +57,11 @@ export class ProducerDescriptionPage extends Component {
             height: "30vh",
             width: "100vw",
           }}
-          // center={[2.390628, 48.851733]}
+          // center={this.state.producer.location.coordinates}
         >
           {/* <Marker
             key={this.state.producer._id}
-            coordinates={this.state.producer.location.coordinates}
+            // coordinates={this.state.producer.location.coordinates}
             anchor="bottom"
             style={{ backgroundColor: "white", border: "1px solid black" }}
           >

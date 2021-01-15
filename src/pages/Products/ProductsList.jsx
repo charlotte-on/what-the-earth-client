@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SearchBar from "../../components/SearchBar";
 
 export class ProductsList extends React.Component {
@@ -9,12 +10,19 @@ export class ProductsList extends React.Component {
 
   handleSearch = (event) => {
     const value = event.target.value;
+    console.log(this.state.products);
     this.setState({
       search: value,
       filteredProducts: this.state.products.filter((product) =>
-        product.Nom_du_Produit_en_Français.toLowerCase().includes(
-          event.target.value.toLowerCase()
-        )
+        product.Nom_du_Produit_en_Français.toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .includes(
+            event.target.value
+              .toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+          )
       ),
     });
   };
@@ -26,7 +34,9 @@ export class ProductsList extends React.Component {
         {this.state.filteredProducts.map((product) => {
           return (
             <div key={product._id}>
-              <h3>{product.Nom_du_Produit_en_Français}</h3>
+              <Link to={`/products/${product._id}`}>
+                <h3>{product.Nom_du_Produit_en_Français}</h3>
+              </Link>
               <p>
                 Score PEF :
                 <span

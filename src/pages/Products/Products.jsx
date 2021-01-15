@@ -34,7 +34,7 @@ export class Products extends Component {
   };
 
   render() {
-    if (!this.state.products && !this.state.filteredProducts) {
+    if (!this.state.products) {
       return (
         <div>
           <h1>Tous les produits</h1>
