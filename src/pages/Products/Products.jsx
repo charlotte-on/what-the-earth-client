@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ProductsList from "./ProductsList";
 
-import "../styles/Products.css";
+import "../../styles/Products.css";
 
 export class Products extends Component {
   state = {
@@ -33,7 +34,7 @@ export class Products extends Component {
   };
 
   render() {
-    if (!this.state.products) {
+    if (!this.state.products && !this.state.filteredProducts) {
       return (
         <div>
           <h1>Tous les produits</h1>
@@ -48,29 +49,12 @@ export class Products extends Component {
     return (
       <div className="allProducts">
         <h1>Tous les produits</h1>
-        {this.state.products.map((product) => {
-          return (
-            <div key={product._id}>
-              <h3>{product.Nom_du_Produit_en_Français}</h3>
-              <p>
-                Score PEF :
-                <span
-                  style={{
-                    color: this.coloredNumber(
-                      product["Score_unique_EF_(mPt/kg_de_produit)"]
-                    ),
-                    fontWeight: "bold",
-                  }}
-                >
-                  {this.roundNumber(
-                    product["Score_unique_EF_(mPt/kg_de_produit)"]
-                  )}
-                </span>
-              </p>
-              <hr />
-            </div>
-          );
-        })}
+        <ProductsList
+          products={this.state.products}
+          handleSearch={this.handleSearch}
+          coloredNumber={this.coloredNumber}
+          roundNumber={this.roundNumber}
+        />
       </div>
     );
   }
