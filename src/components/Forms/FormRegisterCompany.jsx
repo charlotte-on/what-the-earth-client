@@ -126,7 +126,7 @@ class FormRegisterCompany extends Component {
           id="schedule"
           name="schedule"
         />
-        <FormControl variant="outlined">
+        <FormControl style={{ margin: "10px" }} variant="outlined">
           <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
           <Select
             style={{ width: "195px" }}

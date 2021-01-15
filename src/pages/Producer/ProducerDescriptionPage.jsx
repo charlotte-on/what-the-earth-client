@@ -45,10 +45,10 @@ export class ProducerDescriptionPage extends Component {
         <p>Description : {this.state.producer.description}</p>
         <p>Horaires : {this.state.producer.schedule}</p>
         <Button variant="contained" startIcon={<PhoneIphoneIcon />}>
-          {this.state.producer.phoneNumber}
+          <a href={"tel:" + this.state.producer.phoneNumber}>Appeler</a>
         </Button>
         <Button variant="contained" startIcon={<EmailIcon />}>
-          {this.state.producer.email}
+          <a href={"mailto:" + this.state.producer.email}>Envoyer un email</a>
         </Button>
         <h2>Où acheter ?</h2>
         <Map
