@@ -8,7 +8,6 @@ import Products from "./pages/Products";
 import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/User/UserPage";
-import "bootstrap/dist/css/bootstrap.min.css";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 
 function App() {

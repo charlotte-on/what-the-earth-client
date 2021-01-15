@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500;600;700&display=swap");
+
 .NavMain {
   background-color: #87a878;
   color: white;
@@ -56,9 +58,9 @@ nav {
   width: auto;
 }
 
-.lateral-menu h3 {
-  font-size: 8vw;
-  padding-bottom: 5vh;
+.lateral-menu h4 {
+  font-size: 6vw;
+  padding-bottom: 2vh;
   color: black;
 }
 

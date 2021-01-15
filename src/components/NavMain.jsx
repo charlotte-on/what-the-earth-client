@@ -41,7 +41,13 @@ export class NavMain extends React.Component {
             <div className="cross" onClick={this.toggleClass}>
               <img src="/media/cross.png" alt="" />
             </div>
-            <h3>Bonjour</h3>
+            <div>
+              {!this.props.context.user ? (
+                <h4>Bonjour</h4>
+              ) : (
+                <h4>Bonjour {this.props.context.user.firstName}</h4>
+              )}
+            </div>
 
             <nav>
               <Link to="/" className="lateral-link" onClick={this.toggleClass}>
@@ -80,15 +86,22 @@ export class NavMain extends React.Component {
                 À propos
               </Link>
             </nav>
-            <div
-              className="logout"
-              onClick={() => {
-                this.handleLogout();
-                this.toggleClass();
-              }}
-            >
-              <img src="/media/logout.png" alt="logout icon" />{" "}
-              <p>Se déconnecter</p>
+            <div className="logout">
+              {!this.props.context.user ? (
+                <Link to="/signin" onClick={this.toggleClass}>
+                  Me connecter
+                </Link>
+              ) : (
+                <div
+                  onClick={() => {
+                    this.handleLogout();
+                    this.toggleClass();
+                  }}
+                >
+                  <img src="/media/logout.png" alt="logout icon" />{" "}
+                  <p>Se déconnecter</p>
+                </div>
+              )}
             </div>
           </div>
           <div className="opacity"></div>
