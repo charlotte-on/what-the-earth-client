@@ -17,7 +17,6 @@ export class ProductsList extends React.Component {
         )
       ),
     });
-    console.log(this.statefilteredProducts);
   };
 
   render() {
