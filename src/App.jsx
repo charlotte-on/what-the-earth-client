@@ -42,11 +42,7 @@ function App() {
           component={ProducerDescriptionPage}
         />
         <ProtectedRoute exact path="/profile" component={UserPage} />
-        <ProtectedRoute
-          exact
-          path="/profile/{this.props.context.user._id}"
-          component={UserUpdate}
-        />
+        <ProtectedRoute exact path="/profile/:id" component={UserUpdate} />
         <Route exact path="/about" component={About} />
       </Switch>
     </div>

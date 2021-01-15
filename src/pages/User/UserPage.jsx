@@ -1,11 +1,12 @@
 import React from "react";
 import { withUser } from "../../components/Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import { Link } from "react-router-dom";
 
 class UserPage extends React.Component {
-  handleChange = (event) => {
-    event.preventDefault();
-  };
+  // handleChange = (event) => {
+  //   event.preventDefault();
+  // };
 
   handleLogout = () => {
     apiHandler
@@ -20,12 +21,20 @@ class UserPage extends React.Component {
 
   render() {
     if (!this.props.context.user) {
-      return <div>Loading...</div>;
+      return (
+        <div>
+          <img
+            src="/media/loading.gif"
+            alt="loading icon"
+            className="loading"
+          />
+        </div>
+      );
     }
 
     return (
       <div>
-        <h2>Compte 🌿</h2>
+        <h2>Compte</h2>
         <br />
         <div>
           <h3>{this.props.context.user.firstName}</h3>
@@ -40,9 +49,9 @@ class UserPage extends React.Component {
         </div>
 
         <div>
-          <button to="/profile/${userId}" onClick={this.handleChange}>
-            Updater mon profil
-          </button>
+          <Link to={`/profile/${this.props.context.user._id}`}>
+            <button>Modifier mon profil</button>
+          </Link>
         </div>
 
         <div onClick={this.handleLogout}>

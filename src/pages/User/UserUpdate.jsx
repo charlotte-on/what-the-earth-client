@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withUser } from "../../components/Auth/withUser";
 import apiHandler from "../../api/apiHandler";
+import { withUser } from "../../components/Auth/withUser";
 
 class UserUpdate extends Component {
   state = {
@@ -10,7 +10,6 @@ class UserUpdate extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.context.user._id);
     apiHandler
       .getUserInfos(this.props.context.user._id)
       .then((data) => {
@@ -46,7 +45,7 @@ class UserUpdate extends Component {
     event.preventDefault();
 
     apiHandler
-      .updateUser(this.props.context.user._id, this.state)
+      .updateUser(this.state.context.user._id, this.state)
       .then((data) => {
         this.context.setUser(data);
         this.setState({
@@ -75,6 +74,17 @@ class UserUpdate extends Component {
   };
 
   render() {
+    if (!this.state.user) {
+      return (
+        <div>
+          <img
+            src="/media/loading.gif"
+            alt="loading icon"
+            className="loading"
+          />
+        </div>
+      );
+    }
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>Updater mon profil</h3>
@@ -127,4 +137,4 @@ class UserUpdate extends Component {
   }
 }
 
-export default UserUpdate;
+export default withUser(UserUpdate);
