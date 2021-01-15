@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
+import { Redirect } from "react-router-dom";
 
 class UserUpdate extends Component {
   state = {
@@ -43,33 +44,15 @@ class UserUpdate extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-
     apiHandler
-      .updateUser(this.state.context.user._id, this.state)
+      .updateUser(this.props.context.user._id, this.state.user)
       .then((data) => {
-        this.context.setUser(data);
-        this.setState({
-          httpResponse: {
-            status: "success",
-            message: "Profile successfully updated.",
-          },
+        this.props.context.setUser(data, () => {
+          this.props.history.push("/profile");
         });
-
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 2000);
       })
       .catch((error) => {
-        this.setState({
-          httpResponse: {
-            status: "failure",
-            message: "Failure, try again later",
-          },
-        });
-
-        this.timeoutId = setTimeout(() => {
-          this.setState({ httpResponse: null });
-        }, 2000);
+        console.log(error);
       });
   };
 
@@ -85,6 +68,7 @@ class UserUpdate extends Component {
         </div>
       );
     }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>Updater mon profil</h3>
