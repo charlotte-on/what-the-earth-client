@@ -43,14 +43,19 @@ class Home extends React.Component {
         </p>
         {!this.props.context.user && (
           <div className="center-column">
+            <h5>Je suis un particulier</h5>
             <Link className="link-underlined" to="/signup">
               Créer un compte
             </Link>
             <Link className="link-underlined" to="/signin">
               Me connecter
             </Link>
+            <h5>Je suis un professionnel</h5>
             <Link className="link-underlined" to="/producers/register">
               Enregistrer mon commerce
+            </Link>
+            <Link className="link-underlined" to="/producers/login">
+              J'accède à mon espace
             </Link>
           </div>
         )}
@@ -59,6 +64,9 @@ class Home extends React.Component {
           <div className="center-column">
             <Link className="link-underlined" to="/profile">
               Mon compte
+            </Link>
+            <Link className="link-underlined" to="/producers/profile">
+              Producer Profile Page
             </Link>
             <p onClick={this.handleLogout} className="link-underlined">
               Se déconnecter

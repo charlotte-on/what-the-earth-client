@@ -3,6 +3,8 @@ import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
 import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import EmailIcon from "@material-ui/icons/Email";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
