@@ -4,6 +4,11 @@ import { UserContext } from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
 
 class FormRegisterCompany extends Component {
@@ -121,15 +126,24 @@ class FormRegisterCompany extends Component {
           id="schedule"
           name="schedule"
         />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Type"
-          value={this.state.field}
-          type="text"
-          id="field"
-          name="field"
-        />
+        <FormControl variant="outlined">
+          <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
+          <Select
+            style={{ width: "195px" }}
+            id="field"
+            name="field"
+            value={this.state.field}
+            label="Type"
+            onChange={this.handleChange}
+          >
+            <MenuItem value="">
+              <em>Aucun</em>
+            </MenuItem>
+            <MenuItem value={"Fromager"}>Fromager</MenuItem>
+            <MenuItem value={"Boucher"}>Boucher</MenuItem>
+            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           style={{ margin: "10px" }}
           variant="outlined"
