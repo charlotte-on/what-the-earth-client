@@ -44,11 +44,19 @@ export class ProducerDescriptionPage extends Component {
         <p>{this.state.producer.type}</p>
         <p>Description : {this.state.producer.description}</p>
         <p>Horaires : {this.state.producer.schedule}</p>
-        <Button variant="contained" startIcon={<PhoneIphoneIcon />}>
-          <a href={"tel:" + this.state.producer.phoneNumber}>Appeler</a>
+        <Button
+          variant="contained"
+          startIcon={<PhoneIphoneIcon />}
+          href={"tel:" + this.state.producer.phoneNumber}
+        >
+          Appeler
         </Button>
-        <Button variant="contained" startIcon={<EmailIcon />}>
-          <a href={"mailto:" + this.state.producer.email}>Envoyer un email</a>
+        <Button
+          variant="contained"
+          startIcon={<EmailIcon />}
+          href={"mailto:" + this.state.producer.email}
+        >
+          Envoyer un email
         </Button>
         <h2>Où acheter ?</h2>
         <Map

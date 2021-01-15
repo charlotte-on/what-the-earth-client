@@ -74,7 +74,7 @@ export default {
 
   updateUser(userId, data) {
     return service
-      .patch(`/users/${userId}`, data)
+      .patch(`/api/users/${userId}`, data)
       .then((res) => res.data)
       .catch(errorHandler);
   },
