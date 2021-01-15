@@ -8,7 +8,6 @@ import Products from "./pages/Products/Products";
 import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProducerDescriptionPage from "./pages/Producer/ProducerDescriptionPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import "bootstrap/dist/css/bootstrap.min.css";
 import UserPage from "./pages/User/UserPage";
 import UserUpdate from "./pages/User/UserUpdate";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
