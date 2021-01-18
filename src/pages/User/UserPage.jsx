@@ -4,10 +4,6 @@ import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 
 class UserPage extends React.Component {
-  // handleChange = (event) => {
-  //   event.preventDefault();
-  // };
-
   handleLogout = () => {
     apiHandler
       .logout()
@@ -36,6 +32,11 @@ class UserPage extends React.Component {
       <div>
         <h2>Compte</h2>
         <br />
+
+        <div>
+          <img src={this.props.context.user.image} alt="pp" />
+        </div>
+
         <div>
           <h3>{this.props.context.user.firstName}</h3>
         </div>
@@ -63,5 +64,3 @@ class UserPage extends React.Component {
 }
 
 export default withUser(UserPage);
-
-// how to add the userId in the route?

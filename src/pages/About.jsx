@@ -15,7 +15,7 @@ const About = () => {
         </li>
         <li>Pour ceux qui veulent mieux manger : local, frais, fermier.</li>
         <li>Pour ceux qui souhaitent acheter en direct des producteurs.</li>
-        <li>Pour ceux qui s'engagent pour un monde meilleur</li>
+        <li>Pour ceux qui s'engagent pour un monde meilleur.</li>
       </ul>
     </div>
   );
