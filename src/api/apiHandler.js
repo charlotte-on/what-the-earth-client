@@ -72,9 +72,9 @@ export default {
       .catch(errorHandler);
   },
 
-  updateUser(userId, data) {
+  updateUser(data) {
     return service
-      .patch(`/api/users/${userId}`, data)
+      .patch("/api/users/me", data)
       .then((res) => res.data)
       .catch(errorHandler);
   },

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
+
 import { Redirect } from "react-router-dom";
 
 class UserUpdate extends Component {
@@ -9,6 +10,8 @@ class UserUpdate extends Component {
     httpResponse: null,
     isLoading: true,
   };
+
+  imageRef = React.createRef();
 
   componentDidMount() {
     apiHandler
@@ -44,8 +47,20 @@ class UserUpdate extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    const fd = new FormData();
+
+    for (const key in this.state.user) {
+      if (key === "image") continue;
+      fd.append(key, this.state.user[key]);
+    }
+
+    if (this.imageRef.current.files[0]) {
+      fd.append("image", this.imageRef.current.files[0]);
+    }
+
     apiHandler
-      .updateUser(this.props.context.user._id, this.state.user)
+      .updateUser(fd)
       .then((data) => {
         this.props.context.setUser(data, () => {
           this.props.history.push("/profile");
@@ -56,7 +71,17 @@ class UserUpdate extends Component {
       });
   };
 
+  // to add a preview of the uploaded image
+  handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    this.setState({ url: url });
+  };
+
   render() {
+    // should I use const {this.state.isLoading} = this.state?
+    // if (this.state.isLoading) return <div>Loading...</div>;
+
     if (!this.state.user) {
       return (
         <div>
@@ -72,6 +97,14 @@ class UserUpdate extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>Updater mon profil</h3>
+        <img src={this.state.url} alt="" />
+        <div>
+          <input
+            onChange={this.handleFileSelect}
+            type="file"
+            ref={this.imageRef}
+          />
+        </div>
 
         <div>
           <div>
@@ -103,19 +136,12 @@ class UserUpdate extends Component {
               onChange={this.handleChange}
             />
           </div>
-
-          <div>
-            <label htmlFor="password">Mot de passe</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.user.password}
-              onChange={this.handleChange}
-            />
-          </div>
         </div>
 
-        <button disabled={this.checkError()}>Mettre à jour</button>
+        <button disabled={this.checkError()}>Mettre à jour mon profil</button>
+        <button disabled={this.checkError()}>
+          Mettre à jour mon mot de passe
+        </button>
       </form>
     );
   }
