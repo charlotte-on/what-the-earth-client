@@ -54,7 +54,7 @@ class Home extends React.Component {
             <Link className="link-underlined" to="/producers/register">
               Enregistrer mon commerce
             </Link>
-            <Link className="link-underlined" to="/producers/login">
+            <Link className="link-underlined" to="/producers/signin">
               J'accède à mon espace
             </Link>
           </div>
@@ -64,6 +64,24 @@ class Home extends React.Component {
           <div className="center-column">
             <Link className="link-underlined" to="/profile">
               Mon compte
+            </Link>
+            <p onClick={this.handleLogout} className="link-underlined">
+              Se déconnecter
+            </p>
+          </div>
+        )}
+
+        {this.props.context.producer && (
+          <div className="center-column">
+            <p>{this.props.context.user.companyName}</p>
+            <Link className="link-underlined" to="/profile">
+              Mon compte pro
+            </Link>
+            <Link
+              className="link-underlined"
+              to={`/producers/edit/${this.props.context.user._id}`}
+            >
+              Editer ma page entreprise
             </Link>
             <p onClick={this.handleLogout} className="link-underlined">
               Se déconnecter

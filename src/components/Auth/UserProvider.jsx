@@ -7,16 +7,36 @@ class UserProvider extends Component {
     user: null,
     isLoggedIn: false,
     isLoading: true,
+    producer: false,
   };
 
   componentDidMount() {
     apiHandler
       .isLoggedIn()
       .then((data) => {
-        this.setState({ user: data, isLoggedIn: true, isLoading: false });
+        if (data.companyName) {
+          this.setState({
+            user: data,
+            isLoggedIn: true,
+            isLoading: false,
+            producer: true,
+          });
+        } else {
+          this.setState({
+            user: data,
+            isLoggedIn: true,
+            isLoading: false,
+            producer: false,
+          });
+        }
       })
       .catch((error) => {
-        this.setState({ user: null, isLoggedIn: false, isLoading: false });
+        this.setState({
+          user: null,
+          isLoggedIn: false,
+          isLoading: false,
+          producer: false,
+        });
       });
   }
 
@@ -27,7 +47,7 @@ class UserProvider extends Component {
   };
 
   removeUser = () => {
-    this.setState({ user: null, isLoggedIn: false });
+    this.setState({ user: null, isLoggedIn: false, producer: false });
   };
 
   render() {
@@ -39,6 +59,7 @@ class UserProvider extends Component {
       removeUser: this.removeUser,
       isLoggedIn: this.state.isLoggedIn,
       isLoading: this.state.isLoading,
+      producer: this.state.producer,
     };
 
     return (
