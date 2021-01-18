@@ -45,7 +45,21 @@ export class NavMain extends React.Component {
               {!this.props.context.user ? (
                 <h4>Bonjour</h4>
               ) : (
-                <h4>Bonjour {this.props.context.user.firstName}</h4>
+                <div className="hello">
+                  {" "}
+                  <div
+                    style={{
+                      borderRadius: "50%",
+                      height: "75px",
+                      width: "75px",
+                      backgroundImage: `url(${this.props.context.user.image})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  ></div>
+                  <h4>Bonjour {this.props.context.user.firstName}</h4>
+                </div>
               )}
             </div>
 

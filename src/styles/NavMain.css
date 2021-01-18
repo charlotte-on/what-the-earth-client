@@ -67,6 +67,7 @@ nav {
 .lateral-menu nav {
   display: flex;
   flex-direction: column;
+  background-size: ;
 }
 
 .lateral-link {

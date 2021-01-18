@@ -7,22 +7,31 @@ import "../../styles/Simulator.css";
 
 export class Simulator extends Component {
   state = {
-    productsList: {},
+    productsList: [],
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const value = Autocomplete.value;
-    console.log(value);
+    return (
+      <div>
+        {this.state.productsList.map((prod) => {
+          return (
+            <div key={prod._id}>
+              <p>{prod.nom_francais}</p>
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
-  onProductChange = (event, values) => {
+  onProductChange = (value) => {
     this.setState(
       {
-        productsList: values,
+        productsList: value,
       },
       () => {
-        console.log(this.state.products);
+        console.log("on product change = " + this.state.productsList);
       }
     );
   };
@@ -41,7 +50,9 @@ export class Simulator extends Component {
             options={Agribalyse}
             getOptionLabel={(option) => option.nom_francais}
             style={{ width: 300 }}
-            onChange={this.onProductsChange}
+            onChange={(event, value) => {
+              this.onProductChange(value);
+            }}
             renderInput={(params) => (
               <TextField
                 {...params}
