@@ -56,6 +56,7 @@ export class NavMain extends React.Component {
                       backgroundPosition: "center",
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
+                      marginBottom: "5px",
                     }}
                   ></div>
                   <h4>Bonjour {this.props.context.user.firstName}</h4>
@@ -108,19 +109,21 @@ export class NavMain extends React.Component {
                 À propos
               </Link>
             </nav>
-            <div className="logout">
+            <div className="login-logout">
               {!this.props.context.user ? (
-                <Link to="/signin" onClick={this.toggleClass}>
-                  Me connecter
+                <Link to="/signin" onClick={this.toggleClass} className="login">
+                  <img src="/media/log-in.png" alt="login image" />
+                  <p>Me connecter</p>
                 </Link>
               ) : (
                 <div
+                  className="logout"
                   onClick={() => {
                     this.handleLogout();
                     this.toggleClass();
                   }}
                 >
-                  <img src="/media/logout.png" alt="logout icon" />{" "}
+                  <img src="/media/logout.png" alt="logout icon" />
                   <p>Se déconnecter</p>
                 </div>
               )}
