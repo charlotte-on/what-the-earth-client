@@ -22,8 +22,7 @@
   margin-right: 20px;
 }
 
-.burger-icon,
-.logout img {
+.burger-icon {
   height: 5vh;
   width: auto;
   padding-right: 5vw;
@@ -39,8 +38,8 @@ nav {
 
 .lateral-menu {
   box-sizing: border-box;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: 17px;
+  padding-right: 17px;
   position: absolute;
   top: 0;
   left: 0;
@@ -49,25 +48,26 @@ nav {
   height: 100vh;
   color: #87a878;
   font-size: 6vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .cross img {
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  height: 7vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 45px;
   width: auto;
 }
 
 .lateral-menu h4 {
-  font-size: 6vw;
-  padding-bottom: 2vh;
+  font-size: 1.4rem;
+  padding-bottom: 10px;
   color: black;
 }
 
 .lateral-menu nav {
   display: flex;
   flex-direction: column;
-  background-size: ;
 }
 
 .lateral-link {
@@ -88,7 +88,21 @@ nav {
   opacity: 70%;
 }
 
-.logout {
+.login-logout {
   display: flex;
-  padding-top: 40vh;
+  flex-direction: row;
+  position: absolute;
+  bottom: 10px;
+  font-size: 20px;
+}
+
+.logout,
+.login {
+  display: flex;
+}
+
+.login-logout img {
+  height: 30px;
+  width: auto;
+  padding-right: 10px;
 }
