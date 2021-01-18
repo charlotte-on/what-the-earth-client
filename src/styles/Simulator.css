@@ -1,0 +1,10 @@
+.add img {
+  text-align: center;
+  height: 4vh;
+  width: auto;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+}

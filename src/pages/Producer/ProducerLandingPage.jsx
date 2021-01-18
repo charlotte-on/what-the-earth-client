@@ -29,6 +29,7 @@ export class ProducerLandingPage extends Component {
       <div>
         <h2>Les producteurs locaux</h2>
         <Map
+          // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
             height: "80vh",
@@ -59,7 +60,7 @@ export class ProducerLandingPage extends Component {
           ))}
         </Map>
         {this.state.allProducers.map((producer) => (
-          <div>
+          <div key={producer._id}>
             <Link className="link-underlined" to={`/producers/${producer._id}`}>
               {producer.companyName}
             </Link>

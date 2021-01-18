@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
-import { Redirect } from "react-router-dom";
 
 class UserUpdate extends Component {
   state = {

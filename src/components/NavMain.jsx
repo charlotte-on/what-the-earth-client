@@ -62,7 +62,11 @@ export class NavMain extends React.Component {
                 Produits
               </Link>
               <hr />
-              <Link className="lateral-link" onClick={this.toggleClass}>
+              <Link
+                to="/products/simulator"
+                className="lateral-link"
+                onClick={this.toggleClass}
+              >
                 Simulateur
               </Link>
               <hr />

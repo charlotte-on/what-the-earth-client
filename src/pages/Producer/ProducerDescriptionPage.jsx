@@ -60,6 +60,7 @@ export class ProducerDescriptionPage extends Component {
         </Button>
         <h2>Où acheter ?</h2>
         <Map
+          // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
             height: "30vh",
