@@ -51,6 +51,13 @@ export default {
       .catch(errorHandler);
   },
 
+  signinProducer(producerInfo) {
+    return service
+      .post("/api/companies/signin", producerInfo)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   isLoggedIn() {
     return service
       .get("/api/auth/isLoggedIn")

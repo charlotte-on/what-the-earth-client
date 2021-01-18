@@ -13,6 +13,8 @@ import UserPage from "./pages/User/UserPage";
 import UserUpdate from "./pages/User/UserUpdate";
 import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 import About from "./pages/About";
+import SignInProducer from "./pages/SigninProducer";
+import EditProducer from "./components/Forms/EditProducer";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/signin" component={Signin} />
+        <Route exact path="/producers/signin" component={SignInProducer} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/producers" component={ProducerLandingPage} />
         <Route
@@ -30,6 +33,7 @@ function App() {
         />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={ProductPage} />
+        <Route exact path="/producers/edit/:id" component={EditProducer} />
         <Route
           exact
           path="/producers/:id"
