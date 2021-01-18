@@ -44,6 +44,20 @@ export default {
       .catch(errorHandler);
   },
 
+  getComments(id) {
+    return service
+      .get("/api/comments/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  postComment(comment) {
+    return service
+      .post("/api/comments/", comment)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   signin(userInfo) {
     return service
       .post("/api/auth/signin", userInfo)

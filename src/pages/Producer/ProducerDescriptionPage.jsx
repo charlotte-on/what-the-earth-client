@@ -5,6 +5,8 @@ import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import EmailIcon from "@material-ui/icons/Email";
+import AddIcon from "@material-ui/icons/Add";
+import { withUser } from "../../components/Auth/withUser";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -13,6 +15,15 @@ const Map = ReactMapboxGl({
 export class ProducerDescriptionPage extends Component {
   state = {
     producer: "",
+    comments: [],
+    rate: 1,
+    review: "",
+    producerId: this.props.match.params.id,
+    userId: "",
+  };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   componentDidMount() {
@@ -22,7 +33,33 @@ export class ProducerDescriptionPage extends Component {
         this.setState({ producer });
       })
       .catch((err) => console.log(err));
+
+    apiHandler
+      .getComments(this.props.match.params.id)
+      .then((comments) => {
+        this.setState({ comments });
+      })
+      .catch((err) => console.log(err));
+
+    console.log(this.props);
   }
+
+  handleClickForm = () => {
+    console.log("Hello");
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    apiHandler
+      .postComment(this.state)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -44,20 +81,28 @@ export class ProducerDescriptionPage extends Component {
         <p>{this.state.producer.type}</p>
         <p>Description : {this.state.producer.description}</p>
         <p>Horaires : {this.state.producer.schedule}</p>
-        <Button
-          variant="contained"
-          startIcon={<PhoneIphoneIcon />}
-          href={"tel:" + this.state.producer.phoneNumber}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
         >
-          Appeler
-        </Button>
-        <Button
-          variant="contained"
-          startIcon={<EmailIcon />}
-          href={"mailto:" + this.state.producer.email}
-        >
-          Envoyer un email
-        </Button>
+          <Button
+            variant="contained"
+            startIcon={<PhoneIphoneIcon />}
+            href={"tel:" + this.state.producer.phoneNumber}
+          >
+            Appeler
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<EmailIcon />}
+            href={"mailto:" + this.state.producer.email}
+          >
+            Envoyer un email
+          </Button>
+        </div>
         <h2>Où acheter ?</h2>
         <Map
           // eslint-disable-next-line
@@ -82,14 +127,38 @@ export class ProducerDescriptionPage extends Component {
           </Marker> */}
         </Map>
         <h2>Avis</h2>
-        <p>Commentaire 1 — le 01/01/2021</p>
-        <p>Excellent !</p>
-        <hr />
-        <p>Commentaire 2 — le 02/01/2021</p>
-        <p>Génial. :)</p>
+        {this.state.comments.map((comment) => (
+          <div>
+            <p>
+              Par {comment.userId.firstName} — le{" "}
+              {new Date(comment.createdAt).toDateString()}
+            </p>
+            <p>{comment.rate}/5</p>
+            <p>{comment.review}</p>
+            <hr />
+          </div>
+        ))}
+        <Button
+          onClick={this.handleClickForm}
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
+          J'ajoute mon avis
+        </Button>
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+          <input value={this.state.review} name="review" type="text" />
+          <select name="rate" id="rate">
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <Button type="submit">Publier</Button>
+        </form>
       </div>
     );
   }
 }
 
-export default ProducerDescriptionPage;
+export default withUser(ProducerDescriptionPage);
