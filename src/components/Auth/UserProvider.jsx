@@ -41,9 +41,12 @@ class UserProvider extends Component {
   }
 
   setUser = (user, cb) => {
-    this.setState({ user, isLoggedIn: true }, () => {
-      cb && cb();
-    });
+    this.setState(
+      { user, isLoggedIn: true, producer: user.companyName ? true : false },
+      () => {
+        cb && cb();
+      }
+    );
   };
 
   removeUser = () => {

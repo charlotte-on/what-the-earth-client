@@ -19,7 +19,6 @@ export class ProducerDescriptionPage extends Component {
     rate: 1,
     review: "",
     producerId: this.props.match.params.id,
-    userId: "",
   };
 
   handleChange = (event) => {
@@ -43,6 +42,22 @@ export class ProducerDescriptionPage extends Component {
 
     console.log(this.props);
   }
+
+  starsRating = (rating) => {
+    if (rating === 1) {
+      return <p>★☆☆☆☆</p>;
+    } else if (rating === 2) {
+      return <p>★★☆☆☆</p>;
+    } else if (rating === 3) {
+      return <p>★★★☆☆</p>;
+    } else if (rating === 4) {
+      return <p>★★★★☆</p>;
+    } else if (rating === 5) {
+      return <p>★★★★★</p>;
+    } else {
+      return null;
+    }
+  };
 
   handleClickForm = () => {
     console.log("Hello");
@@ -133,7 +148,7 @@ export class ProducerDescriptionPage extends Component {
               Par {comment.userId.firstName} — le{" "}
               {new Date(comment.createdAt).toDateString()}
             </p>
-            <p>{comment.rate}/5</p>
+            {this.starsRating(comment.rate)}
             <p>{comment.review}</p>
             <hr />
           </div>
@@ -148,11 +163,11 @@ export class ProducerDescriptionPage extends Component {
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
           <input value={this.state.review} name="review" type="text" />
           <select name="rate" id="rate">
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
+            <option value={1}>★☆☆☆☆</option>
+            <option value={2}>★★☆☆☆</option>
+            <option value={3}>★★★☆☆</option>
+            <option value={4}>★★★★☆</option>
+            <option value={5}>★★★★★</option>
           </select>
           <Button type="submit">Publier</Button>
         </form>
