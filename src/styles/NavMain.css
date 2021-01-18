@@ -58,13 +58,6 @@ nav {
   width: auto;
 }
 
-.hello img {
-  /* border: 1px black solid; */
-  border-radius: 50%;
-  height: 75px;
-  width: auto;
-}
-
 .lateral-menu h4 {
   font-size: 6vw;
   padding-bottom: 2vh;
@@ -74,6 +67,7 @@ nav {
 .lateral-menu nav {
   display: flex;
   flex-direction: column;
+  background-size: ;
 }
 
 .lateral-link {
