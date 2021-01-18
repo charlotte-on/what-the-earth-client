@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
-
+import Button from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
 
 class UserUpdate extends Component {
@@ -138,10 +138,12 @@ class UserUpdate extends Component {
           </div>
         </div>
 
-        <button disabled={this.checkError()}>Mettre à jour mon profil</button>
-        <button disabled={this.checkError()}>
+        <Button variant="contained" disabled={this.checkError()}>
+          Mettre à jour mon profil
+        </Button>
+        <Button variant="contained" disabled={this.checkError()}>
           Mettre à jour mon mot de passe
-        </button>
+        </Button>
       </form>
     );
   }
