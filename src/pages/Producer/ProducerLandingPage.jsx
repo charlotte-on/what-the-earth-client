@@ -27,7 +27,6 @@ export class ProducerLandingPage extends Component {
   render() {
     return (
       <div>
-        <h2>Les producteurs locaux</h2>
         <Map
           // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
@@ -68,7 +67,7 @@ export class ProducerLandingPage extends Component {
               }}
             >
               <p>{this.state.selectedProducer.companyName}</p>
-              <p>{this.state.selectedProducer.description}</p>
+              <p>{this.state.selectedProducer.field}</p>
               <p>{this.state.selectedProducer.formattedAddress}</p>
               <Link
                 className="link-underlined"
@@ -80,7 +79,7 @@ export class ProducerLandingPage extends Component {
           )}
         </Map>
         {this.state.allProducers.map((producer) => (
-          <div key={producer._id}>
+          <div className="card" key={producer._id}>
             <Link className="link-underlined" to={`/producers/${producer._id}`}>
               {producer.companyName}
             </Link>

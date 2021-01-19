@@ -101,21 +101,25 @@ export class ProducerDescriptionPage extends Component {
     }
     return (
       <div>
-        <div>
-          <div>
-            <img
-              style={{ filter: "brightness(50%)" }}
-              src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
-              alt={this.state.producer.companyName}
-            />
-            <div>
-              <p>{this.state.producer.companyName}</p>
-              <p>{this.state.producer.formattedAddress}</p>
-              <p>{this.state.producer.phoneNumber}</p>
-            </div>
+        <div style={{ position: "relative" }}>
+          <img
+            style={{ filter: "brightness(50%)" }}
+            src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
+            alt={this.state.producer.companyName}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "0%",
+              left: "0%",
+              color: "white",
+              margin: "0 0 10px 10px",
+            }}
+          >
+            <h2>{this.state.producer.companyName}</h2>
+            <p>{this.state.producer.field}</p>
           </div>
         </div>
-        <p>{this.state.producer.type}</p>
         <p>Description : {this.state.producer.description}</p>
         <p>Horaires : {this.state.producer.schedule}</p>
         <div
@@ -141,6 +145,7 @@ export class ProducerDescriptionPage extends Component {
           </Button>
         </div>
         <h2 style={{ textAlign: "center", margin: "10px" }}>Où acheter ?</h2>
+        <p>{this.state.producer.formattedAddress}</p>
         <Map
           // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
@@ -163,15 +168,15 @@ export class ProducerDescriptionPage extends Component {
           </Marker>
         </Map>
         <h2 style={{ textAlign: "center", margin: "10px" }}>Avis</h2>
+        {/* {!this.state.comments ? <p>Pas d'avis pour le moment</p> : null} */}
         {this.state.comments.map((comment) => (
-          <div>
+          <div className="card">
             <p>
               Par {comment.userId.firstName} — le{" "}
               <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment>
             </p>
             {this.starsRating(comment.rate)}
             <p>{comment.review}</p>
-            <hr />
           </div>
         ))}
         {this.props.context.isLoggedIn && !this.props.context.producer ? (
