@@ -7,6 +7,14 @@ import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import EmailIcon from "@material-ui/icons/Email";
 import AddIcon from "@material-ui/icons/Add";
 import { withUser } from "../../components/Auth/withUser";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -19,6 +27,7 @@ export class ProducerDescriptionPage extends Component {
     rate: 1,
     review: "",
     producerId: this.props.match.params.id,
+    visibilityForm: "none",
   };
 
   handleChange = (event) => {
@@ -39,8 +48,6 @@ export class ProducerDescriptionPage extends Component {
         this.setState({ comments });
       })
       .catch((err) => console.log(err));
-
-    console.log(this.props);
   }
 
   starsRating = (rating) => {
@@ -60,7 +67,11 @@ export class ProducerDescriptionPage extends Component {
   };
 
   handleClickForm = () => {
-    console.log("Hello");
+    if (this.state.visibilityForm === "none") {
+      this.setState({ visibilityForm: "flex" });
+    } else {
+      this.setState({ visibilityForm: "none" });
+    }
   };
 
   handleSubmit = (event) => {
@@ -70,13 +81,24 @@ export class ProducerDescriptionPage extends Component {
       .postComment(this.state)
       .then((data) => {
         console.log(data);
+        // const dataFormatted = { ...data };
+        // console.log(dataFormatted);
+        // dataFormatted.userId.firstName = "Test";
+        this.setState({ comments: [...this.state.comments, data] });
       })
       .catch((error) => {
         console.log(error);
       });
+
+    this.setState({ review: "", rate: 1 });
   };
 
   render() {
+    if (!this.state.producer) {
+      return (
+        <img src="/media/loading.gif" alt="loading icon" className="loading" />
+      );
+    }
     return (
       <div>
         <div>
@@ -84,13 +106,13 @@ export class ProducerDescriptionPage extends Component {
             <img
               style={{ filter: "brightness(50%)" }}
               src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
-              alt="{this.state.producer.companyName}"
+              alt={this.state.producer.companyName}
             />
-          </div>
-          <div>
-            <p>{this.state.producer.companyName}</p>
-            <p>{this.state.producer.formattedAddress}</p>
-            <p>{this.state.producer.phoneNumber}</p>
+            <div>
+              <p>{this.state.producer.companyName}</p>
+              <p>{this.state.producer.formattedAddress}</p>
+              <p>{this.state.producer.phoneNumber}</p>
+            </div>
           </div>
         </div>
         <p>{this.state.producer.type}</p>
@@ -118,7 +140,7 @@ export class ProducerDescriptionPage extends Component {
             Envoyer un email
           </Button>
         </div>
-        <h2>Où acheter ?</h2>
+        <h2 style={{ textAlign: "center", margin: "10px" }}>Où acheter ?</h2>
         <Map
           // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
@@ -126,51 +148,80 @@ export class ProducerDescriptionPage extends Component {
             height: "30vh",
             width: "100vw",
           }}
-          // center={this.state.producer.location.coordinates}
+          center={this.state.producer.location.coordinates}
         >
-          {/* <Marker
+          <Marker
             key={this.state.producer._id}
-            // coordinates={this.state.producer.location.coordinates}
+            coordinates={this.state.producer.location.coordinates}
             anchor="bottom"
-            style={{ backgroundColor: "white", border: "1px solid black" }}
           >
             <img
               style={{ width: "50px" }}
-              src="../../../public/media/mapbox-icon.png"
-              alt={this.state.producer.name}
+              src="/media/marker.png"
+              alt={this.state.producer.companyName}
             />
-          </Marker> */}
+          </Marker>
         </Map>
-        <h2>Avis</h2>
+        <h2 style={{ textAlign: "center", margin: "10px" }}>Avis</h2>
         {this.state.comments.map((comment) => (
           <div>
             <p>
               Par {comment.userId.firstName} — le{" "}
-              {new Date(comment.createdAt).toDateString()}
+              <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment>
             </p>
             {this.starsRating(comment.rate)}
             <p>{comment.review}</p>
             <hr />
           </div>
         ))}
-        <Button
-          onClick={this.handleClickForm}
-          variant="contained"
-          startIcon={<AddIcon />}
-        >
-          J'ajoute mon avis
-        </Button>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-          <input value={this.state.review} name="review" type="text" />
-          <select name="rate" id="rate">
-            <option value={1}>★☆☆☆☆</option>
-            <option value={2}>★★☆☆☆</option>
-            <option value={3}>★★★☆☆</option>
-            <option value={4}>★★★★☆</option>
-            <option value={5}>★★★★★</option>
-          </select>
-          <Button type="submit">Publier</Button>
-        </form>
+        {this.props.context.isLoggedIn && !this.props.context.producer ? (
+          <div className="center-column">
+            <Button
+              onClick={this.handleClickForm}
+              variant="contained"
+              startIcon={<AddIcon />}
+            >
+              J'ajoute mon avis
+            </Button>
+            <form
+              className="center-column"
+              onChange={this.handleChange}
+              onSubmit={this.handleSubmit}
+              style={{ display: this.state.visibilityForm }}
+            >
+              <TextField
+                id="outlined-multiline-static"
+                label="Commentaire"
+                name="review"
+                multiline
+                rows={4}
+                variant="outlined"
+                value={this.state.review}
+                style={{ margin: "10px" }}
+              />
+              <FormControl style={{ margin: "10px" }} variant="outlined">
+                <InputLabel id="demo-simple-select-outlined-label">
+                  Note
+                </InputLabel>
+                <Select
+                  style={{ width: "195px" }}
+                  id="rate"
+                  name="rate"
+                  label="Note"
+                  onChange={this.handleChange}
+                  value={this.state.rate}
+                >
+                  <MenuItem value={1}>★☆☆☆☆</MenuItem>
+                  <MenuItem value={2}>★★☆☆☆</MenuItem>
+                  <MenuItem value={3}>★★★☆☆</MenuItem>
+                  <MenuItem value={4}>★★★★☆</MenuItem>
+                  <MenuItem value={5}>★★★★★</MenuItem>
+                </Select>
+              </FormControl>
+              <Button type="submit">Publier</Button>
+            </form>
+          </div>
+        ) : null}
       </div>
     );
   }

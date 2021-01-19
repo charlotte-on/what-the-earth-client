@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { Redirect } from "react-router-dom";
 
 class UserUpdate extends Component {
@@ -103,7 +105,17 @@ class UserUpdate extends Component {
             onChange={this.handleFileSelect}
             type="file"
             ref={this.imageRef}
+            id="icon-button-file"
           />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera fontSize="large" />
+            </IconButton>
+          </label>
         </div>
 
         <div>
@@ -114,6 +126,7 @@ class UserUpdate extends Component {
               name="firstName"
               value={this.state.user.firstName}
               onChange={this.handleChange}
+              id="firstName"
             />
           </div>
 
@@ -124,6 +137,7 @@ class UserUpdate extends Component {
               name="lastName"
               value={this.state.user.lastName}
               onChange={this.handleChange}
+              id="lastName"
             />
           </div>
 
@@ -134,6 +148,7 @@ class UserUpdate extends Component {
               name="email"
               value={this.state.user.email}
               onChange={this.handleChange}
+              id="email"
             />
           </div>
         </div>
