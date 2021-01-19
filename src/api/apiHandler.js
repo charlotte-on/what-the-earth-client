@@ -100,6 +100,13 @@ export default {
       .catch(errorHandler);
   },
 
+  updateUserPassword(data) {
+    return service
+      .patch("/api/auth/me/password", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   getUserInfos(userId) {
     return service
       .get(`/api/users/${userId}`)

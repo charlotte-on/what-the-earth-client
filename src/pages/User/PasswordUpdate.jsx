@@ -1,36 +1,94 @@
-import React from "react";
-import { withUser } from "../../components/Auth/withUser";
+import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
-import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-class PasswordUpdate extends React.Component {
-  return (
+class PasswordUpdate extends Component {
+  state = {
+    old_password: "",
+    new_password: "",
+    confirmed_password: "",
+  };
 
-    <div>
+  handleSubmit = (event) => {
+    event.preventDefault();
 
-    <div><h2>Modifier mon mot de passe</h2></div>
+    if (this.state.new_password === this.state.confirmed_password) {
+      const { new_password, old_password } = this.state;
+      apiHandler
+        .updateUserPassword({ new_password, old_password })
+        .then((data) => {
+          console.dir(data);
+          console.log("password changed");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
-      <div>
-        <h3>Ancien mot de passe</h3>
-      </div>
+  // checkError = () => {
+  //   for (const key in this.state.user) {
+  //     if (this.state[key] === "") {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
 
-      <div>
-        <h3>Nouveau mot de passe</h3>
-      </div>
+  handleChange = (event) => {
+    const key = event.target.name;
+    const value = event.target.value;
+    this.setState({ [key]: value });
+  };
 
-      <div>
-        <h3>Confirmer nouveau mot de passe</h3>
-      </div>
+  render() {
+    console.log("hello");
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <h2>Modifier mon mot de passe</h2>
 
-      <div>
-      <Link to={`/profile/${this.props.context.user._id}`}>
-        <Button variant="contained">Enregistrer</Button>
-      </Link>
-    </div>
-    
-    </div>
-  );
-};
+        <div>
+          <label htmlFor="password">Ancien mot de passe</label>
+          <input
+            onChange={this.handleChange}
+            type="password"
+            id="password"
+            name="old_password"
+            value={this.state.old_password}
+          />
+        </div>
 
-export default withUser(PasswordUpdate);
+        <div>
+          <label htmlFor="password">Nouveau mot de passe</label>
+          <input
+            onChange={this.handleChange}
+            type="password"
+            id="password"
+            name="new_password"
+            value={this.state.new_password}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="password">Confirmer nouveau mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="confirmed_password"
+            value={this.state.confirmed_password}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        {/* dans le backend voir si l'ancien mot de passe correspond */}
+        {/* nouveau et confirmer doivent etre same === */}
+
+        <Button onClick={this.handleSubmit} variant="contained">
+          Enregistrer
+        </Button>
+      </form>
+    );
+  }
+}
+
+export default PasswordUpdate;

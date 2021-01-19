@@ -12,8 +12,9 @@ import ProducerDescriptionPage from "./pages/Producer/ProducerDescriptionPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserPage from "./pages/User/UserPage";
 import UserUpdate from "./pages/User/UserUpdate";
-import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
+import PasswordUpdate from "./pages/User/PasswordUpdate";
 import About from "./pages/About";
+import FormRegisterCompany from "./components/Forms/FormRegisterCompany";
 import SignInProducer from "./pages/SigninProducer";
 import EditProducer from "./components/Forms/EditProducer";
 
@@ -43,6 +44,11 @@ function App() {
         />
         <ProtectedRoute exact path="/profile" component={UserPage} />
         <ProtectedRoute exact path="/profile/:id" component={UserUpdate} />
+        <ProtectedRoute
+          exact
+          path="/profile/:id/password"
+          component={PasswordUpdate}
+        />
         <Route exact path="/about" component={About} />
       </Switch>
     </div>

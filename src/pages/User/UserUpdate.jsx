@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
+import { Link } from "react-router-dom";
+
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { Redirect } from "react-router-dom";
+import "../../styles/User.css";
 
 class UserUpdate extends Component {
   state = {
@@ -73,7 +76,7 @@ class UserUpdate extends Component {
       });
   };
 
-  // to add a preview of the uploaded image
+  // to add a preview of the uploaded image before saving
   handleFileSelect = (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
@@ -81,9 +84,6 @@ class UserUpdate extends Component {
   };
 
   render() {
-    // should I use const {this.state.isLoading} = this.state?
-    // if (this.state.isLoading) return <div>Loading...</div>;
-
     if (!this.state.user) {
       return (
         <div>
@@ -97,8 +97,9 @@ class UserUpdate extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="UserUpdate__container">
         <h3>Updater mon profil</h3>
+
         <img src={this.state.url} alt="" />
         <div>
           <input
@@ -156,9 +157,11 @@ class UserUpdate extends Component {
         <Button variant="contained" disabled={this.checkError()}>
           Mettre à jour mon profil
         </Button>
-        <Button variant="contained" disabled={this.checkError()}>
-          Mettre à jour mon mot de passe
-        </Button>
+        <Link to={`/profile/${this.props.context.user._id}/password`}>
+          <Button variant="contained" disabled={this.checkError()}>
+            Mettre à jour mon mot de passe
+          </Button>
+        </Link>
       </form>
     );
   }
