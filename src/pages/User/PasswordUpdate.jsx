@@ -26,14 +26,14 @@ class PasswordUpdate extends Component {
     }
   };
 
-  // checkError = () => {
-  //   for (const key in this.state.user) {
-  //     if (this.state[key] === "") {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // };
+  checkError = () => {
+    for (const key in this.state.user) {
+      if (this.state[key] === "") {
+        return true;
+      }
+    }
+    return false;
+  };
 
   handleChange = (event) => {
     const key = event.target.name;
@@ -42,50 +42,55 @@ class PasswordUpdate extends Component {
   };
 
   render() {
-    console.log("hello");
+    console.log("rendering");
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="User__container">
         <h2>Modifier mon mot de passe</h2>
 
         <div>
-          <label htmlFor="password">Ancien mot de passe</label>
+          <label htmlFor="old_password">Ancien mot de passe</label>
           <input
             onChange={this.handleChange}
-            type="password"
-            id="password"
+            type="text"
+            id="old_password"
             name="old_password"
             value={this.state.old_password}
           />
         </div>
 
         <div>
-          <label htmlFor="password">Nouveau mot de passe</label>
+          <label htmlFor="new_password">Nouveau mot de passe</label>
           <input
             onChange={this.handleChange}
-            type="password"
-            id="password"
+            type="text"
+            id="new_password"
             name="new_password"
             value={this.state.new_password}
           />
         </div>
 
         <div>
-          <label htmlFor="password">Confirmer nouveau mot de passe</label>
+          <label htmlFor="confirmed_password">
+            Confirmer nouveau mot de passe
+          </label>
           <input
-            type="password"
-            id="password"
+            onChange={this.handleChange}
+            type="text"
+            id="confirmed_password"
             name="confirmed_password"
             value={this.state.confirmed_password}
-            onChange={this.handleChange}
           />
         </div>
 
-        {/* dans le backend voir si l'ancien mot de passe correspond */}
-        {/* nouveau et confirmer doivent etre same === */}
-
-        <Button onClick={this.handleSubmit} variant="contained">
-          Enregistrer
-        </Button>
+        <div>
+          <Button
+            onClick={this.handleSubmit}
+            variant="contained"
+            disabled={this.checkError()}
+          >
+            Enregistrer
+          </Button>
+        </div>
       </form>
     );
   }

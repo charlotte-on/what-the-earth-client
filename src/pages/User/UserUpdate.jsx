@@ -97,7 +97,7 @@ class UserUpdate extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit} className="UserUpdate__container">
+      <form onSubmit={this.handleSubmit} className="User__container">
         <h3>Updater mon profil</h3>
 
         <img src={this.state.url} alt="" />
@@ -157,6 +157,7 @@ class UserUpdate extends Component {
         <Button variant="contained" disabled={this.checkError()}>
           Mettre à jour mon profil
         </Button>
+
         <Link to={`/profile/${this.props.context.user._id}/password`}>
           <Button variant="contained" disabled={this.checkError()}>
             Mettre à jour mon mot de passe

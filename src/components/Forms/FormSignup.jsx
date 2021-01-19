@@ -32,17 +32,18 @@ class FormSignup extends Component {
 
     const fd = new FormData();
 
-    for (const key in this.state.user) {
+    for (const key in this.state) {
       if (key === "image") continue;
-      fd.append(key, this.state.user[key]);
+      fd.append(key, this.state[key]);
     }
 
     if (this.imageRef.current.files[0]) {
+      console.log(this.imageRef.current.files[0]);
       fd.append("image", this.imageRef.current.files[0]);
     }
 
     apiHandler
-      .signup(this.state) //fd
+      .signup(fd)
       .then((data) => {
         this.context.setUser(data);
       })
