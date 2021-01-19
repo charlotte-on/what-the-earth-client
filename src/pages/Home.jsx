@@ -23,6 +23,32 @@ class Home extends React.Component {
   render() {
     return (
       <div className="center-column">
+        <div style={{ position: "relative" }}>
+          <img
+            style={{ filter: "brightness(60%)" }}
+            src="/media/grass-cover.jpg"
+            alt="What the Earth"
+          />
+          <p
+            style={{
+              padding: "10px",
+              color: "white",
+              textAlign: "center",
+              position: "absolute",
+              top: "calc(50% - 46px)",
+              left: "calc(50% - 175px)",
+              width: "350px",
+            }}
+          >
+            Bienvenue sur What the Earth, base de données interactive super
+            géniale. Pour en savoir plus sur notre projet,{" "}
+            <Link className="link-underlined" to="/">
+              cliquez ici
+            </Link>
+            .
+          </p>
+        </div>
+
         <Link to="/products">
           <Button style={{ margin: "10px" }} variant="contained">
             Liste des produits
@@ -33,14 +59,6 @@ class Home extends React.Component {
             Chercher un producteur
           </Button>
         </Link>
-        <p style={{ padding: "10px", textAlign: "center" }}>
-          Bienvenue sur What the Earth, base de données interactive super
-          géniale. Pour en savoir plus sur notre projet,{" "}
-          <Link className="link-underlined" to="/">
-            cliquez ici
-          </Link>
-          .
-        </p>
         {!this.props.context.user && (
           <div className="center-column">
             <h5>Je suis un particulier</h5>
@@ -60,7 +78,7 @@ class Home extends React.Component {
           </div>
         )}
 
-        {this.props.context.user && (
+        {this.props.context.user && !this.props.context.producer ? (
           <div className="center-column">
             <Link className="link-underlined" to="/profile">
               Mon compte
@@ -69,14 +87,11 @@ class Home extends React.Component {
               Se déconnecter
             </p>
           </div>
-        )}
+        ) : null}
 
         {this.props.context.producer && (
           <div className="center-column">
             <p>{this.props.context.user.companyName}</p>
-            <Link className="link-underlined" to="/profile">
-              Mon compte pro
-            </Link>
             <Link
               className="link-underlined"
               to={`/producers/edit/${this.props.context.user._id}`}

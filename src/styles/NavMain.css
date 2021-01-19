@@ -2,6 +2,7 @@
 
 .NavMain {
   background-color: #87a878;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
   align-items: center;

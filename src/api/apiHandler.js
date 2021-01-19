@@ -37,6 +37,13 @@ export default {
       .catch(errorHandler);
   },
 
+  updateProducer(id, body) {
+    return service
+      .patch("/api/companies/edit/" + id, body)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   getOneProducer(id) {
     return service
       .get("/api/companies/" + id)

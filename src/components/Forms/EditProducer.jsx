@@ -26,6 +26,7 @@ class FormEditCompany extends Component {
     location: {
       coordinates: [],
     },
+    formattedAddress: "",
   };
 
   componentDidMount() {
@@ -44,6 +45,7 @@ class FormEditCompany extends Component {
           location: {
             coordinates: data.location.coordinates,
           },
+          formattedAddress: data.formattedAddress,
         });
       })
       .catch((error) => {
@@ -70,9 +72,10 @@ class FormEditCompany extends Component {
     event.preventDefault();
 
     apiHandler
-      .registerProducer(this.state)
+      .updateProducer(this.props.match.params.id, this.state)
       .then((data) => {
         this.context.setUser(data);
+        this.props.history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -173,7 +176,7 @@ class FormEditCompany extends Component {
           name="description"
         />
         <Button style={{ margin: "10px" }} type="submit" variant="contained">
-          Créer entreprise
+          Mettre à jour mon entreprise
         </Button>
       </form>
     );

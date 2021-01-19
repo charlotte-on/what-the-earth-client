@@ -1,4 +1,4 @@
-.UserUpdate__container {
+.User__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,10 +6,18 @@
   margin: 20px;
 }
 
-.UserUpdate__container label {
+.User__container label {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+
+.User__container input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
