@@ -15,6 +15,9 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Moment from "react-moment";
 import "moment-timezone";
+import DescriptionIcon from "@material-ui/icons/Description";
+import ScheduleIcon from "@material-ui/icons/Schedule";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -28,6 +31,8 @@ export class ProducerDescriptionPage extends Component {
     review: "",
     producerId: this.props.match.params.id,
     visibilityForm: "none",
+    backgroundImage:
+      "https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg",
   };
 
   handleChange = (event) => {
@@ -69,6 +74,7 @@ export class ProducerDescriptionPage extends Component {
   handleClickForm = () => {
     if (this.state.visibilityForm === "none") {
       this.setState({ visibilityForm: "flex" });
+      // window.scrollTo(0, document.body.scrollHeight);
     } else {
       this.setState({ visibilityForm: "none" });
     }
@@ -80,11 +86,11 @@ export class ProducerDescriptionPage extends Component {
     apiHandler
       .postComment(this.state)
       .then((data) => {
-        console.log(data);
-        // const dataFormatted = { ...data };
-        // console.log(dataFormatted);
-        // dataFormatted.userId.firstName = "Test";
-        this.setState({ comments: [...this.state.comments, data] });
+        const dataFormatted = { ...data };
+        dataFormatted.userId = {
+          firstName: this.props.context.user.firstName,
+        };
+        this.setState({ comments: [...this.state.comments, dataFormatted] });
       })
       .catch((error) => {
         console.log(error);
@@ -102,11 +108,17 @@ export class ProducerDescriptionPage extends Component {
     return (
       <div>
         <div style={{ position: "relative" }}>
-          <img
-            style={{ filter: "brightness(50%)" }}
-            src="https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg"
-            alt={this.state.producer.companyName}
-          />
+          <div
+            style={{
+              width: "auto",
+              height: "186px",
+              filter: "brightness(50%)",
+              backgroundImage: `url(${this.state.backgroundImage})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div>
           <div
             style={{
               position: "absolute",
@@ -120,8 +132,14 @@ export class ProducerDescriptionPage extends Component {
             <p>{this.state.producer.field}</p>
           </div>
         </div>
-        <p>Description : {this.state.producer.description}</p>
-        <p>Horaires : {this.state.producer.schedule}</p>
+        <p>
+          <DescriptionIcon />
+          Description : {this.state.producer.description}
+        </p>
+        <p>
+          <ScheduleIcon />
+          Horaires : {this.state.producer.schedule}
+        </p>
         <div
           style={{
             display: "flex",
@@ -145,7 +163,10 @@ export class ProducerDescriptionPage extends Component {
           </Button>
         </div>
         <h2 style={{ textAlign: "center", margin: "10px" }}>Où acheter ?</h2>
-        <p>{this.state.producer.formattedAddress}</p>
+        <p>
+          <LocationOnIcon />
+          {this.state.producer.formattedAddress}
+        </p>
         <Map
           // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
@@ -168,23 +189,28 @@ export class ProducerDescriptionPage extends Component {
           </Marker>
         </Map>
         <h2 style={{ textAlign: "center", margin: "10px" }}>Avis</h2>
-        {/* {!this.state.comments ? <p>Pas d'avis pour le moment</p> : null} */}
-        {this.state.comments.map((comment) => (
-          <div className="card">
-            <p>
-              Par {comment.userId.firstName} — le{" "}
-              <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment>
-            </p>
-            {this.starsRating(comment.rate)}
-            <p>{comment.review}</p>
-          </div>
-        ))}
+        {this.state.comments.length === 0 ? (
+          <p>Pas d'avis pour le moment</p>
+        ) : (
+          this.state.comments.map((comment) => (
+            <div key={comment._id} className="card">
+              <p>
+                Par {comment.userId.firstName} — le{" "}
+                <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}
+                <Moment format="HH:mm">{comment.createdAt}</Moment>
+              </p>
+              {this.starsRating(comment.rate)}
+              <p>{comment.review}</p>
+            </div>
+          ))
+        )}
         {this.props.context.isLoggedIn && !this.props.context.producer ? (
           <div className="center-column">
             <Button
               onClick={this.handleClickForm}
               variant="contained"
               startIcon={<AddIcon />}
+              style={{ margin: "10px 0" }}
             >
               J'ajoute mon avis
             </Button>

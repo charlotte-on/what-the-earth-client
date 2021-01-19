@@ -92,9 +92,6 @@ class Home extends React.Component {
         {this.props.context.producer && (
           <div className="center-column">
             <p>{this.props.context.user.companyName}</p>
-            <Link className="link-underlined" to="/profile">
-              Mon compte pro
-            </Link>
             <Link
               className="link-underlined"
               to={`/producers/edit/${this.props.context.user._id}`}
