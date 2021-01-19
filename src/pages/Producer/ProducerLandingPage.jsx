@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapboxGl, { Marker } from "react-mapbox-gl";
+import ReactMapboxGl, { Marker, Popup } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
@@ -43,13 +43,13 @@ export class ProducerLandingPage extends Component {
               coordinates={producer.location.coordinates}
               offsetTop={-48}
               offsetLeft={-24}
-              // onClick={() => {
-              //   if (this.state.selectedProducer === null) {
-              //     this.setState({ selectedProducer: producer });
-              //   } else {
-              //     this.setState({ selectedProducer: null });
-              //   }
-              // }}
+              onClick={() => {
+                if (this.state.selectedProducer === null) {
+                  this.setState({ selectedProducer: producer });
+                } else {
+                  this.setState({ selectedProducer: null });
+                }
+              }}
             >
               <img
                 style={{ width: "40px" }}
@@ -58,6 +58,26 @@ export class ProducerLandingPage extends Component {
               />
             </Marker>
           ))}
+          {this.state.selectedProducer !== null && (
+            <Popup
+              coordinates={this.state.selectedProducer.location.coordinates}
+              offset={{
+                "bottom-left": [12, -38],
+                bottom: [0, -38],
+                "bottom-right": [-12, -38],
+              }}
+            >
+              <p>{this.state.selectedProducer.companyName}</p>
+              <p>{this.state.selectedProducer.description}</p>
+              <p>{this.state.selectedProducer.formattedAddress}</p>
+              <Link
+                className="link-underlined"
+                to={`/producers/${this.state.selectedProducer._id}`}
+              >
+                Je découvre
+              </Link>
+            </Popup>
+          )}
         </Map>
         {this.state.allProducers.map((producer) => (
           <div key={producer._id}>
