@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import InputRange from "react-input-range";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
-import Agribalyse from "../../data/Agribalyse.json";
+import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 
 import "../../styles/Simulator.css";
 
@@ -13,6 +14,7 @@ const filterOptions = createFilterOptions({
 export class Simulator extends Component {
   state = {
     selectedProducts: [],
+    total: 100,
   };
 
   handleSubmit = (event) => {
@@ -36,6 +38,10 @@ export class Simulator extends Component {
     });
   };
 
+  handleValue = (event) => {
+    console.log(event.target.value);
+  };
+
   roundNumber = (number) => {
     return number.toFixed([2]);
   };
@@ -49,7 +55,7 @@ export class Simulator extends Component {
   render() {
     return (
       <div>
-        <h1>Simulateur de recettes</h1>
+        <h1>Simulateur de recette</h1>
         <p>
           Entrez ici des ingrédients afin de simuler l'impact environnemental de
           votre recette
@@ -57,7 +63,7 @@ export class Simulator extends Component {
         <form onSubmit={this.handleSubmit}>
           <Autocomplete
             id="product"
-            options={Agribalyse}
+            options={AgribalyseSorted}
             getOptionLabel={(option) => option.nom_francais}
             filterOptions={filterOptions}
             style={{ width: 300 }}
@@ -85,31 +91,59 @@ export class Simulator extends Component {
           <div>
             {this.state.selectedProducts.map((prod) => {
               return (
-                <div key={prod._id} className="product-selected">
-                  <p>
-                    {prod.nom_francais} :{" "}
-                    <span
-                      style={{
-                        color: this.coloredNumber(
+                <div key={prod.nom_francais}>
+                  <div className="product-selected">
+                    <p>
+                      {prod.nom_francais} :{" "}
+                      <span
+                        style={{
+                          color: this.coloredNumber(
+                            prod.impact_environnemental["Score unique EF"]
+                              .synthese
+                          ),
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {this.roundNumber(
                           prod.impact_environnemental["Score unique EF"]
                             .synthese
-                        ),
-                        fontWeight: "bold",
+                        )}
+                      </span>
+                    </p>
+                    <img
+                      src="/media/delete.png"
+                      alt="delete button"
+                      style={{ height: "15px", marginLeft: "5px" }}
+                      onClick={() => {
+                        this.deleteProduct(prod.nom_francais);
                       }}
-                    >
-                      {this.roundNumber(
-                        prod.impact_environnemental["Score unique EF"].synthese
-                      )}
-                    </span>
-                  </p>
-                  <img
-                    src="/media/delete.png"
-                    alt="delete button"
-                    style={{ height: "15px", marginLeft: "5px" }}
-                    onClick={() => {
-                      this.deleteProduct(prod.nom_francais);
-                    }}
-                  />
+                    />
+                  </div>
+                  <div>
+                    <form className="input-quantity">
+                      <label htmlFor="label">Quantité</label>
+                      <input
+                        type="range"
+                        id={prod.nom_francais}
+                        name="product"
+                        min="0"
+                        max="100"
+                        step="1"
+                        value={
+                          this.state.total / this.state.selectedProducts.length
+                        }
+                        onChange={this.handleValue}
+                      />
+                      {/* <InputRange
+                        formatLabel={(value) => `${value}%`}
+                        step={1}
+                        maxValue={100}
+                        minValue={0}
+                        value={this.state.value}
+                        onChange={(value) => this.handleValue(value)}
+                      /> */}
+                    </form>
+                  </div>
                 </div>
               );
             })}
