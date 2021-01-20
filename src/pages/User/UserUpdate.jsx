@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import { withUser } from "../../components/Auth/withUser";
 import { Link } from "react-router-dom";
-
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { Redirect } from "react-router-dom";
 import "../../styles/User.css";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 class UserUpdate extends Component {
   state = {
@@ -110,6 +114,7 @@ class UserUpdate extends Component {
           />
           <label htmlFor="icon-button-file">
             <IconButton
+              style={style}
               color="primary"
               aria-label="upload picture"
               component="span"
@@ -155,6 +160,7 @@ class UserUpdate extends Component {
         </div>
 
         <Button
+          style={style}
           onClick={this.handleSubmit}
           variant="contained"
           disabled={this.checkError()}
@@ -163,7 +169,11 @@ class UserUpdate extends Component {
         </Button>
 
         <Link to={`/profile/${this.props.context.user._id}/password`}>
-          <Button variant="contained" disabled={this.checkError()}>
+          <Button
+            style={style}
+            variant="contained"
+            disabled={this.checkError()}
+          >
             Mettre à jour mon mot de passe
           </Button>
         </Link>

@@ -20,6 +20,11 @@ import ScheduleIcon from "@material-ui/icons/Schedule";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Avatar from "@material-ui/core/Avatar";
 
+const style = {
+  background: "#87a878",
+  color: "white",
+};
+
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
 });
@@ -148,6 +153,7 @@ export class ProducerDescriptionPage extends Component {
           }}
         >
           <Button
+            style={style}
             variant="contained"
             startIcon={<PhoneIphoneIcon />}
             href={"tel:" + this.state.producer.phoneNumber}
@@ -155,6 +161,7 @@ export class ProducerDescriptionPage extends Component {
             Appeler
           </Button>
           <Button
+            style={style}
             variant="contained"
             startIcon={<EmailIcon />}
             href={"mailto:" + this.state.producer.email}
@@ -214,7 +221,7 @@ export class ProducerDescriptionPage extends Component {
               onClick={this.handleClickForm}
               variant="contained"
               startIcon={<AddIcon />}
-              style={{ margin: "10px 0" }}
+              style={style}
             >
               J'ajoute mon avis
             </Button>

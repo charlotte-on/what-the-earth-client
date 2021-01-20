@@ -5,6 +5,11 @@ import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import Footer from "../components/Footer";
 
+const style = {
+  background: "#87a878",
+  color: "white",
+};
+
 class Home extends React.Component {
   componentDidMount() {
     document.title = "What the Earth — Accueil";
@@ -51,12 +56,12 @@ class Home extends React.Component {
         </div>
 
         <Link to="/products">
-          <Button style={{ margin: "10px" }} variant="contained">
+          <Button style={style} variant="contained">
             Liste des produits
           </Button>
         </Link>
         <Link to="/producers">
-          <Button style={{ margin: "10px" }} variant="contained">
+          <Button style={style} variant="contained">
             Chercher un producteur
           </Button>
         </Link>

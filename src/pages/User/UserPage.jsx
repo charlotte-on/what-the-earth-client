@@ -3,6 +3,12 @@ import { withUser } from "../../components/Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import "../../styles/User.css";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 class UserPage extends React.Component {
   handleLogout = () => {
@@ -52,12 +58,16 @@ class UserPage extends React.Component {
 
         <div>
           <Link to={`/profile/${this.props.context.user._id}`}>
-            <Button variant="contained">Modifier mon profil</Button>
+            <Button style={style} variant="contained">
+              Modifier mon profil
+            </Button>
           </Link>
         </div>
 
         <div onClick={this.handleLogout}>
-          <Button variant="contained">Se déconnecter</Button>
+          <Button style={style} variant="contained">
+            Se déconnecter
+          </Button>
         </div>
       </div>
     );

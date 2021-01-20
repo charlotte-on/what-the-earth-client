@@ -5,6 +5,11 @@ import apiHandler from "../../api/apiHandler";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+const style = {
+  background: "#87a878",
+  color: "white",
+};
+
 class FormSignin extends Component {
   static contextType = UserContext;
 
@@ -62,7 +67,7 @@ class FormSignin extends Component {
           autoComplete="current-password"
           variant="outlined"
         />
-        <Button style={{ margin: "10px" }} type="submit" variant="contained">
+        <Button style={style} type="submit" variant="contained">
           Se connecter
         </Button>
       </form>

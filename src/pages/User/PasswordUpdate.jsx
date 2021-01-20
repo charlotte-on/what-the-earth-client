@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
+import "../../styles/User.css";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 class PasswordUpdate extends Component {
   state = {
@@ -84,6 +90,7 @@ class PasswordUpdate extends Component {
 
         <div>
           <Button
+            style={style}
             onClick={this.handleSubmit}
             variant="contained"
             disabled={this.checkError()}

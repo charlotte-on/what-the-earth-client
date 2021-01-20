@@ -14,6 +14,11 @@ import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { buildFormData } from "../../utils";
 
+const style = {
+  background: "#87a878",
+  color: "white",
+};
+
 class FormRegisterCompany extends Component {
   static contextType = UserContext;
 
@@ -190,6 +195,7 @@ class FormRegisterCompany extends Component {
           />
           <label htmlFor="icon-button-file">
             <IconButton
+              style={style}
               color="primary"
               aria-label="upload picture"
               component="span"
@@ -198,7 +204,7 @@ class FormRegisterCompany extends Component {
             </IconButton>
           </label>
         </div>
-        <Button style={{ margin: "10px" }} type="submit" variant="contained">
+        <Button style={style} type="submit" variant="contained">
           Créer entreprise
         </Button>
       </form>
