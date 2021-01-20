@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
+import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 
 import "../../styles/Simulator.css";
@@ -59,6 +60,20 @@ export class Simulator extends Component {
     });
   };
 
+  calcul = (event) => {
+    event.preventDefault();
+    const datas = this.state.selectedProducts;
+
+    apiHandler
+      .createRecipe(datas)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   roundNumber = (number) => {
     return number.toFixed([2]);
   };
@@ -96,9 +111,6 @@ export class Simulator extends Component {
               />
             )}
           />
-          <button className="calculate">
-            <p>Calculer</p>
-          </button>
         </form>
         {this.state.selectedProducts.length === 0 ? (
           <div>
@@ -137,11 +149,7 @@ export class Simulator extends Component {
                     />
                   </div>
                   <div>
-                    <form
-                      className="input-quantity"
-                      onSubmit={this.handleSubmit}
-                      c
-                    >
+                    <form className="input-quantity">
                       <label htmlFor="label">Quantité</label>
                       <input
                         type="number"
@@ -158,20 +166,17 @@ export class Simulator extends Component {
                           )
                         }
                       />
-                      <label htmlFor="label">%</label>
-                      {/* <InputRange
-                        formatLabel={(value) => `${value}%`}
-                        step={1}
-                        maxValue={100}
-                        minValue={0}
-                        value={this.state.value}
-                        onChange={(value) => this.handleValue(value)}
-                      /> */}
+                      <label htmlFor="label">g</label>
                     </form>
                   </div>
                 </div>
               );
             })}
+            <form onSubmit={this.calcul}>
+              <button className="calculate">
+                <p>Calculer</p>
+              </button>
+            </form>
           </div>
         )}
       </div>

@@ -120,4 +120,10 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  createRecipe(datas) {
+    return service
+      .post("/api/products/simulator", datas)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };

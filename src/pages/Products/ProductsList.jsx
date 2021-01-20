@@ -9,9 +9,7 @@ export class ProductsList extends React.Component {
   };
 
   handleSearch = (event) => {
-    const value = event.target.value;
     this.setState({
-      search: value,
       filteredProducts: this.state.products.filter((product) =>
         product.Nom_du_Produit_en_Français.toLowerCase()
           .normalize("NFD")

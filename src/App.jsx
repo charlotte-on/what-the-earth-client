@@ -35,6 +35,7 @@ function App() {
         />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/simulator" component={Simulator} />
+        {/* <Route exact path="/products/simulator/results" component={SimulatorResult} /> */}
         <Route exact path="/products/:id" component={ProductPage} />
         <Route exact path="/producers/edit/:id" component={EditProducer} />
         <Route
