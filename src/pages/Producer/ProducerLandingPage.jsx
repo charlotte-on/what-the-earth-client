@@ -4,6 +4,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import ScheduleIcon from "@material-ui/icons/Schedule";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -12,7 +17,9 @@ const Map = ReactMapboxGl({
 export class ProducerLandingPage extends Component {
   state = {
     allProducers: [],
+    filteredProducers: [],
     selectedProducer: null,
+    position: [2.3315, 48.8567],
   };
 
   componentDidMount() {
@@ -20,10 +27,46 @@ export class ProducerLandingPage extends Component {
     apiHandler
       .getProducers()
       .then((producers) => {
-        this.setState({ allProducers: producers });
+        this.setState({
+          allProducers: producers,
+          filteredProducers: producers,
+        });
       })
       .catch((err) => console.log(err));
+
+    const success = (pos) => {
+      var crd = pos.coords;
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude : ${crd.longitude}`);
+      this.setState({ position: [crd.longitude, crd.latitude] });
+    };
+
+    const error = (err) => {
+      console.warn(`ERREUR (${err.code}): ${err.message}`);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    });
   }
+
+  handleFilter = (event) => {
+    if (event.target.value) {
+      this.setState({
+        filteredProducers: this.state.allProducers.filter(
+          (producer) => producer.field === event.target.value
+        ),
+        selectedProducer: null,
+      });
+    } else {
+      this.setState({
+        filteredProducers: this.state.allProducers,
+        selectedProducer: null,
+      });
+    }
+  };
 
   render() {
     return (
@@ -32,12 +75,12 @@ export class ProducerLandingPage extends Component {
           // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
-            height: "80vh",
+            height: "50vh",
             width: "100vw",
           }}
-          center={[2.3315, 48.8567]}
+          center={this.state.position}
         >
-          {this.state.allProducers.map((producer) => (
+          {this.state.filteredProducers.map((producer) => (
             <Marker
               key={producer._id}
               coordinates={producer.location.coordinates}
@@ -79,8 +122,30 @@ export class ProducerLandingPage extends Component {
             </Popup>
           )}
         </Map>
+        <FormControl
+          style={{ margin: "10px", width: "80%", margin: "10px 10% 0 10%" }}
+          variant="outlined"
+        >
+          <InputLabel id="demo-simple-select-outlined-label">Filtre</InputLabel>
+          <Select
+            id="selectedFilter"
+            name="selectedFilter"
+            label="Filtre"
+            onChange={this.handleFilter}
+            // value={this.state.selectedFilter}
+          >
+            <MenuItem value={false}>Tous les commerces</MenuItem>
+            <MenuItem value={"Fromagerie"}>Fromager</MenuItem>
+            <MenuItem value={"Boulangerie"}>Boulanger</MenuItem>
+            <MenuItem value={"Poissonnerie"}>Poissonier</MenuItem>
+            <MenuItem value={"Boucherie"}>Boucher</MenuItem>
+            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+            <MenuItem value={"Primeur"}>Primeur</MenuItem>
+            <MenuItem value={"Caviste"}>Caviste</MenuItem>
+          </Select>
+        </FormControl>
         <div className="scrolling-wrapper">
-          {this.state.allProducers.map((producer) => (
+          {this.state.filteredProducers.map((producer) => (
             <div className="producer" key={producer._id}>
               <div
                 style={{

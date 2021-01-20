@@ -45,7 +45,6 @@ ul {
 
 .producer {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  /* padding: 2px 16px; */
   margin: 5px 10px;
   height: 300px;
   max-width: 250px;
@@ -66,4 +65,10 @@ ul {
 
 .scrolling-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  width: 100%;
 }
