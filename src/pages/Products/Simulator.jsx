@@ -116,8 +116,6 @@ export class Simulator extends Component {
               />
             )}
           />
-<<<<<<< HEAD
-=======
           <Button
             style={style}
             onClick={this.handleSubmit}
@@ -126,7 +124,6 @@ export class Simulator extends Component {
           >
             <p>Calculer</p>
           </Button>
->>>>>>> 9959366d56e93800fe4c8030479f19dc11b22e56
         </form>
         {this.state.selectedProducts.length === 0 ? (
           <div>
