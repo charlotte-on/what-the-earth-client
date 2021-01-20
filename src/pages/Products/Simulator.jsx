@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import InputRange from "react-input-range";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
@@ -23,8 +22,15 @@ export class Simulator extends Component {
 
   onProductChange = (value) => {
     if (value === null) return;
+    value.qty = Math.trunc(100 / (this.state.selectedProducts.length + 1));
     this.setState({
-      selectedProducts: [...this.state.selectedProducts, value],
+      selectedProducts: [
+        ...this.state.selectedProducts.map((p) => ({
+          ...p,
+          qty: Math.trunc(100 / (this.state.selectedProducts.length + 1)),
+        })),
+        value,
+      ],
     });
   };
 
@@ -38,8 +44,19 @@ export class Simulator extends Component {
     });
   };
 
-  handleValue = (event) => {
-    console.log(event.target.value);
+  handleValue = (value, name) => {
+    // const foundIndex = this.state.selectedProducts.findIndex(
+    //   (product) => product.nom_francais === name
+    // );
+    // const copy = { ...this.state.selectedProducts[foundIndex] };
+    // copy.qty = value;
+    // const copyArr = [...this.state.selectedProducts];
+    // copyArr[foundIndex] = copy;
+    this.setState({
+      selectedProducts: this.state.selectedProducts.map((prod) => {
+        return prod.nom_francais === name ? { ...prod, qty: value } : prod;
+      }),
+    });
   };
 
   roundNumber = (number) => {
@@ -120,20 +137,28 @@ export class Simulator extends Component {
                     />
                   </div>
                   <div>
-                    <form className="input-quantity">
+                    <form
+                      className="input-quantity"
+                      onSubmit={this.handleSubmit}
+                      c
+                    >
                       <label htmlFor="label">Quantité</label>
                       <input
-                        type="range"
+                        type="number"
                         id={prod.nom_francais}
                         name="product"
                         min="0"
                         max="100"
-                        step="1"
-                        value={
-                          this.state.total / this.state.selectedProducts.length
+                        size="50"
+                        value={prod.qty}
+                        onChange={(event) =>
+                          this.handleValue(
+                            event.target.value,
+                            prod.nom_francais
+                          )
                         }
-                        onChange={this.handleValue}
                       />
+                      <label htmlFor="label">%</label>
                       {/* <InputRange
                         formatLabel={(value) => `${value}%`}
                         step={1}
