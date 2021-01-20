@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
+import "../../styles/User.css";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 class PasswordUpdate extends Component {
   state = {
@@ -51,7 +57,7 @@ class PasswordUpdate extends Component {
           <label htmlFor="old_password">Ancien mot de passe</label>
           <input
             onChange={this.handleChange}
-            type="text"
+            type="password"
             id="old_password"
             name="old_password"
             value={this.state.old_password}
@@ -62,7 +68,7 @@ class PasswordUpdate extends Component {
           <label htmlFor="new_password">Nouveau mot de passe</label>
           <input
             onChange={this.handleChange}
-            type="text"
+            type="password"
             id="new_password"
             name="new_password"
             value={this.state.new_password}
@@ -75,7 +81,7 @@ class PasswordUpdate extends Component {
           </label>
           <input
             onChange={this.handleChange}
-            type="text"
+            type="password"
             id="confirmed_password"
             name="confirmed_password"
             value={this.state.confirmed_password}
@@ -84,6 +90,7 @@ class PasswordUpdate extends Component {
 
         <div>
           <Button
+            style={style}
             onClick={this.handleSubmit}
             variant="contained"
             disabled={this.checkError()}

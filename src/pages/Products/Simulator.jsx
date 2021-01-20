@@ -4,8 +4,13 @@ import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
 import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
-
+import Button from "@material-ui/core/Button";
 import "../../styles/Simulator.css";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 const filterOptions = createFilterOptions({
   limit: 50,
@@ -111,6 +116,17 @@ export class Simulator extends Component {
               />
             )}
           />
+<<<<<<< HEAD
+=======
+          <Button
+            style={style}
+            onClick={this.handleSubmit}
+            variant="contained"
+            className="calculate"
+          >
+            <p>Calculer</p>
+          </Button>
+>>>>>>> 9959366d56e93800fe4c8030479f19dc11b22e56
         </form>
         {this.state.selectedProducts.length === 0 ? (
           <div>
