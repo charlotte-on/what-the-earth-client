@@ -154,7 +154,11 @@ class UserUpdate extends Component {
           </div>
         </div>
 
-        <Button variant="contained" disabled={this.checkError()}>
+        <Button
+          onClick={this.handleSubmit}
+          variant="contained"
+          disabled={this.checkError()}
+        >
           Mettre à jour mon profil
         </Button>
 
