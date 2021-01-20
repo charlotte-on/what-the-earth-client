@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
-import Agribalyse from "../../data/Agribalyse.json";
+import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 
 import "../../styles/Simulator.css";
 
@@ -13,6 +13,7 @@ const filterOptions = createFilterOptions({
 export class Simulator extends Component {
   state = {
     selectedProducts: [],
+    total: 100,
   };
 
   handleSubmit = (event) => {
@@ -21,8 +22,15 @@ export class Simulator extends Component {
 
   onProductChange = (value) => {
     if (value === null) return;
+    value.qty = Math.trunc(100 / (this.state.selectedProducts.length + 1));
     this.setState({
-      selectedProducts: [...this.state.selectedProducts, value],
+      selectedProducts: [
+        ...this.state.selectedProducts.map((p) => ({
+          ...p,
+          qty: Math.trunc(100 / (this.state.selectedProducts.length + 1)),
+        })),
+        value,
+      ],
     });
   };
 
@@ -33,6 +41,21 @@ export class Simulator extends Component {
           (product) => product.nom_francais !== name
         ),
       ],
+    });
+  };
+
+  handleValue = (value, name) => {
+    // const foundIndex = this.state.selectedProducts.findIndex(
+    //   (product) => product.nom_francais === name
+    // );
+    // const copy = { ...this.state.selectedProducts[foundIndex] };
+    // copy.qty = value;
+    // const copyArr = [...this.state.selectedProducts];
+    // copyArr[foundIndex] = copy;
+    this.setState({
+      selectedProducts: this.state.selectedProducts.map((prod) => {
+        return prod.nom_francais === name ? { ...prod, qty: value } : prod;
+      }),
     });
   };
 
@@ -49,7 +72,7 @@ export class Simulator extends Component {
   render() {
     return (
       <div>
-        <h1>Simulateur de recettes</h1>
+        <h1>Simulateur de recette</h1>
         <p>
           Entrez ici des ingrédients afin de simuler l'impact environnemental de
           votre recette
@@ -57,7 +80,7 @@ export class Simulator extends Component {
         <form onSubmit={this.handleSubmit}>
           <Autocomplete
             id="product"
-            options={Agribalyse}
+            options={AgribalyseSorted}
             getOptionLabel={(option) => option.nom_francais}
             filterOptions={filterOptions}
             style={{ width: 300 }}
@@ -85,31 +108,67 @@ export class Simulator extends Component {
           <div>
             {this.state.selectedProducts.map((prod) => {
               return (
-                <div key={prod._id} className="product-selected">
-                  <p>
-                    {prod.nom_francais} :{" "}
-                    <span
-                      style={{
-                        color: this.coloredNumber(
+                <div key={prod.nom_francais}>
+                  <div className="product-selected">
+                    <p>
+                      {prod.nom_francais} :{" "}
+                      <span
+                        style={{
+                          color: this.coloredNumber(
+                            prod.impact_environnemental["Score unique EF"]
+                              .synthese
+                          ),
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {this.roundNumber(
                           prod.impact_environnemental["Score unique EF"]
                             .synthese
-                        ),
-                        fontWeight: "bold",
+                        )}
+                      </span>
+                    </p>
+                    <img
+                      src="/media/delete.png"
+                      alt="delete button"
+                      style={{ height: "15px", marginLeft: "5px" }}
+                      onClick={() => {
+                        this.deleteProduct(prod.nom_francais);
                       }}
+                    />
+                  </div>
+                  <div>
+                    <form
+                      className="input-quantity"
+                      onSubmit={this.handleSubmit}
+                      c
                     >
-                      {this.roundNumber(
-                        prod.impact_environnemental["Score unique EF"].synthese
-                      )}
-                    </span>
-                  </p>
-                  <img
-                    src="/media/delete.png"
-                    alt="delete button"
-                    style={{ height: "15px", marginLeft: "5px" }}
-                    onClick={() => {
-                      this.deleteProduct(prod.nom_francais);
-                    }}
-                  />
+                      <label htmlFor="label">Quantité</label>
+                      <input
+                        type="number"
+                        id={prod.nom_francais}
+                        name="product"
+                        min="0"
+                        max="100"
+                        size="50"
+                        value={prod.qty}
+                        onChange={(event) =>
+                          this.handleValue(
+                            event.target.value,
+                            prod.nom_francais
+                          )
+                        }
+                      />
+                      <label htmlFor="label">%</label>
+                      {/* <InputRange
+                        formatLabel={(value) => `${value}%`}
+                        step={1}
+                        maxValue={100}
+                        minValue={0}
+                        value={this.state.value}
+                        onChange={(value) => this.handleValue(value)}
+                      /> */}
+                    </form>
+                  </div>
                 </div>
               );
             })}

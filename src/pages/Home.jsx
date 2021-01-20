@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import Footer from "../components/Footer";
 
 class Home extends React.Component {
   componentDidMount() {
@@ -92,9 +93,6 @@ class Home extends React.Component {
         {this.props.context.producer && (
           <div className="center-column">
             <p>{this.props.context.user.companyName}</p>
-            <Link className="link-underlined" to="/profile">
-              Mon compte pro
-            </Link>
             <Link
               className="link-underlined"
               to={`/producers/edit/${this.props.context.user._id}`}
@@ -106,8 +104,7 @@ class Home extends React.Component {
             </p>
           </div>
         )}
-
-        <p>© 2021 What the Earth</p>
+        <Footer />
       </div>
     );
   }

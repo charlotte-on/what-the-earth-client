@@ -3,6 +3,7 @@ import ReactMapboxGl, { Marker, Popup } from "react-mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
+import ScheduleIcon from "@material-ui/icons/Schedule";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -78,13 +79,35 @@ export class ProducerLandingPage extends Component {
             </Popup>
           )}
         </Map>
-        {this.state.allProducers.map((producer) => (
-          <div className="card" key={producer._id}>
-            <Link className="link-underlined" to={`/producers/${producer._id}`}>
-              {producer.companyName}
-            </Link>
-          </div>
-        ))}
+        <div className="scrolling-wrapper">
+          {this.state.allProducers.map((producer) => (
+            <div className="producer" key={producer._id}>
+              <div
+                style={{
+                  width: "auto",
+                  height: "125px",
+                  backgroundImage: `url(${producer.bannerImg})`,
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                }}
+              ></div>
+              <p>{producer.companyName}</p>
+              <p>{producer.field}</p>
+              <p>{producer.formattedAddress}</p>
+              <p>
+                <ScheduleIcon />
+                {producer.schedule}
+              </p>
+              <Link
+                className="link-underlined"
+                to={`/producers/${producer._id}`}
+              >
+                View more
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
