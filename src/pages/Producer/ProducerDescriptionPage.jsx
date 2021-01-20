@@ -18,6 +18,7 @@ import "moment-timezone";
 import DescriptionIcon from "@material-ui/icons/Description";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Avatar from "@material-ui/core/Avatar";
 
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
@@ -31,8 +32,6 @@ export class ProducerDescriptionPage extends Component {
     review: "",
     producerId: this.props.match.params.id,
     visibilityForm: "none",
-    backgroundImage:
-      "https://www.chapeaudepaille.fr/uploads/produits/poires/poires_large.jpg",
   };
 
   handleChange = (event) => {
@@ -89,6 +88,7 @@ export class ProducerDescriptionPage extends Component {
         const dataFormatted = { ...data };
         dataFormatted.userId = {
           firstName: this.props.context.user.firstName,
+          image: this.props.context.user.image,
         };
         this.setState({ comments: [...this.state.comments, dataFormatted] });
       })
@@ -113,7 +113,7 @@ export class ProducerDescriptionPage extends Component {
               width: "auto",
               height: "186px",
               filter: "brightness(50%)",
-              backgroundImage: `url(${this.state.backgroundImage})`,
+              backgroundImage: `url(${this.state.producer.bannerImg})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
@@ -193,7 +193,11 @@ export class ProducerDescriptionPage extends Component {
           <p>Pas d'avis pour le moment</p>
         ) : (
           this.state.comments.map((comment) => (
-            <div key={comment._id} className="card">
+            <div key={comment._id} className="comments">
+              <Avatar
+                alt={comment.userId.firstName}
+                src={comment.userId.image}
+              />
               <p>
                 Par {comment.userId.firstName} — le{" "}
                 <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}

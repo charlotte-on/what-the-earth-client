@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import Footer from "../components/Footer";
 
 class Home extends React.Component {
   componentDidMount() {
@@ -103,8 +104,7 @@ class Home extends React.Component {
             </p>
           </div>
         )}
-
-        <p>© 2021 What the Earth</p>
+        <Footer />
       </div>
     );
   }

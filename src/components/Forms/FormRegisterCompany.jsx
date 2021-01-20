@@ -10,13 +10,16 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { buildFormData } from "../../utils";
 
 class FormRegisterCompany extends Component {
   static contextType = UserContext;
 
   state = {
-    producerFirstName: "",
-    producerLastName: "",
+    firstName: "",
+    lastName: "",
     companyName: "",
     phoneNumber: "",
     schedule: "",
@@ -27,7 +30,10 @@ class FormRegisterCompany extends Component {
     location: {
       coordinates: [],
     },
+    bannerImg: "",
   };
+
+  imageRef = React.createRef();
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -41,14 +47,31 @@ class FormRegisterCompany extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const fd = new FormData();
+    const { bannerImg, ...rest } = this.state;
+
+    buildFormData(fd, rest);
+    console.log(Object.fromEntries(fd));
+
+    if (this.imageRef.current.files[0]) {
+      console.log(this.imageRef.current.files[0]);
+      fd.append("bannerImg", this.imageRef.current.files[0]);
+    }
+
     apiHandler
-      .registerProducer(this.state)
+      .registerProducer(fd)
       .then((data) => {
         this.context.setUser(data);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    this.setState({ url: url });
   };
 
   render() {
@@ -78,8 +101,8 @@ class FormRegisterCompany extends Component {
           label="Prénom"
           value={this.state.producerFirstName}
           type="text"
-          id="producerFirstName"
-          name="producerFirstName"
+          id="firstName"
+          name="firstName"
         />
         <TextField
           style={{ margin: "10px" }}
@@ -87,8 +110,8 @@ class FormRegisterCompany extends Component {
           label="Nom de famille"
           value={this.state.producerLastName}
           type="text"
-          id="producerLastName"
-          name="producerLastName"
+          id="lastName"
+          name="lastName"
         />
         <TextField
           style={{ margin: "10px" }}
@@ -139,9 +162,13 @@ class FormRegisterCompany extends Component {
             <MenuItem value="">
               <em>Aucun</em>
             </MenuItem>
-            <MenuItem value={"Fromager"}>Fromager</MenuItem>
-            <MenuItem value={"Boucher"}>Boucher</MenuItem>
+            <MenuItem value={"Fromagerie"}>Fromager</MenuItem>
+            <MenuItem value={"Boulangerie"}>Boulanger</MenuItem>
+            <MenuItem value={"Poissonnerie"}>Poissonier</MenuItem>
+            <MenuItem value={"Boucherie"}>Boucher</MenuItem>
             <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+            <MenuItem value={"Primeur"}>Primeur</MenuItem>
+            <MenuItem value={"Caviste"}>Caviste</MenuItem>
           </Select>
         </FormControl>
         <TextField
@@ -153,6 +180,24 @@ class FormRegisterCompany extends Component {
           id="description"
           name="description"
         />
+        <img src={this.state.url} alt="" />
+        <div>
+          <input
+            onChange={this.handleFileSelect}
+            type="file"
+            ref={this.imageRef}
+            id="icon-button-file"
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera fontSize="large" />
+            </IconButton>
+          </label>
+        </div>
         <Button style={{ margin: "10px" }} type="submit" variant="contained">
           Créer entreprise
         </Button>
