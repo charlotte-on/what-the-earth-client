@@ -190,13 +190,13 @@ class FormEditCompany extends Component {
             <MenuItem value="">
               <em>Aucun</em>
             </MenuItem>
-            <MenuItem value={"Fromagerie"}>Fromager</MenuItem>
-            <MenuItem value={"Boulangerie"}>Boulanger</MenuItem>
-            <MenuItem value={"Poissonnerie"}>Poissonier</MenuItem>
-            <MenuItem value={"Boucherie"}>Boucher</MenuItem>
-            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
-            <MenuItem value={"Primeur"}>Primeur</MenuItem>
+            <MenuItem value={"Boucherie"}>Boucherie</MenuItem>
+            <MenuItem value={"Boulangerie"}>Boulangerie</MenuItem>
             <MenuItem value={"Caviste"}>Caviste</MenuItem>
+            <MenuItem value={"Fromagerie"}>Fromagerie</MenuItem>
+            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+            <MenuItem value={"Poissonnerie"}>Poissonnerie</MenuItem>
+            <MenuItem value={"Primeur"}>Primeur</MenuItem>
           </Select>
         </FormControl>
         <TextField

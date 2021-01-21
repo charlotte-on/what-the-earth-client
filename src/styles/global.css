@@ -53,6 +53,7 @@ ul {
   flex-basis: 250px;
   flex-grow: 0;
   flex-shrink: 0;
+  border-radius: 4%;
 }
 
 .scrolling-wrapper {

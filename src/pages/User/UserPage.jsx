@@ -41,7 +41,7 @@ class UserPage extends React.Component {
         <br />
 
         <div>
-          <img src={this.props.context.user.image} alt="pp" />
+          <img src={this.props.context.user.image} alt="Profile Picture" />
         </div>
 
         <div>
