@@ -81,7 +81,7 @@ export class NavMain extends React.Component {
         </div>
       );
       avatarBurger = (
-        <Avatar style={{ height: "75px", width: "75px" }}>Pro</Avatar>
+        <Avatar style={{ height: "75px", width: "75px" }}>PRO</Avatar>
       );
     }
     return (

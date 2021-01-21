@@ -36,8 +36,6 @@ export class ProducerLandingPage extends Component {
 
     const success = (pos) => {
       var crd = pos.coords;
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude : ${crd.longitude}`);
       this.setState({ position: [crd.longitude, crd.latitude] });
     };
 
