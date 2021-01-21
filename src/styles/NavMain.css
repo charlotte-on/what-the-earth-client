@@ -99,6 +99,7 @@ nav {
 .logout,
 .login {
   display: flex;
+  align-items: center;
 }
 
 .login-logout img {
