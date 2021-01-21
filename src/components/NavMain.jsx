@@ -46,7 +46,11 @@ export class NavMain extends React.Component {
           <hr />
         </div>
       );
-      avatar = <PersonIcon />;
+      avatar = (
+        <Link to="/profile">
+          <PersonIcon />
+        </Link>
+      );
       avatarBurger = (
         <div
           style={{
@@ -65,7 +69,7 @@ export class NavMain extends React.Component {
       profileLink = (
         <div>
           <Link
-            to="/profile"
+            to={`/producers/edit/${this.props.context.user._id}`}
             className="lateral-link"
             onClick={this.toggleClass}
           >
@@ -75,9 +79,17 @@ export class NavMain extends React.Component {
         </div>
       );
       avatar = (
-        <div>
-          PRO
-          <PersonIcon />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <p>PRO</p>
+          <Link to={`/producers/edit/${this.props.context.user._id}`}>
+            <PersonIcon />
+          </Link>
         </div>
       );
       avatarBurger = (
@@ -169,10 +181,19 @@ export class NavMain extends React.Component {
           </div>
           <div className="opacity"></div>
         </div>
-        <NavLink to="/">
-          <h3 className="logo">What the Earth</h3>
-        </NavLink>
-        {avatar}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "inherit",
+          }}
+        >
+          <NavLink to="/">
+            <h3 className="logo">What the Earth</h3>
+          </NavLink>
+          {avatar}
+        </div>
       </nav>
     );
   }
