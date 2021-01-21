@@ -178,7 +178,7 @@ export class ProducerLandingPage extends Component {
                   className="link-underlined"
                   to={`/producers/${producer._id}`}
                 >
-                  View more
+                  Je découvre
                 </Link>
               </div>
             </div>

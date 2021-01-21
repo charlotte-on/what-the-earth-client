@@ -11,10 +11,10 @@ const Footer = () => {
         </span>
       </p>
       <p>
-        Made with{" "}
+        Made with
         <span role="img" aria-label="heart">
           💛
-        </span>{" "}
+        </span>
         at Ironhack
       </p>
       <Link to="/about">Notre mission</Link>
