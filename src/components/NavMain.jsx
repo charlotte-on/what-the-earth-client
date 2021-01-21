@@ -150,7 +150,7 @@ export class NavMain extends React.Component {
               )}
             </div>
           </div>
-          <div className="opacity"></div>
+          <div className="opacity" style={{ opacity: "70%" }}></div>
         </div>
         <NavLink to="/">
           <h3 className="logo">What the Earth</h3>
