@@ -27,7 +27,7 @@ const About = () => {
           color: "white",
           textAlign: "center",
           position: "absolute",
-          top: "calc(50% - 80px)",
+          top: "calc(50% - 60px)",
           left: "calc(50% - 175px)",
           width: "350px",
         }}
@@ -37,7 +37,6 @@ const About = () => {
             <h4
               style={{
                 position: "absolute",
-                textAlign: "left",
                 top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
@@ -49,7 +48,6 @@ const About = () => {
           <p
             style={{
               position: "absolute",
-              textAlign: "left",
               top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
@@ -59,9 +57,9 @@ const About = () => {
         </div>
 
         <h2 style={{ margin: "20px" }}>A propos</h2>
-        <Accordion>
+        <Accordion style={{ backgroundColor: "#87a878", color: "white" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
@@ -75,9 +73,9 @@ const About = () => {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion>
+        <Accordion style={{ backgroundColor: "#87a878", color: "white" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
@@ -91,9 +89,9 @@ const About = () => {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion>
+        <Accordion style={{ backgroundColor: "#87a878", color: "white" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
             aria-controls="panel3a-content"
             id="panel4a-header"
           >
@@ -106,9 +104,9 @@ const About = () => {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion>
+        <Accordion style={{ backgroundColor: "#87a878", color: "white" }}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon style={{ color: "white" }} />}
             aria-controls="panel4a-content"
             id="panel4a-header"
           >
