@@ -1,3 +1,13 @@
+.simulator-page {
+  margin: 10px 10px;
+}
+
+.input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: calc(100%);
+}
+
 .add img {
   text-align: center;
   height: 4vh;
@@ -15,7 +25,18 @@
 }
 
 .input-quantity input {
+  width: 55px;
   margin-left: 7px;
   margin-right: 7px;
   text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.calc-button {
+  margin-top: 10px;
+}
+
+p {
+  font-size: 0.95rem;
 }
