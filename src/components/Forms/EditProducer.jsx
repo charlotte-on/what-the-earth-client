@@ -208,7 +208,8 @@ class FormEditCompany extends Component {
           id="description"
           name="description"
         />
-        <img src={this.state.url} alt="" />
+        <img src={this.state.bannerImg} alt="old banner" />
+        {this.state.url && <img src={this.state.url} alt="new banner" />}
         <div>
           <input
             onChange={this.handleFileSelect}

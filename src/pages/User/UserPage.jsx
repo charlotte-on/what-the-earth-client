@@ -3,12 +3,12 @@ import { withUser } from "../../components/Auth/withUser";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import "../../styles/User.css";
 import Avatar from "@material-ui/core/Avatar";
 
 const style = {
   background: "#87a878",
   color: "white",
+  margin: "10px 10px 10px 0",
 };
 
 class UserPage extends React.Component {
@@ -77,9 +77,9 @@ class UserPage extends React.Component {
             style={{ height: "110px", width: "110px" }}
           />
           <div style={{ display: "inline" }}>
-            <h3>{this.props.context.user.firstName}</h3>
-            <h3>{this.props.context.user.lastName}</h3>
-            <h3>{this.props.context.user.email}</h3>
+            <div>{this.props.context.user.firstName}</div>
+            <div>{this.props.context.user.lastName}</div>
+            <div>{this.props.context.user.email}</div>
           </div>
 
           <Link to={`/profile/${this.props.context.user._id}`}>

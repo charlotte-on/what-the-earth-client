@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import "../../styles/User.css";
 
 const style = {
   background: "#87a878",
   color: "white",
+  margin: "10px",
 };
 
 class PasswordUpdate extends Component {
@@ -49,7 +50,6 @@ class PasswordUpdate extends Component {
   };
 
   render() {
-    console.log("rendering");
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
@@ -77,42 +77,41 @@ class PasswordUpdate extends Component {
           </p>
         </div>
 
-        <div className="User__container">
+        <div className="center-column">
           <h2>Modifier mon mot de passe</h2>
-          <div>
-            <label htmlFor="old_password">Ancien mot de passe</label>
-            <input
-              onChange={this.handleChange}
-              type="password"
-              id="old_password"
-              name="old_password"
-              value={this.state.old_password}
-            />
-          </div>
 
-          <div>
-            <label htmlFor="new_password">Nouveau mot de passe</label>
-            <input
-              onChange={this.handleChange}
-              type="password"
-              id="new_password"
-              name="new_password"
-              value={this.state.new_password}
-            />
-          </div>
+          <TextField
+            value={this.state.old_password}
+            label="Ancien mot de passe"
+            type="password"
+            id="old_password"
+            name="old_password"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
 
-          <div>
-            <label htmlFor="confirmed_password">
-              Confirmer nouveau mot de passe
-            </label>
-            <input
-              onChange={this.handleChange}
-              type="password"
-              id="confirmed_password"
-              name="confirmed_password"
-              value={this.state.confirmed_password}
-            />
-          </div>
+          <TextField
+            value={this.state.new_password}
+            label="Nouveau mot de passe"
+            type="password"
+            id="new_password"
+            name="new_password"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
+
+          <TextField
+            value={this.state.confirmed_password}
+            label="Confirmer"
+            type="password"
+            id="confirmed_password"
+            name="confirmed_password"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
 
           <div>
             <Button

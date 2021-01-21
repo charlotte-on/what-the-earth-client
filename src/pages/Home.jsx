@@ -14,9 +14,6 @@ const style = {
 };
 
 class Home extends React.Component {
-  state = {
-    background: "/media/grass-cover.jpg",
-  };
   componentDidMount() {
     document.title = "What the Earth • Accueil";
   }
@@ -38,12 +35,13 @@ class Home extends React.Component {
         <div
           style={{
             width: "auto",
-            height: "100vh",
+            height: "500px",
             backgroundImage: "url(/media/wheat5.jpeg)",
             backgroundPosition: "center",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             position: "relative",
+            filter: "brightness(50%)",
           }}
         ></div>
 
