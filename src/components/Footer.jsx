@@ -13,7 +13,7 @@ const Footer = () => {
       <p>
         Made with{" "}
         <span role="img" aria-label="heart">
-          💚
+          💛
         </span>{" "}
         at Ironhack
       </p>

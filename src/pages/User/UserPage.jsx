@@ -38,7 +38,37 @@ class UserPage extends React.Component {
 
     return (
       <div>
-        <h2>Compte</h2>
+        <div>
+          <Link to={"/"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Mon profil
+          </p>
+        </div>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Mon profil
+        </h2>
         <br />
         <div className="comments">
           <Avatar
@@ -51,6 +81,7 @@ class UserPage extends React.Component {
             <h3>{this.props.context.user.lastName}</h3>
             <h3>{this.props.context.user.email}</h3>
           </div>
+
           <Link to={`/profile/${this.props.context.user._id}`}>
             <Button style={style} variant="contained">
               Modifier mon profil

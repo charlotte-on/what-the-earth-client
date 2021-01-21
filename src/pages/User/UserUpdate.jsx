@@ -101,83 +101,109 @@ class UserUpdate extends Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit} className="User__container">
-        <h3>Updater mon profil</h3>
-
-        <img src={this.state.url} alt="" />
+      <form onSubmit={this.handleSubmit}>
         <div>
-          <input
-            onChange={this.handleFileSelect}
-            type="file"
-            ref={this.imageRef}
-            id="icon-button-file"
-            style={{ display: "none" }}
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
-              style={style}
-              color="primary"
-              aria-label="upload picture"
-              component="span"
+          <Link to={"/profile"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
             >
-              <PhotoCamera fontSize="large" />
-            </IconButton>
-          </label>
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Mon profil / Modifier mon profil
+          </p>
         </div>
 
-        <div>
+        <div className="User__container">
+          <h3>Updater mon profil</h3>
+
+          <img src={this.state.url} alt="" />
           <div>
-            <label htmlFor="firstName">Prénom</label>
             <input
-              type="text"
-              name="firstName"
-              value={this.state.user.firstName}
-              onChange={this.handleChange}
-              id="firstName"
+              onChange={this.handleFileSelect}
+              type="file"
+              ref={this.imageRef}
+              id="icon-button-file"
+              style={{ display: "none" }}
             />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                style={style}
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera fontSize="large" />
+              </IconButton>
+            </label>
           </div>
 
           <div>
-            <label htmlFor="lastName">Nom</label>
-            <input
-              type="text"
-              name="lastName"
-              value={this.state.user.lastName}
-              onChange={this.handleChange}
-              id="lastName"
-            />
+            <div>
+              <label htmlFor="firstName">Prénom</label>
+              <input
+                type="text"
+                name="firstName"
+                value={this.state.user.firstName}
+                onChange={this.handleChange}
+                id="firstName"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="lastName">Nom</label>
+              <input
+                type="text"
+                name="lastName"
+                value={this.state.user.lastName}
+                onChange={this.handleChange}
+                id="lastName"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={this.state.user.email}
+                onChange={this.handleChange}
+                id="email"
+              />
+            </div>
           </div>
 
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={this.state.user.email}
-              onChange={this.handleChange}
-              id="email"
-            />
-          </div>
-        </div>
-
-        <Button
-          style={style}
-          onClick={this.handleSubmit}
-          variant="contained"
-          disabled={this.checkError()}
-        >
-          Mettre à jour mon profil
-        </Button>
-
-        <Link to={`/profile/${this.props.context.user._id}/password`}>
           <Button
             style={style}
+            onClick={this.handleSubmit}
             variant="contained"
             disabled={this.checkError()}
           >
-            Mettre à jour mon mot de passe
+            Modifier mon profil
           </Button>
-        </Link>
+
+          <Link to={`/profile/${this.props.context.user._id}/password`}>
+            <Button
+              style={style}
+              variant="contained"
+              disabled={this.checkError()}
+            >
+              Modifier mon mot de passe
+            </Button>
+          </Link>
+        </div>
       </form>
     );
   }

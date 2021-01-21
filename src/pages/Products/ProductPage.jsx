@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export class ProductPage extends Component {
@@ -37,7 +38,37 @@ export class ProductPage extends Component {
 
     return (
       <div>
-        <h1>{this.state.product.Nom_du_Produit_en_Français}</h1>
+        <div>
+          <Link to={"/products"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Produits / Produit
+          </p>
+        </div>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          {this.state.product.Nom_du_Produit_en_Français}
+        </h2>
         <h5>Catégorie: {this.state.product["Sous-groupe_d'aliment"]}</h5>
         <h3>
           {" "}

@@ -1,16 +1,49 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import FormSignin from "../components/Forms/FormSignin";
 
 const Signin = (props) => {
   return (
-    <div className="center-column">
-      <img
-        style={{ width: "50px" }}
-        src="/wheat.png"
-        alt="Logo What the Earth"
-      />
-      <h1>Connectez-vous à votre espace utlisateur What the Earth.</h1>
-      <FormSignin />
+    <div>
+      <div>
+        <Link to={"/"}>
+          <h4
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 200px)",
+              fontSize: "13px",
+            }}
+          >
+            Retour
+          </h4>
+        </Link>
+
+        <p
+          style={{
+            textAlign: "left",
+            top: "calc(2% - 180px)",
+            fontSize: "11px",
+          }}
+        >
+          Accueil / Identification utilisateur
+        </p>
+      </div>
+      <div className="center-column">
+        <img
+          style={{ width: "50px" }}
+          src="/wheat.png"
+          alt="Logo What the Earth"
+        />
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Connectez-vous à votre espace utlisateur What the Earth
+        </h2>
+        <FormSignin />
+      </div>
     </div>
   );
 };

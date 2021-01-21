@@ -4,6 +4,7 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -11,8 +12,8 @@ const About = () => {
       <div
         style={{
           width: "auto",
-          height: "100vh",
-          backgroundImage: "url(/media/about3.jpeg)",
+          height: "130vh",
+          backgroundImage: "url(/media/about.jpeg)",
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -26,12 +27,38 @@ const About = () => {
           color: "white",
           textAlign: "center",
           position: "absolute",
-          top: "calc(50% - 70px)",
+          top: "calc(50% - 80px)",
           left: "calc(50% - 175px)",
           width: "350px",
         }}
       >
-        <h2>A propos</h2>
+        <div>
+          <Link to={"/"}>
+            <h4
+              style={{
+                position: "absolute",
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              position: "absolute",
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / À propos
+          </p>
+        </div>
+
+        <h2 style={{ margin: "20px" }}>A propos</h2>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -42,7 +69,7 @@ const About = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Pour ceux qui veulent connaître l'impacte environnemental de leur
+              Pour ceux qui veulent connaître l'impact environnemental de leur
               alimentation et agir en conséquence.
             </Typography>
           </AccordionDetails>
@@ -91,67 +118,15 @@ const About = () => {
             <Typography>
               <div
                 style={{
-                  border: "1px solid",
-                  borderRadius: "5px",
+                  borderRadius: "4%",
                   margin: "10px",
                   padding: "10px",
-                  backgroundImage: "url(/media/about.jpeg)",
+                  backgroundImage: "url(/media/about1.jpeg)",
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   color: "white",
-                }}
-              >
-                <h4>Victorien Provenzano</h4>
-                <h4>Co-Founder</h4>
-                <div>
-                  <a href="https://github.com/vicpzn">
-                    <i class="fab fa-github"></i>
-                  </a>{" "}
-                  |
-                  <a href="https://www.linkedin.com/in/victorienprovenzano/">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  border: "1px solid",
-                  borderRadius: "5px",
-                  margin: "10px",
-                  padding: "10px",
-                  backgroundImage: "url(/media/about2.jpeg)",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  color: "white",
-                }}
-              >
-                <h4>Charlotte Oury</h4>
-                <h4>Co-Founder</h4>
-                <div>
-                  <a href="https://github.com/charlotte-on">
-                    <i class="fab fa-github"></i>
-                  </a>{" "}
-                  |
-                  <a href="https://www.linkedin.com/in/charlotte-oury-8866621a3/">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                </div>
-              </div>
-
-              <div
-                style={{
-                  border: "1px solid",
-                  borderRadius: "5px",
-                  margin: "10px",
-                  padding: "10px",
-                  backgroundImage: "url(/media/about.jpeg)",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  color: "white",
+                  textShadow: "1px 1px 2px black",
                 }}
               >
                 <h4>Calypso Asline</h4>
@@ -160,8 +135,60 @@ const About = () => {
                   <a href="https://github.com/Calyaln">
                     <i class="fab fa-github"></i>
                   </a>{" "}
-                  |
+                  |{" "}
                   <a href="https://www.linkedin.com/in/calypso-asline-3b616b78/">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  borderRadius: "4%",
+                  margin: "10px",
+                  padding: "10px",
+                  backgroundImage: "url(/media/about2.jpeg)",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  color: "white",
+                  textShadow: "1px 1px 2px black",
+                }}
+              >
+                <h4>Charlotte Oury</h4>
+                <h4>Co-Founder</h4>
+                <div>
+                  <a href="https://github.com/charlotte-on">
+                    <i class="fab fa-github"></i>
+                  </a>{" "}
+                  |{" "}
+                  <a href="https://www.linkedin.com/in/charlotte-oury-8866621a3/">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  borderRadius: "4%",
+                  margin: "10px",
+                  padding: "10px",
+                  backgroundImage: "url(/media/about3.jpeg)",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  color: "white",
+                  textShadow: "1px 1px 2px black",
+                }}
+              >
+                <h4>Victorien Provenzano</h4>
+                <h4>Co-Founder</h4>
+                <div>
+                  <a href="https://github.com/vicpzn">
+                    <i class="fab fa-github"></i>
+                  </a>{" "}
+                  |{" "}
+                  <a href="https://www.linkedin.com/in/victorienprovenzano/">
                     <i class="fab fa-linkedin"></i>
                   </a>
                 </div>

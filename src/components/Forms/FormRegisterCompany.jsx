@@ -13,6 +13,7 @@ import LocationAutoComplete from "./LocationAutoComplete";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { buildFormData } from "../../utils";
+import { Link } from "react-router-dom";
 
 const style = {
   background: "#87a878",
@@ -85,129 +86,159 @@ class FormRegisterCompany extends Component {
     }
 
     return (
-      <form
-        onChange={this.handleChange}
-        onSubmit={this.handleSubmit}
-        className="center-column"
-      >
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Nom de l'entreprise"
-          value={this.state.companyName}
-          type="text"
-          id="companyName"
-          name="companyName"
-        />
-        <LocationAutoComplete name="location" onSelect={this.handlePlace} />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Prénom"
-          value={this.state.producerFirstName}
-          type="text"
-          id="firstName"
-          name="firstName"
-        />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Nom de famille"
-          value={this.state.producerLastName}
-          type="text"
-          id="lastName"
-          name="lastName"
-        />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Email"
-          value={this.state.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Mot de passe"
-          value={this.state.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Numéro de téléphone"
-          value={this.state.phoneNumber}
-          type="text"
-          id="phoneNumber"
-          name="phoneNumber"
-        />
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Horaires"
-          value={this.state.schedule}
-          type="text"
-          id="schedule"
-          name="schedule"
-        />
-        <FormControl style={{ margin: "10px" }} variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
-          <Select
-            style={{ width: "195px" }}
-            id="field"
-            name="field"
-            value={this.state.field}
-            label="Type"
-            onChange={this.handleChange}
-          >
-            <MenuItem value="">
-              <em>Aucun</em>
-            </MenuItem>
-            <MenuItem value={"Boucherie"}>Boucherie</MenuItem>
-            <MenuItem value={"Boulangerie"}>Boulangerie</MenuItem>
-            <MenuItem value={"Caviste"}>Caviste</MenuItem>
-            <MenuItem value={"Fromagerie"}>Fromagerie</MenuItem>
-            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
-            <MenuItem value={"Poissonnerie"}>Poissonnerie</MenuItem>
-            <MenuItem value={"Primeur"}>Primeur</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField
-          style={{ margin: "10px" }}
-          variant="outlined"
-          label="Description"
-          value={this.state.description}
-          type="text"
-          id="description"
-          name="description"
-        />
-        <img src={this.state.url} alt="" />
+      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
         <div>
-          <input
-            onChange={this.handleFileSelect}
-            type="file"
-            ref={this.imageRef}
-            id="icon-button-file"
-            style={{ display: "none" }}
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
-              style={style}
-              color="primary"
-              aria-label="upload picture"
-              component="span"
+          <Link to={"/"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
             >
-              <PhotoCamera fontSize="large" />
-            </IconButton>
-          </label>
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Inscription professionnelle
+          </p>
         </div>
-        <Button style={style} type="submit" variant="contained">
-          Créer entreprise
-        </Button>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Enregistrer mon commerce
+        </h2>
+
+        <div className="center-column">
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Nom de l'entreprise"
+            value={this.state.companyName}
+            type="text"
+            id="companyName"
+            name="companyName"
+          />
+          <LocationAutoComplete name="location" onSelect={this.handlePlace} />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Prénom"
+            value={this.state.producerFirstName}
+            type="text"
+            id="firstName"
+            name="firstName"
+          />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Nom de famille"
+            value={this.state.producerLastName}
+            type="text"
+            id="lastName"
+            name="lastName"
+          />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Email"
+            value={this.state.email}
+            type="email"
+            id="email"
+            name="email"
+          />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Mot de passe"
+            value={this.state.password}
+            type="password"
+            id="password"
+            name="password"
+          />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Numéro de téléphone"
+            value={this.state.phoneNumber}
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+          />
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Horaires"
+            value={this.state.schedule}
+            type="text"
+            id="schedule"
+            name="schedule"
+          />
+          <FormControl style={{ margin: "10px" }} variant="outlined">
+            <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
+            <Select
+              style={{ width: "195px" }}
+              id="field"
+              name="field"
+              value={this.state.field}
+              label="Type"
+              onChange={this.handleChange}
+            >
+              <MenuItem value="">
+                <em>Aucun</em>
+              </MenuItem>
+              <MenuItem value={"Boucherie"}>Boucherie</MenuItem>
+              <MenuItem value={"Boulangerie"}>Boulangerie</MenuItem>
+              <MenuItem value={"Caviste"}>Caviste</MenuItem>
+              <MenuItem value={"Fromagerie"}>Fromagerie</MenuItem>
+              <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+              <MenuItem value={"Poissonnerie"}>Poissonnerie</MenuItem>
+              <MenuItem value={"Primeur"}>Primeur</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            style={{ margin: "10px" }}
+            variant="outlined"
+            label="Description"
+            value={this.state.description}
+            type="text"
+            id="description"
+            name="description"
+          />
+          <img src={this.state.url} alt="" />
+          <div>
+            <input
+              onChange={this.handleFileSelect}
+              type="file"
+              ref={this.imageRef}
+              id="icon-button-file"
+              style={{ display: "none" }}
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                style={style}
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera fontSize="large" />
+              </IconButton>
+            </label>
+          </div>
+          <Button style={style} type="submit" variant="contained">
+            Créer entreprise
+          </Button>
+        </div>
       </form>
     );
   }

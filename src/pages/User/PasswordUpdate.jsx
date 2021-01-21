@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import "../../styles/User.css";
 
 const style = {
@@ -50,53 +51,79 @@ class PasswordUpdate extends Component {
   render() {
     console.log("rendering");
     return (
-      <form onSubmit={this.handleSubmit} className="User__container">
-        <h2>Modifier mon mot de passe</h2>
-
+      <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="old_password">Ancien mot de passe</label>
-          <input
-            onChange={this.handleChange}
-            type="password"
-            id="old_password"
-            name="old_password"
-            value={this.state.old_password}
-          />
-        </div>
+          <Link to={"/profile/:id"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
 
-        <div>
-          <label htmlFor="new_password">Nouveau mot de passe</label>
-          <input
-            onChange={this.handleChange}
-            type="password"
-            id="new_password"
-            name="new_password"
-            value={this.state.new_password}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="confirmed_password">
-            Confirmer nouveau mot de passe
-          </label>
-          <input
-            onChange={this.handleChange}
-            type="password"
-            id="confirmed_password"
-            name="confirmed_password"
-            value={this.state.confirmed_password}
-          />
-        </div>
-
-        <div>
-          <Button
-            style={style}
-            onClick={this.handleSubmit}
-            variant="contained"
-            disabled={this.checkError()}
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
           >
-            Enregistrer
-          </Button>
+            Accueil / Mon profil / Modifier mon profil / Modifier mon mot de
+            passe
+          </p>
+        </div>
+
+        <div className="User__container">
+          <h2>Modifier mon mot de passe</h2>
+          <div>
+            <label htmlFor="old_password">Ancien mot de passe</label>
+            <input
+              onChange={this.handleChange}
+              type="password"
+              id="old_password"
+              name="old_password"
+              value={this.state.old_password}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="new_password">Nouveau mot de passe</label>
+            <input
+              onChange={this.handleChange}
+              type="password"
+              id="new_password"
+              name="new_password"
+              value={this.state.new_password}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="confirmed_password">
+              Confirmer nouveau mot de passe
+            </label>
+            <input
+              onChange={this.handleChange}
+              type="password"
+              id="confirmed_password"
+              name="confirmed_password"
+              value={this.state.confirmed_password}
+            />
+          </div>
+
+          <div>
+            <Button
+              style={style}
+              onClick={this.handleSubmit}
+              variant="contained"
+              disabled={this.checkError()}
+            >
+              Enregistrer
+            </Button>
+          </div>
         </div>
       </form>
     );

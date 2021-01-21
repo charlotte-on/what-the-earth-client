@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { Link } from "react-router-dom";
 
 const style = {
   background: "#87a878",
@@ -70,72 +71,107 @@ class FormSignup extends Component {
     }
 
     return (
-      <form
-        className="center-column"
-        onChange={this.handleChange}
-        onSubmit={this.handleSubmit}
-      >
-        <img src={this.state.url} alt="" />
+      <div>
         <div>
-          <input
-            onChange={this.handleFileSelect}
-            type="file"
-            ref={this.imageRef}
-            id="icon-button-file"
-            style={{ display: "none" }}
-          />
-          <label htmlFor="icon-button-file">
-            <IconButton
-              style={style}
-              color="primary"
-              aria-label="upload picture"
-              component="span"
+          <Link to={"/"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
             >
-              <PhotoCamera fontSize="large" />
-            </IconButton>
-          </label>
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Inscription utilisateur
+          </p>
         </div>
 
-        <TextField
-          value={this.state.firstName}
-          label="Prénom"
-          type="text"
-          id="firstName"
-          name="firstName"
-          variant="outlined"
-          style={{ margin: "10px" }}
-        />
-        <TextField
-          value={this.state.lastName}
-          label="Nom de famille"
-          type="text"
-          id="lastName"
-          name="lastName"
-          variant="outlined"
-          style={{ margin: "10px" }}
-        />
-        <TextField
-          value={this.state.email}
-          label="Email"
-          type="email"
-          id="email"
-          name="email"
-          variant="outlined"
-          style={{ margin: "10px" }}
-        />
-        <TextField
-          value={this.state.password}
-          label="Mot de passe"
-          type="password"
-          id="password"
-          name="password"
-          variant="outlined"
-          style={{ margin: "10px" }}
-        />
-        <Button style={style} type="submit" variant="contained">
-          S'inscrire
-        </Button>
-      </form>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Inscrivez-vous pour accéder à votre compte utilisateur
+        </h2>
+
+        <form
+          className="center-column"
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        >
+          <img src={this.state.url} alt="" />
+          <div>
+            <input
+              onChange={this.handleFileSelect}
+              type="file"
+              ref={this.imageRef}
+              id="icon-button-file"
+              style={{ display: "none" }}
+            />
+            <label htmlFor="icon-button-file">
+              <IconButton
+                style={style}
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
+                <PhotoCamera fontSize="large" />
+              </IconButton>
+            </label>
+          </div>
+
+          <TextField
+            value={this.state.firstName}
+            label="Prénom"
+            type="text"
+            id="firstName"
+            name="firstName"
+            variant="outlined"
+            style={{ margin: "10px" }}
+          />
+          <TextField
+            value={this.state.lastName}
+            label="Nom de famille"
+            type="text"
+            id="lastName"
+            name="lastName"
+            variant="outlined"
+            style={{ margin: "10px" }}
+          />
+          <TextField
+            value={this.state.email}
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            variant="outlined"
+            style={{ margin: "10px" }}
+          />
+          <TextField
+            value={this.state.password}
+            label="Mot de passe"
+            type="password"
+            id="password"
+            name="password"
+            variant="outlined"
+            style={{ margin: "10px" }}
+          />
+          <Button style={style} type="submit" variant="contained">
+            S'inscrire
+          </Button>
+        </form>
+      </div>
     );
   }
 }

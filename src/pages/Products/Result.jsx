@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
+import { Link } from "react-router-dom";
 
 export class Result extends Component {
   state = {
@@ -56,7 +57,37 @@ export class Result extends Component {
 
     return (
       <div>
-        <h1>Résultat de la simulation</h1>
+        <div>
+          <Link to={"/products/simulator"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Produits / Simulateur / Résultat
+          </p>
+        </div>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Résultat de la simulation
+        </h2>
         <h2>Ingrédients:</h2>
 
         <ul>

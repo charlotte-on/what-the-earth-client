@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ProductsList from "./ProductsList";
+import { Link } from "react-router-dom";
 
 import "../../styles/Products.css";
 
@@ -37,7 +38,14 @@ export class Products extends Component {
     if (!this.state.products) {
       return (
         <div>
-          <h1>Tous les produits</h1>
+          <h2
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            Tous les produits
+          </h2>
           <img
             src="/media/loading.gif"
             alt="loading icon"
@@ -48,7 +56,37 @@ export class Products extends Component {
     }
     return (
       <div className="allProducts">
-        <h1>Tous les produits</h1>
+        <div>
+          <Link to={"/"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Produits
+          </p>
+        </div>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Tous les produits
+        </h2>
         <ProductsList
           products={this.state.products}
           handleSearch={this.handleSearch}

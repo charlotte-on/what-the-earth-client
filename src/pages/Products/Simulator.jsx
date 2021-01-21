@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { createFilterOptions } from "@material-ui/lab/Autocomplete";
 import { TextField } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 import Button from "@material-ui/core/Button";
@@ -91,7 +92,37 @@ export class Simulator extends Component {
   render() {
     return (
       <div>
-        <h1>Simulateur de recette</h1>
+        <div>
+          <Link to={"/products"}>
+            <h4
+              style={{
+                textAlign: "left",
+                top: "calc(2% - 200px)",
+                fontSize: "13px",
+              }}
+            >
+              Retour
+            </h4>
+          </Link>
+
+          <p
+            style={{
+              textAlign: "left",
+              top: "calc(2% - 180px)",
+              fontSize: "11px",
+            }}
+          >
+            Accueil / Simulateur
+          </p>
+        </div>
+        <h2
+          style={{
+            padding: "10px",
+            textAlign: "center",
+          }}
+        >
+          Simulateur de recette
+        </h2>
         <p>
           Entrez ici des ingrédients afin de simuler l'impact environnemental de
           votre recette
