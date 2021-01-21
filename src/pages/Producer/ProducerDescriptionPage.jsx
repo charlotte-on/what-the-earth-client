@@ -141,13 +141,13 @@ export class ProducerDescriptionPage extends Component {
         {this.state.comments.length === 0 ? (
           <p>Pas d'avis pour le moment</p>
         ) : (
-          <p>
+          <span>
             {this.starsRating(
               this.state.comments.reduce((a, b) => a + b.rate, 0) /
                 this.state.comments.length
             )}{" "}
             {this.state.comments.length} avis
-          </p>
+          </span>
         )}
         <p>
           <DescriptionIcon />

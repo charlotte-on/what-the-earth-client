@@ -82,6 +82,7 @@ class FormSignup extends Component {
             type="file"
             ref={this.imageRef}
             id="icon-button-file"
+            style={{ display: "none" }}
           />
           <label htmlFor="icon-button-file">
             <IconButton
