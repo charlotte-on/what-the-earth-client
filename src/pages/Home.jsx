@@ -10,6 +10,7 @@ import ListIcon from "@material-ui/icons/List";
 const style = {
   background: "#87a878",
   color: "white",
+  margin: "10px",
 };
 
 class Home extends React.Component {

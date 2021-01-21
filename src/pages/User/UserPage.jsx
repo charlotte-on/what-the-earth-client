@@ -4,6 +4,7 @@ import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "../../styles/User.css";
+import Avatar from "@material-ui/core/Avatar";
 
 const style = {
   background: "#87a878",
@@ -39,35 +40,27 @@ class UserPage extends React.Component {
       <div>
         <h2>Compte</h2>
         <br />
-
-        <div>
-          <img src={this.props.context.user.image} alt="Profile Picture" />
-        </div>
-
-        <div>
-          <h3>{this.props.context.user.firstName}</h3>
-        </div>
-
-        <div>
-          <h3>{this.props.context.user.lastName}</h3>
-        </div>
-
-        <div>
-          <h3>{this.props.context.user.email}</h3>
-        </div>
-
-        <div>
+        <div className="comments">
+          <Avatar
+            src={this.props.context.user.image}
+            alt={this.props.context.user.firstName}
+            style={{ height: "110px", width: "110px" }}
+          />
+          <div style={{ display: "inline" }}>
+            <h3>{this.props.context.user.firstName}</h3>
+            <h3>{this.props.context.user.lastName}</h3>
+            <h3>{this.props.context.user.email}</h3>
+          </div>
           <Link to={`/profile/${this.props.context.user._id}`}>
             <Button style={style} variant="contained">
               Modifier mon profil
             </Button>
           </Link>
-        </div>
-
-        <div onClick={this.handleLogout}>
-          <Button style={style} variant="contained">
-            Se déconnecter
-          </Button>
+          <div onClick={this.handleLogout}>
+            <Button style={style} variant="contained">
+              Se déconnecter
+            </Button>
+          </div>
         </div>
       </div>
     );
