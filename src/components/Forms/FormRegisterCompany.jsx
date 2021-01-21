@@ -56,7 +56,7 @@ class FormRegisterCompany extends Component {
     const { bannerImg, ...rest } = this.state;
 
     buildFormData(fd, rest);
-    console.log(Object.fromEntries(fd));
+    // console.log(Object.fromEntries(fd));
 
     if (this.imageRef.current.files[0]) {
       console.log(this.imageRef.current.files[0]);

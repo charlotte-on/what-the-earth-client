@@ -112,7 +112,7 @@ export class NavMain extends React.Component {
             <div className="login-logout">
               {!this.props.context.user ? (
                 <Link to="/signin" onClick={this.toggleClass} className="login">
-                  <img src="/media/log-in.png" alt="login image" />
+                  <img src="/media/log-in.png" alt="login" />
                   <p>Me connecter</p>
                 </Link>
               ) : (

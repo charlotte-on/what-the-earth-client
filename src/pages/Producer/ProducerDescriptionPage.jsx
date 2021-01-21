@@ -138,13 +138,17 @@ export class ProducerDescriptionPage extends Component {
             <p>{this.state.producer.field}</p>
           </div>
         </div>
-        <p>
-          Note moyenne{" "}
-          {this.starsRating(
-            this.state.comments.reduce((a, b) => a + b.rate, 0) /
-              this.state.comments.length
-          )}
-        </p>
+        {this.state.comments.length === 0 ? (
+          <p>Pas d'avis pour le moment</p>
+        ) : (
+          <p>
+            {this.starsRating(
+              this.state.comments.reduce((a, b) => a + b.rate, 0) /
+                this.state.comments.length
+            )}{" "}
+            {this.state.comments.length} avis
+          </p>
+        )}
         <p>
           <DescriptionIcon />
           Description : {this.state.producer.description}
