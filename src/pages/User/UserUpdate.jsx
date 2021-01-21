@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 // import { Redirect } from "react-router-dom";
-import "../../styles/User.css";
+// import "../../styles/User.css";
 import TextField from "@material-ui/core/TextField";
 
 const style = {
