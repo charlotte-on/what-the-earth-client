@@ -60,15 +60,16 @@ export class ProducerDescriptionPage extends Component {
   }
 
   starsRating = (rating) => {
-    if (rating === 1) {
+    var ratingRounded = Math.floor(rating);
+    if (ratingRounded === 1) {
       return <p>★☆☆☆☆</p>;
-    } else if (rating === 2) {
+    } else if (ratingRounded === 2) {
       return <p>★★☆☆☆</p>;
-    } else if (rating === 3) {
+    } else if (ratingRounded === 3) {
       return <p>★★★☆☆</p>;
-    } else if (rating === 4) {
+    } else if (ratingRounded === 4) {
       return <p>★★★★☆</p>;
-    } else if (rating === 5) {
+    } else if (ratingRounded === 5) {
       return <p>★★★★★</p>;
     } else {
       return null;
@@ -137,6 +138,13 @@ export class ProducerDescriptionPage extends Component {
             <p>{this.state.producer.field}</p>
           </div>
         </div>
+        <p>
+          Note moyenne{" "}
+          {this.starsRating(
+            this.state.comments.reduce((a, b) => a + b.rate, 0) /
+              this.state.comments.length
+          )}
+        </p>
         <p>
           <DescriptionIcon />
           Description : {this.state.producer.description}
