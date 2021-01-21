@@ -109,68 +109,69 @@ export class Result extends Component {
             Accueil / Produits / Simulateur / Résultat
           </p>
         </div>
-        <h2
-          style={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-        >
-          Résultat de la simulation
-        </h2>
-        <h2>Ingrédients:</h2>
+        <div className="result-page">
+          <h2
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            Résultat de la simulation
+          </h2>
+          <h2>Ingrédients:</h2>
 
-        <ul>
-          {this.convertArray(this.state.recipe.products).map((prod) => {
-            return (
-              <li>
-                {prod.nom_francais}
-                {/* <span style={{ color: this.getRandomColor() }}>
+          <ul>
+            {this.convertArray(this.state.recipe.products).map((prod) => {
+              return (
+                <li>
+                  {prod.nom_francais} :{" "}
                   {this.roundNumber(
                     (prod.qty / 1000) *
                       prod.impact_environnemental["Score unique EF"].synthese
                   )}
-                </span> */}
-              </li>
-            );
-          })}
-        </ul>
-        <h3>
-          Score EPF:{" "}
-          <span style={{ color: this.coloredNumber(this.getDividedResult()) }}>
-            {this.roundNumber(this.getDividedResult())}
-          </span>
-        </h3>
+                </li>
+              );
+            })}
+          </ul>
+          <h3>
+            Score EPF:{" "}
+            <span
+              style={{ color: this.coloredNumber(this.getDividedResult()) }}
+            >
+              {this.roundNumber(this.getDividedResult())}
+            </span>
+          </h3>
 
-        <h4>Score EPF par produit</h4>
+          <h4>Score EPF par produit</h4>
 
-        {/* <div style={{ width: "800", height: "50vh" }}>
+          {/* <div style={{ width: "800", height: "50vh" }}>
           <ResponsiveContainer width="99%" height={"99%"}> */}
-        <PieChart
-          width={800}
-          height={400}
-          style={{ marginRight: "1000w" }}
-          onMouseEnter={this.onPieEnter}
-        >
-          <Pie
-            data={this.getAllResults()}
-            cx={420}
-            cy={200}
-            innerRadius={60}
-            outerRadius={80}
-            fill="#8884d8"
-            paddingAngle={5}
-            label={(entry) => entry.name}
-            dataKey="value"
+          <PieChart
+            width={800}
+            height={400}
+            style={{ marginRight: "1000w" }}
+            onMouseEnter={this.onPieEnter}
           >
-            {this.getAllResults().map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={this.getRandomColor()} />
-            ))}
-          </Pie>
-        </PieChart>
-        {/* </ResponsiveContainer>
+            <Pie
+              data={this.getAllResults()}
+              cx={420}
+              cy={200}
+              innerRadius={60}
+              outerRadius={80}
+              fill="#8884d8"
+              paddingAngle={5}
+              label={(entry) => entry.name}
+              dataKey="value"
+            >
+              {this.getAllResults().map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={this.getRandomColor()} />
+              ))}
+            </Pie>
+          </PieChart>
+          {/* </ResponsiveContainer>
         </div> */}
 
-        {/* <table>
+          {/* <table>
           <thead>
             <tr>
               <th>Indicateur</th>
@@ -256,6 +257,7 @@ export class Result extends Component {
             </tr>
           </tbody>
         </table> */}
+        </div>
       </div>
     );
   }

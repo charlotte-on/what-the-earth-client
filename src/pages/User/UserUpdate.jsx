@@ -129,7 +129,7 @@ class UserUpdate extends Component {
         </div>
 
         <div className="center-column">
-          <h3>Updater mon profil</h3>
+          <h3>Modifier mon profil</h3>
 
           <img src={this.state.url} alt="" />
           <div>

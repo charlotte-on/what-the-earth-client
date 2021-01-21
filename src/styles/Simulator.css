@@ -37,8 +37,12 @@
   margin-top: 10px;
 }
 
-p {
+.simulator-page p {
   font-size: 0.95rem;
+}
+
+.result-page {
+  margin: 10px;
 }
 
 .recharts-wrapper {
