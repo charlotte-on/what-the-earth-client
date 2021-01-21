@@ -92,7 +92,6 @@ export class Simulator extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <div>
           <Link to={"/products"}>
             <h4
@@ -124,47 +123,7 @@ export class Simulator extends Component {
         >
           Simulateur de recette
         </h2>
-        <p>
-          Entrez ici des ingrédients afin de simuler l'impact environnemental de
-          votre recette
-        </p>
-        <form onSubmit={this.handleSubmit}>
-          <Autocomplete
-            id="product"
-            options={AgribalyseSorted}
-            getOptionLabel={(option) => option.nom_francais}
-            filterOptions={filterOptions}
-            style={{ width: 300 }}
-            onChange={(event, value) => {
-              this.onProductChange(value);
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Produit"
-                variant="outlined"
-                name="TextField"
-              />
-            )}
-          />
-        </form>
-        {this.state.selectedProducts.length === 0 ? (
-          <div>
-            <h4>Ajouter des produits</h4>
-          </div>
-        ) : (
-          <div>
-            {this.state.selectedProducts.map((prod) => {
-              return (
-                <div key={prod.nom_francais}>
-                  <div className="product-selected">
-                    <p>
-                      {prod.nom_francais} :{" "}
-                      <span
-                        style={{
-                          color: this.coloredNumber(
-=======
-        <h1>Simulateur de recette</h1>
+
         <div className="simulator-page">
           <p style={{ textAlign: "justify" }}>
             Entrez ici des ingrédients afin de calculer le score EPF de votre
@@ -212,7 +171,6 @@ export class Simulator extends Component {
                           }}
                         >
                           {this.roundNumber(
->>>>>>> 457b9758a786ce524725dfb069dc12d13e9d7567
                             prod.impact_environnemental["Score unique EF"]
                               .synthese
                           )}

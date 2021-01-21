@@ -38,7 +38,6 @@ export class ProductPage extends Component {
 
     return (
       <div>
-<<<<<<< HEAD
         <div>
           <Link to={"/products"}>
             <h4
@@ -70,15 +69,6 @@ export class ProductPage extends Component {
         >
           {this.state.product.Nom_du_Produit_en_Français}
         </h2>
-        <h5>Catégorie: {this.state.product["Sous-groupe_d'aliment"]}</h5>
-        <h3>
-          {" "}
-          Score EPF:{" "}
-          <span
-            style={{
-              color: this.coloredNumber(
-=======
-        <h1>{this.state.product.Nom_du_Produit_en_Français}</h1>
         <div className="subtitle">
           <h5>Catégorie: {this.state.product["Sous-groupe_d'aliment"]}</h5>
           <h3>
@@ -93,7 +83,6 @@ export class ProductPage extends Component {
               }}
             >
               {this.roundNumber(
->>>>>>> 457b9758a786ce524725dfb069dc12d13e9d7567
                 this.state.product["Score_unique_EF_(mPt/kg_de_produit)"]
               )}
             </span>
