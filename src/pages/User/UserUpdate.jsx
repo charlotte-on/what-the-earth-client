@@ -7,10 +7,12 @@ import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 // import { Redirect } from "react-router-dom";
 import "../../styles/User.css";
+import TextField from "@material-ui/core/TextField";
 
 const style = {
   background: "#87a878",
   color: "white",
+  margin: "10px",
 };
 
 class UserUpdate extends Component {
@@ -126,7 +128,7 @@ class UserUpdate extends Component {
           </p>
         </div>
 
-        <div className="User__container">
+        <div className="center-column">
           <h3>Updater mon profil</h3>
 
           <img src={this.state.url} alt="" />
@@ -150,40 +152,38 @@ class UserUpdate extends Component {
             </label>
           </div>
 
-          <div>
-            <div>
-              <label htmlFor="firstName">Prénom</label>
-              <input
-                type="text"
-                name="firstName"
-                value={this.state.user.firstName}
-                onChange={this.handleChange}
-                id="firstName"
-              />
-            </div>
+          <TextField
+            value={this.state.user.firstName}
+            label="Prénom"
+            type="text"
+            id="firstName"
+            name="firstName"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
 
-            <div>
-              <label htmlFor="lastName">Nom</label>
-              <input
-                type="text"
-                name="lastName"
-                value={this.state.user.lastName}
-                onChange={this.handleChange}
-                id="lastName"
-              />
-            </div>
+          <TextField
+            value={this.state.user.lastName}
+            label="Nom"
+            type="text"
+            id="lastName"
+            name="lastName"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
 
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={this.state.user.email}
-                onChange={this.handleChange}
-                id="email"
-              />
-            </div>
-          </div>
+          <TextField
+            value={this.state.user.email}
+            label="Email"
+            type="email"
+            id="email"
+            name="email"
+            variant="outlined"
+            style={{ margin: "10px" }}
+            onChange={this.handleChange}
+          />
 
           <Button
             style={style}

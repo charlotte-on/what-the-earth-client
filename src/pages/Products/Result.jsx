@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,32 @@ export class Result extends Component {
     return convertedArray;
   };
 
+  getAllResults = () => {
+    let numbers = [
+      ...this.convertArray(this.state.recipe.products).map((prod) => {
+        return {
+          value:
+            Math.round(
+              (prod.qty / 1000) *
+                prod.impact_environnemental["Score unique EF"].synthese *
+                100
+            ) / 100,
+          name: prod.nom_francais,
+        };
+      }),
+    ];
+    return numbers;
+  };
+
+  getRandomColor() {
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   roundNumber = (number) => {
     return number.toFixed([2]);
   };
@@ -54,6 +81,8 @@ export class Result extends Component {
         <img src="/media/loading.gif" alt="loading icon" className="loading" />
       );
     }
+
+    console.log(this.getAllResults());
 
     return (
       <div>
@@ -94,11 +123,13 @@ export class Result extends Component {
           {this.convertArray(this.state.recipe.products).map((prod) => {
             return (
               <li>
-                {prod.nom_francais}:{" "}
-                {this.roundNumber(
-                  (prod.qty / 1000) *
-                    prod.impact_environnemental["Score unique EF"].synthese
-                )}
+                {prod.nom_francais}
+                {/* <span style={{ color: this.getRandomColor() }}>
+                  {this.roundNumber(
+                    (prod.qty / 1000) *
+                      prod.impact_environnemental["Score unique EF"].synthese
+                  )}
+                </span> */}
               </li>
             );
           })}
@@ -109,6 +140,35 @@ export class Result extends Component {
             {this.roundNumber(this.getDividedResult())}
           </span>
         </h3>
+
+        <h4>Score EPF par produit</h4>
+
+        {/* <div style={{ width: "800", height: "50vh" }}>
+          <ResponsiveContainer width="99%" height={"99%"}> */}
+        <PieChart
+          width={800}
+          height={400}
+          style={{ marginRight: "1000w" }}
+          onMouseEnter={this.onPieEnter}
+        >
+          <Pie
+            data={this.getAllResults()}
+            cx={420}
+            cy={200}
+            innerRadius={60}
+            outerRadius={80}
+            fill="#8884d8"
+            paddingAngle={5}
+            label={(entry) => entry.name}
+            dataKey="value"
+          >
+            {this.getAllResults().map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={this.getRandomColor()} />
+            ))}
+          </Pie>
+        </PieChart>
+        {/* </ResponsiveContainer>
+        </div> */}
 
         {/* <table>
           <thead>

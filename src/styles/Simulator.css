@@ -40,3 +40,11 @@
 p {
   font-size: 0.95rem;
 }
+
+.recharts-wrapper {
+  width: calc(100%);
+  /* position: absolute !important;
+  left: 0px;
+  bottom: 0;
+  padding: 0; */
+}
