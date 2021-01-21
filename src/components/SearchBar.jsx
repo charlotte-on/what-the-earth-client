@@ -8,7 +8,7 @@ export class SearchBar extends Component {
           className="search"
           name="search"
           type="search"
-          placeholder="Crème de marrons"
+          placeholder="Rechercher un produit"
           onChange={this.props.handleSearch}
         />
       </form>

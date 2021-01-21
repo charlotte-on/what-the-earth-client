@@ -92,6 +92,7 @@ export class Simulator extends Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
         <div>
           <Link to={"/products"}>
             <h4
@@ -162,63 +163,110 @@ export class Simulator extends Component {
                       <span
                         style={{
                           color: this.coloredNumber(
+=======
+        <h1>Simulateur de recette</h1>
+        <div className="simulator-page">
+          <p style={{ textAlign: "justify" }}>
+            Entrez ici des ingrédients afin de calculer le score EPF de votre
+            recette
+          </p>
+          <form onSubmit={this.handleSubmit} className="input center-column">
+            <Autocomplete
+              id="product"
+              options={AgribalyseSorted}
+              getOptionLabel={(option) => option.nom_francais}
+              filterOptions={filterOptions}
+              style={{ width: 300 }}
+              onChange={(event, value) => {
+                this.onProductChange(value);
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Produit"
+                  variant="outlined"
+                  name="TextField"
+                />
+              )}
+            />
+          </form>
+          {this.state.selectedProducts.length === 0 ? (
+            <div>
+              <h3 style={{ textAlign: "center" }}>Ajouter des produits</h3>
+            </div>
+          ) : (
+            <div>
+              {this.state.selectedProducts.map((prod) => {
+                return (
+                  <div key={prod.nom_francais}>
+                    <div>
+                      <p>
+                        {prod.nom_francais} :{" "}
+                        <span
+                          style={{
+                            color: this.coloredNumber(
+                              prod.impact_environnemental["Score unique EF"]
+                                .synthese
+                            ),
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {this.roundNumber(
+>>>>>>> 457b9758a786ce524725dfb069dc12d13e9d7567
                             prod.impact_environnemental["Score unique EF"]
                               .synthese
-                          ),
-                          fontWeight: "bold",
+                          )}
+                        </span>
+                      </p>
+                    </div>
+                    <div className="product-selected">
+                      <img
+                        src="/media/delete.png"
+                        alt="delete button"
+                        style={{ height: "15px", marginRight: "5px" }}
+                        onClick={() => {
+                          this.deleteProduct(prod.nom_francais);
                         }}
-                      >
-                        {this.roundNumber(
-                          prod.impact_environnemental["Score unique EF"]
-                            .synthese
-                        )}
-                      </span>
-                    </p>
-                    <img
-                      src="/media/delete.png"
-                      alt="delete button"
-                      style={{ height: "15px", marginLeft: "5px" }}
-                      onClick={() => {
-                        this.deleteProduct(prod.nom_francais);
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <form className="input-quantity">
-                      <label htmlFor="label">Quantité</label>
-                      <input
-                        type="number"
-                        id={prod.nom_francais}
-                        name="product"
-                        min="0"
-                        max="100"
-                        size="50"
-                        value={prod.qty}
-                        onChange={(event) =>
-                          this.handleValue(
-                            event.target.value,
-                            prod.nom_francais
-                          )
-                        }
                       />
-                      <label htmlFor="label">g</label>
-                    </form>
+                      <form className="input-quantity">
+                        <label htmlFor="label">Quantité</label>
+                        <input
+                          type="number"
+                          id={prod.nom_francais}
+                          name="product"
+                          min="0"
+                          max="100"
+                          size="50"
+                          value={prod.qty}
+                          onChange={(event) =>
+                            this.handleValue(
+                              event.target.value,
+                              prod.nom_francais
+                            )
+                          }
+                        />
+                        <label htmlFor="label">g</label>
+                      </form>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <form onSubmit={this.calcul}>
-              <Button
-                style={style}
-                onClick={this.calcul}
-                variant="contained"
-                className="calculate"
+                );
+              })}
+              <form
+                onSubmit={this.calcul}
+                className="calc-button center-column"
               >
-                <p>Calculer</p>
-              </Button>
-            </form>
-          </div>
-        )}
+                <Button
+                  style={style}
+                  onClick={this.calcul}
+                  variant="contained"
+                  className="calculate"
+                >
+                  <p>Calculer</p>
+                </Button>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -19,10 +19,6 @@ a {
   text-decoration: underline;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .center-column {
   display: flex;
   justify-content: center;
@@ -69,7 +65,7 @@ ul {
 }
 
 footer {
-  background-color: rgb(94, 94, 94);
+  background-color: rgb(68, 68, 68);
   color: white;
   width: 100%;
   margin-top: 10px;
