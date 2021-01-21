@@ -135,18 +135,22 @@ export class ProducerLandingPage extends Component {
             // value={this.state.selectedFilter}
           >
             <MenuItem value={false}>Tous les commerces</MenuItem>
-            <MenuItem value={"Fromagerie"}>Fromager</MenuItem>
-            <MenuItem value={"Boulangerie"}>Boulanger</MenuItem>
-            <MenuItem value={"Poissonnerie"}>Poissonier</MenuItem>
-            <MenuItem value={"Boucherie"}>Boucher</MenuItem>
-            <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
-            <MenuItem value={"Primeur"}>Primeur</MenuItem>
-            <MenuItem value={"Caviste"}>Caviste</MenuItem>
+            <MenuItem value={"Boucherie"}>Boucheries</MenuItem>
+            <MenuItem value={"Boulangerie"}>Boulangeries</MenuItem>
+            <MenuItem value={"Caviste"}>Cavistes</MenuItem>
+            <MenuItem value={"Fromagerie"}>Fromageries</MenuItem>
+            <MenuItem value={"Maraîcher"}>Maraîchers</MenuItem>
+            <MenuItem value={"Poissonnerie"}>Poissonneries</MenuItem>
+            <MenuItem value={"Primeur"}>Primeurs</MenuItem>
           </Select>
         </FormControl>
         <div className="scrolling-wrapper">
           {this.state.filteredProducers.map((producer) => (
-            <div className="producer" key={producer._id}>
+            <div
+              className="producer"
+              style={{ position: "relative" }}
+              key={producer._id}
+            >
               <div
                 style={{
                   width: "auto",
@@ -155,21 +159,30 @@ export class ProducerLandingPage extends Component {
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
+                  borderRadius: "4%",
                 }}
               ></div>
-              <p>{producer.companyName}</p>
-              <p>{producer.field}</p>
-              <p>{producer.formattedAddress}</p>
-              <p>
-                <ScheduleIcon />
-                {producer.schedule}
-              </p>
-              <Link
-                className="link-underlined"
-                to={`/producers/${producer._id}`}
+              <div style={{ padding: "5px" }}>
+                <h3>{producer.companyName}</h3>
+                <p style={{ color: "#636363" }}>{producer.field}</p>
+                <p style={{ fontSize: "smaller", color: "#636363" }}>
+                  {producer.formattedAddress}
+                </p>
+              </div>
+              <div
+                style={{ position: "absolute", padding: "5px", bottom: "0" }}
               >
-                View more
-              </Link>
+                <p>
+                  <ScheduleIcon style={{ fontSize: "smaller" }} />
+                  {producer.schedule}
+                </p>
+                <Link
+                  className="link-underlined"
+                  to={`/producers/${producer._id}`}
+                >
+                  View more
+                </Link>
+              </div>
             </div>
           ))}
         </div>
