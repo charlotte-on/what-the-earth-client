@@ -10,13 +10,21 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { buildFormData } from "../../utils";
+
+const style = {
+  background: "#87a878",
+  color: "white",
+};
 
 class FormEditCompany extends Component {
   static contextType = UserContext;
 
   state = {
-    producerFirstName: "",
-    producerLastName: "",
+    firstName: "",
+    lastName: "",
     companyName: "",
     phoneNumber: "",
     schedule: "",
@@ -27,15 +35,18 @@ class FormEditCompany extends Component {
       coordinates: [],
     },
     formattedAddress: "",
+    bannerImg: "",
   };
+
+  imageRef = React.createRef();
 
   componentDidMount() {
     apiHandler
       .getOneProducer(this.props.match.params.id)
       .then((data) => {
         this.setState({
-          producerFirstName: data.producerFirstName,
-          producerLastName: data.producerLastName,
+          firstName: data.firstName,
+          lastName: data.lastName,
           companyName: data.companyName,
           phoneNumber: data.phoneNumber,
           schedule: data.schedule,
@@ -46,6 +57,7 @@ class FormEditCompany extends Component {
             coordinates: data.location.coordinates,
           },
           formattedAddress: data.formattedAddress,
+          bannerImg: data.bannerImg,
         });
       })
       .catch((error) => {
@@ -71,8 +83,19 @@ class FormEditCompany extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const fd = new FormData();
+    const { bannerImg, ...rest } = this.state;
+
+    buildFormData(fd, rest);
+    // console.log(Object.fromEntries(fd));
+
+    if (this.imageRef.current.files[0]) {
+      console.log(this.imageRef.current.files[0]);
+      fd.append("bannerImg", this.imageRef.current.files[0]);
+    }
+
     apiHandler
-      .updateProducer(this.props.match.params.id, this.state)
+      .updateProducer(this.props.match.params.id, fd)
       .then((data) => {
         this.context.setUser(data);
         this.props.history.push("/");
@@ -80,6 +103,12 @@ class FormEditCompany extends Component {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    this.setState({ url: url });
   };
 
   render() {
@@ -107,19 +136,19 @@ class FormEditCompany extends Component {
           style={{ margin: "10px" }}
           variant="outlined"
           label="Prénom"
-          value={this.state.producerFirstName}
+          value={this.state.firstName}
           type="text"
-          id="producerFirstName"
-          name="producerFirstName"
+          id="firstName"
+          name="firstName"
         />
         <TextField
           style={{ margin: "10px" }}
           variant="outlined"
           label="Nom de famille"
-          value={this.state.producerLastName}
+          value={this.state.lastName}
           type="text"
-          id="producerLastName"
-          name="producerLastName"
+          id="lastName"
+          name="lastName"
         />
         <TextField
           style={{ margin: "10px" }}
@@ -161,9 +190,13 @@ class FormEditCompany extends Component {
             <MenuItem value="">
               <em>Aucun</em>
             </MenuItem>
-            <MenuItem value={"Fromager"}>Fromager</MenuItem>
-            <MenuItem value={"Boucher"}>Boucher</MenuItem>
+            <MenuItem value={"Fromagerie"}>Fromager</MenuItem>
+            <MenuItem value={"Boulangerie"}>Boulanger</MenuItem>
+            <MenuItem value={"Poissonnerie"}>Poissonier</MenuItem>
+            <MenuItem value={"Boucherie"}>Boucher</MenuItem>
             <MenuItem value={"Maraîcher"}>Maraîcher</MenuItem>
+            <MenuItem value={"Primeur"}>Primeur</MenuItem>
+            <MenuItem value={"Caviste"}>Caviste</MenuItem>
           </Select>
         </FormControl>
         <TextField
@@ -175,6 +208,25 @@ class FormEditCompany extends Component {
           id="description"
           name="description"
         />
+        <img src={this.state.url} alt="" />
+        <div>
+          <input
+            onChange={this.handleFileSelect}
+            type="file"
+            ref={this.imageRef}
+            id="icon-button-file"
+          />
+          <label htmlFor="icon-button-file">
+            <IconButton
+              style={style}
+              color="primary"
+              aria-label="upload picture"
+              component="span"
+            >
+              <PhotoCamera fontSize="large" />
+            </IconButton>
+          </label>
+        </div>
         <Button style={{ margin: "10px" }} type="submit" variant="contained">
           Mettre à jour mon entreprise
         </Button>

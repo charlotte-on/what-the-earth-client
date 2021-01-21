@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
 import Footer from "../components/Footer";
+import MapIcon from "@material-ui/icons/Map";
+import ListIcon from "@material-ui/icons/List";
 
 const style = {
   background: "#87a878",
@@ -11,8 +13,11 @@ const style = {
 };
 
 class Home extends React.Component {
+  state = {
+    background: "/media/grass-cover.jpg",
+  };
   componentDidMount() {
-    document.title = "What the Earth — Accueil";
+    document.title = "What the Earth • Accueil";
   }
 
   handleLogout = () => {
@@ -30,6 +35,17 @@ class Home extends React.Component {
     return (
       <div className="center-column">
         <div style={{ position: "relative" }}>
+          {/* <div
+            style={{
+              width: "auto",
+              height: "375px",
+              filter: "brightness(60%)",
+              backgroundImage: `url(${this.state.background})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          ></div> */}
           <img
             style={{ filter: "brightness(60%)" }}
             src="/media/grass-cover.jpg"
@@ -41,14 +57,15 @@ class Home extends React.Component {
               color: "white",
               textAlign: "center",
               position: "absolute",
-              top: "calc(50% - 46px)",
+              top: "calc(50% - 70px)",
               left: "calc(50% - 175px)",
               width: "350px",
             }}
           >
-            Bienvenue sur What the Earth, base de données interactive super
-            géniale. Pour en savoir plus sur notre projet,{" "}
-            <Link className="link-underlined" to="/">
+            Bienvenue sur What the Earth, base de données intelligente qui vous
+            permet de mieux comprendre l'impact de ce que vous mettez dans votre
+            assiette. Pour en savoir plus sur notre projet,{" "}
+            <Link className="link-underlined" to="/about">
               cliquez ici
             </Link>
             .
@@ -56,13 +73,13 @@ class Home extends React.Component {
         </div>
 
         <Link to="/products">
-          <Button style={style} variant="contained">
+          <Button startIcon={<ListIcon />} style={style} variant="contained">
             Liste des produits
           </Button>
         </Link>
         <Link to="/producers">
-          <Button style={style} variant="contained">
-            Chercher un producteur
+          <Button startIcon={<MapIcon />} style={style} variant="contained">
+            Mes producteurs locaux
           </Button>
         </Link>
         {!this.props.context.user && (

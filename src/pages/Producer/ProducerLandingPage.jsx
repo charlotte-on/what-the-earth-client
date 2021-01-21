@@ -23,7 +23,7 @@ export class ProducerLandingPage extends Component {
   };
 
   componentDidMount() {
-    document.title = "What the Earth — Les producteurs";
+    document.title = "What the Earth • Les producteurs";
     apiHandler
       .getProducers()
       .then((producers) => {
