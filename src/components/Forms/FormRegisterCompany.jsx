@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 const style = {
   background: "#87a878",
   color: "white",
+  margin: "10px",
 };
 
 class FormRegisterCompany extends Component {
@@ -210,13 +211,25 @@ class FormRegisterCompany extends Component {
             style={{ margin: "10px" }}
             variant="outlined"
             label="Description"
+            multiline
+            rows={4}
             value={this.state.description}
             type="text"
             id="description"
             name="description"
           />
           <img src={this.state.url} alt="" />
-          <div>
+          <div className="center-column">
+            <img
+              style={{
+                width: "175px",
+                boxShadow: "0 4px 8px 0 rgb(0 0 0 / 20%)",
+                border: "1px solid black",
+                margin: "10px",
+              }}
+              src="/media/banner.png"
+              alt="banner"
+            />
             <input
               onChange={this.handleFileSelect}
               type="file"
@@ -236,7 +249,7 @@ class FormRegisterCompany extends Component {
             </label>
           </div>
           <Button style={style} type="submit" variant="contained">
-            Créer entreprise
+            J'ajoute mon commerce
           </Button>
         </div>
       </form>

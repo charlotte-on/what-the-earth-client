@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import "../../styles/User.css";
 
 const style = {

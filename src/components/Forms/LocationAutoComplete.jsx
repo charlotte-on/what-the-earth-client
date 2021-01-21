@@ -67,7 +67,7 @@ class LocationAutoComplete extends Component {
 
   render() {
     return (
-      <div className="LocationAutoComplete">
+      <div style={{ margin: "10px" }} className="LocationAutoComplete">
         <TextField
           className="input"
           type="text"

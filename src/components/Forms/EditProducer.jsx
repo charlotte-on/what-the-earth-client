@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
@@ -204,6 +204,8 @@ class FormEditCompany extends Component {
           variant="outlined"
           label="Description"
           value={this.state.description}
+          multiline
+          rows={4}
           type="text"
           id="description"
           name="description"
@@ -230,7 +232,7 @@ class FormEditCompany extends Component {
           </label>
         </div>
         <Button style={{ margin: "10px" }} type="submit" variant="contained">
-          Mettre à jour mon entreprise
+          Mettre à jour mon commerce
         </Button>
       </form>
     );

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -121,7 +121,7 @@ export class ProducerLandingPage extends Component {
           )}
         </Map>
         <FormControl
-          style={{ margin: "10px", width: "80%", margin: "10px 10% 0 10%" }}
+          style={{ width: "80%", margin: "10px 10% 0 10%" }}
           variant="outlined"
         >
           <InputLabel id="demo-simple-select-outlined-label">Filtre</InputLabel>
