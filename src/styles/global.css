@@ -19,10 +19,6 @@ a {
   text-decoration: underline;
 }
 
-ul {
-  list-style-type: none;
-}
-
 .center-column {
   display: flex;
   justify-content: center;
