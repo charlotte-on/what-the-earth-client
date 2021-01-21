@@ -18,6 +18,7 @@ const Footer = () => {
         at Ironhack
       </p>
       <Link to="/about">Notre mission</Link>
+      <img style={{ width: "80px" }} src="/wheat.png" alt="Logo" />
     </footer>
   );
 };

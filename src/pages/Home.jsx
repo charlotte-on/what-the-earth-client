@@ -17,7 +17,7 @@ class Home extends React.Component {
     background: "/media/grass-cover.jpg",
   };
   componentDidMount() {
-    document.title = "What the Earth — Accueil";
+    document.title = "What the Earth • Accueil";
   }
 
   handleLogout = () => {

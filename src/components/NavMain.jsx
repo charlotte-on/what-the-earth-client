@@ -28,6 +28,34 @@ export class NavMain extends React.Component {
   };
 
   render() {
+    let profileLink;
+    if (this.props.context.user && !this.props.context.producer) {
+      profileLink = (
+        <div>
+          <Link
+            to="/profile"
+            className="lateral-link"
+            onClick={this.toggleClass}
+          >
+            Mon profil
+          </Link>
+          <hr />
+        </div>
+      );
+    } else if (this.props.context.user && this.props.context.producer) {
+      profileLink = (
+        <div>
+          <Link
+            to="/profile"
+            className="lateral-link"
+            onClick={this.toggleClass}
+          >
+            Mon entreprise
+          </Link>
+          <hr />
+        </div>
+      );
+    }
     return (
       <nav className="NavMain">
         <img
@@ -93,14 +121,7 @@ export class NavMain extends React.Component {
                 Producteurs
               </Link>
               <hr />
-              <Link
-                to="/profile"
-                className="lateral-link"
-                onClick={this.toggleClass}
-              >
-                Mon profil
-              </Link>
-              <hr />
+              {profileLink}
               <Link
                 to="/about"
                 className="lateral-link"
