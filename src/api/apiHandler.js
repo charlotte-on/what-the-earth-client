@@ -126,4 +126,10 @@ export default {
       .then((res) => res.data)
       .catch(errorHandler);
   },
+  getResult(id) {
+    return service
+      .get(`api/products/simulator/result/${id}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
 };

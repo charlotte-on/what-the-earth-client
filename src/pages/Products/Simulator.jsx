@@ -5,6 +5,7 @@ import { TextField } from "@material-ui/core";
 import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 import "../../styles/Simulator.css";
 
 const style = {
@@ -72,7 +73,7 @@ export class Simulator extends Component {
     apiHandler
       .createRecipe(datas)
       .then((data) => {
-        console.log(data);
+        this.props.history.push(`/api/products/result/${data._id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -116,17 +117,6 @@ export class Simulator extends Component {
               />
             )}
           />
-<<<<<<< HEAD
-=======
-          <Button
-            style={style}
-            onClick={this.handleSubmit}
-            variant="contained"
-            className="calculate"
-          >
-            <p>Calculer</p>
-          </Button>
->>>>>>> 9959366d56e93800fe4c8030479f19dc11b22e56
         </form>
         {this.state.selectedProducts.length === 0 ? (
           <div>
@@ -189,9 +179,14 @@ export class Simulator extends Component {
               );
             })}
             <form onSubmit={this.calcul}>
-              <button className="calculate">
+              <Button
+                style={style}
+                onClick={this.calcul}
+                variant="contained"
+                className="calculate"
+              >
                 <p>Calculer</p>
-              </button>
+              </Button>
             </form>
           </div>
         )}
