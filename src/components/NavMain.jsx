@@ -2,6 +2,8 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { withUser } from "../components/Auth/withUser";
 import apiHandler from "../api/apiHandler";
+import PersonIcon from "@material-ui/icons/Person";
+import Avatar from "@material-ui/core/Avatar";
 
 import "../styles/NavMain.css";
 
@@ -29,6 +31,8 @@ export class NavMain extends React.Component {
 
   render() {
     let profileLink;
+    let avatar;
+    let avatarBurger;
     if (this.props.context.user && !this.props.context.producer) {
       profileLink = (
         <div>
@@ -42,6 +46,21 @@ export class NavMain extends React.Component {
           <hr />
         </div>
       );
+      avatar = <PersonIcon />;
+      avatarBurger = (
+        <div
+          style={{
+            borderRadius: "50%",
+            height: "75px",
+            width: "75px",
+            backgroundImage: `url(${this.props.context.user.image})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            marginBottom: "5px",
+          }}
+        ></div>
+      );
     } else if (this.props.context.user && this.props.context.producer) {
       profileLink = (
         <div>
@@ -54,6 +73,15 @@ export class NavMain extends React.Component {
           </Link>
           <hr />
         </div>
+      );
+      avatar = (
+        <div>
+          PRO
+          <PersonIcon />
+        </div>
+      );
+      avatarBurger = (
+        <Avatar style={{ height: "75px", width: "75px" }}>Pro</Avatar>
       );
     }
     return (
@@ -75,18 +103,7 @@ export class NavMain extends React.Component {
               ) : (
                 <div className="hello">
                   {" "}
-                  <div
-                    style={{
-                      borderRadius: "50%",
-                      height: "75px",
-                      width: "75px",
-                      backgroundImage: `url(${this.props.context.user.image})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      marginBottom: "5px",
-                    }}
-                  ></div>
+                  {avatarBurger}
                   <h4>Bonjour {this.props.context.user.firstName}</h4>
                 </div>
               )}
@@ -155,6 +172,7 @@ export class NavMain extends React.Component {
         <NavLink to="/">
           <h3 className="logo">What the Earth</h3>
         </NavLink>
+        {avatar}
       </nav>
     );
   }
