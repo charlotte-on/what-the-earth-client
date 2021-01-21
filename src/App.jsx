@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Products from "./pages/Products/Products";
 import ProductPage from "./pages/Products/ProductPage";
 import Simulator from "./pages/Products/Simulator";
+import Result from "./pages/Products/Result";
 import ProducerLandingPage from "./pages/Producer/ProducerLandingPage";
 import ProducerDescriptionPage from "./pages/Producer/ProducerDescriptionPage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -35,7 +36,7 @@ function App() {
         />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/simulator" component={Simulator} />
-        {/* <Route exact path="/products/simulator/results" component={SimulatorResult} /> */}
+        <Route exact path="/products/simulator/result/:id" component={Result} />
         <Route exact path="/products/:id" component={ProductPage} />
         <Route exact path="/producers/edit/:id" component={EditProducer} />
         <Route

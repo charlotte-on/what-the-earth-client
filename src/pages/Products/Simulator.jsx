@@ -20,7 +20,6 @@ const filterOptions = createFilterOptions({
 export class Simulator extends Component {
   state = {
     selectedProducts: [],
-    total: 100,
   };
 
   handleSubmit = (event) => {
@@ -29,12 +28,12 @@ export class Simulator extends Component {
 
   onProductChange = (value) => {
     if (value === null) return;
-    value.qty = Math.trunc(100 / (this.state.selectedProducts.length + 1));
+    value.qty = Math.trunc(1000 / (this.state.selectedProducts.length + 1));
     this.setState({
       selectedProducts: [
         ...this.state.selectedProducts.map((p) => ({
           ...p,
-          qty: Math.trunc(100 / (this.state.selectedProducts.length + 1)),
+          qty: Math.trunc(1000 / (this.state.selectedProducts.length + 1)),
         })),
         value,
       ],
@@ -73,7 +72,7 @@ export class Simulator extends Component {
     apiHandler
       .createRecipe(datas)
       .then((data) => {
-        this.props.history.push(`/api/products/result/${data._id}`);
+        this.props.history.push(`/products/simulator/result/${data._id}`);
       })
       .catch((error) => {
         console.log(error);

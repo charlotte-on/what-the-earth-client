@@ -1,18 +1,45 @@
 import React, { Component } from "react";
-import axios from "axios";
+import apiHandler from "../../api/apiHandler";
 
 export class Result extends Component {
   state = {
-    recipeId: this.props.match.params.id,
     recipe: null,
   };
 
-  componentDidMount() {
-    apiHandler.getResult(this.state.recipeId).then((recipe) => {
-      console.log(recipe);
-      this.setState({ recipe });
+  componentDidMount = () => {
+    apiHandler
+      .getResult(this.props.match.params.id)
+      .then((recipe) => {
+        console.log(recipe);
+        this.setState({ recipe });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  getDividedResult = () => {
+    function divide(array) {
+      return array.reduce(function (acc, product) {
+        let result =
+          (product.qty / 1000) *
+          product.impact_environnemental["Score unique EF"].synthese;
+        return result + acc;
+      }, 0);
+    }
+
+    const converted = this.convertArray(this.state.recipe.products);
+    // Object.keys(this.state.recipe.products[0]).map((key) => {
+    //   return this.state.recipe.products[0][key];
+    // });
+
+    return divide(converted);
+  };
+
+  convertArray = (array) => {
+    const convertedArray = Object.keys(array[0]).map((key) => {
+      return array[0][key];
     });
-  }
+    return convertedArray;
+  };
 
   roundNumber = (number) => {
     return number.toFixed([2]);
@@ -25,6 +52,7 @@ export class Result extends Component {
   };
 
   render() {
+    console.log(this.state.recipe);
     if (!this.state.recipe) {
       return (
         <img src="/media/loading.gif" alt="loading icon" className="loading" />
@@ -34,11 +62,21 @@ export class Result extends Component {
     return (
       <div>
         <h1>Résultat de la simulation</h1>
+        <h2>Ingrédients:</h2>
+
+        <ul>
+          {this.convertArray(this.state.recipe.products).map((prod) => {
+            return <li>{prod.nom_francais}: </li>;
+          })}
+        </ul>
         <h3>
-          Score EPF: <span>Result</span>
+          Score EPF:{" "}
+          <span style={{ color: this.coloredNumber(this.getDividedResult()) }}>
+            {this.roundNumber(this.getDividedResult())}
+          </span>
         </h3>
-        <div></div>
-        <table>
+
+        {/* <table>
           <thead>
             <tr>
               <th>Indicateur</th>
@@ -123,10 +161,10 @@ export class Result extends Component {
               <td>E-06 kg Sb eq/kg de produit</td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
       </div>
     );
   }
 }
 
-export default ProductPage;
+export default Result;
