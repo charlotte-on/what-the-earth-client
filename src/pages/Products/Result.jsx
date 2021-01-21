@@ -10,7 +10,6 @@ export class Result extends Component {
     apiHandler
       .getResult(this.props.match.params.id)
       .then((recipe) => {
-        console.log(recipe);
         this.setState({ recipe });
       })
       .catch((err) => console.log(err));
@@ -27,9 +26,6 @@ export class Result extends Component {
     }
 
     const converted = this.convertArray(this.state.recipe.products);
-    // Object.keys(this.state.recipe.products[0]).map((key) => {
-    //   return this.state.recipe.products[0][key];
-    // });
 
     return divide(converted);
   };
@@ -52,7 +48,6 @@ export class Result extends Component {
   };
 
   render() {
-    console.log(this.state.recipe);
     if (!this.state.recipe) {
       return (
         <img src="/media/loading.gif" alt="loading icon" className="loading" />
@@ -66,7 +61,15 @@ export class Result extends Component {
 
         <ul>
           {this.convertArray(this.state.recipe.products).map((prod) => {
-            return <li>{prod.nom_francais}: </li>;
+            return (
+              <li>
+                {prod.nom_francais}:{" "}
+                {this.roundNumber(
+                  (prod.qty / 1000) *
+                    prod.impact_environnemental["Score unique EF"].synthese
+                )}
+              </li>
+            );
           })}
         </ul>
         <h3>

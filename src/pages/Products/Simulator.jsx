@@ -5,7 +5,6 @@ import { TextField } from "@material-ui/core";
 import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 import "../../styles/Simulator.css";
 
 const style = {
