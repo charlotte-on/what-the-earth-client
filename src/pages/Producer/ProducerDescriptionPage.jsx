@@ -63,15 +63,15 @@ export class ProducerDescriptionPage extends Component {
   starsRating = (rating) => {
     var ratingRounded = Math.floor(rating);
     if (ratingRounded === 1) {
-      return <p>★☆☆☆☆</p>;
+      return <span>★☆☆☆☆</span>;
     } else if (ratingRounded === 2) {
-      return <p>★★☆☆☆</p>;
+      return <span>★★☆☆☆</span>;
     } else if (ratingRounded === 3) {
-      return <p>★★★☆☆</p>;
+      return <span>★★★☆☆</span>;
     } else if (ratingRounded === 4) {
-      return <p>★★★★☆</p>;
+      return <span>★★★★☆</span>;
     } else if (ratingRounded === 5) {
-      return <p>★★★★★</p>;
+      return <span>★★★★★</span>;
     } else {
       return null;
     }
@@ -172,6 +172,7 @@ export class ProducerDescriptionPage extends Component {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
+            margin: "10px",
           }}
         >
           <Button
@@ -227,12 +228,15 @@ export class ProducerDescriptionPage extends Component {
                 alt={comment.userId.firstName}
                 src={comment.userId.image}
               />
-              <p>
-                Par {comment.userId.firstName} — le{" "}
-                <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}
-                <Moment format="HH:mm">{comment.createdAt}</Moment>
-              </p>
-              {this.starsRating(comment.rate)}
+              <div>
+                <p>
+                  Par {comment.userId.firstName} — le{" "}
+                  <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}
+                  <Moment format="HH:mm">{comment.createdAt}</Moment>
+                </p>
+                {this.starsRating(comment.rate)}
+              </div>
+
               <p>{comment.review}</p>
               {this.props.context.user &&
                 this.props.context.user._id === comment.userId._id && (
