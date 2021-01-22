@@ -72,12 +72,11 @@ class FormSignup extends Component {
 
     return (
       <div>
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -88,7 +87,6 @@ class FormSignup extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -96,6 +94,14 @@ class FormSignup extends Component {
           </p>
         </div>
 
+        
+
+        <form
+          className="center-column"
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+          style={{paddingTop: "20%"}}
+        >
         <h2
           style={{
             padding: "10px",
@@ -104,12 +110,6 @@ class FormSignup extends Component {
         >
           Inscrivez-vous pour accéder à votre compte utilisateur
         </h2>
-
-        <form
-          className="center-column"
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-        >
           <img src={this.state.url} alt="" />
           <div>
             <input

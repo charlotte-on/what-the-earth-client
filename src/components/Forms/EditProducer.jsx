@@ -13,10 +13,13 @@ import LocationAutoComplete from "./LocationAutoComplete";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { buildFormData } from "../../utils";
+import { Link } from "react-router-dom";
+
 
 const style = {
   background: "#87a878",
   color: "white",
+  padding: "10px"
 };
 
 class FormEditCompany extends Component {
@@ -117,10 +120,34 @@ class FormEditCompany extends Component {
     }
 
     return (
+<div>
+      <div style={{position: "absolute", padding: "15px",}}>
+      <Link to={"/"}>
+        <h4
+          style={{
+            textAlign: "left",
+            fontSize: "13px",
+          }}
+        >
+          Retour
+        </h4>
+      </Link>
+
+      <p
+        style={{
+          textAlign: "left",
+          fontSize: "11px",
+        }}
+      >
+        Accueil / Modifier mon entreprise
+      </p>
+    </div>
+
       <form
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
         className="center-column"
+        style={{paddingTop: "20%"}}
       >
         <TextField
           style={{ margin: "10px" }}
@@ -231,10 +258,12 @@ class FormEditCompany extends Component {
             </IconButton>
           </label>
         </div>
-        <Button style={{ margin: "10px" }} type="submit" variant="contained">
-          Mettre à jour mon commerce
+        <Button style={style} type="submit" variant="contained">
+          Modifier mon entreprise
         </Button>
       </form>
+      </div>
+
     );
   }
 }

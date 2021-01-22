@@ -38,12 +38,11 @@ class UserPage extends React.Component {
 
     return (
       <div>
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -54,7 +53,6 @@ class UserPage extends React.Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -63,7 +61,7 @@ class UserPage extends React.Component {
         </div>
         <h2
           style={{
-            padding: "10px",
+            padding: "20%",
             textAlign: "center",
           }}
         >
@@ -71,6 +69,7 @@ class UserPage extends React.Component {
         </h2>
         <br />
         <div className="comments center-column">
+       
           <Avatar
             src={this.props.context.user.image}
             alt={this.props.context.user.firstName}
