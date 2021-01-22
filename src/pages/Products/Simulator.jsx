@@ -121,7 +121,7 @@ export class Simulator extends Component {
         </div>
         <h2
           style={{
-            padding: "10px",
+            padding: "10px 10px 0 10px",
             textAlign: "center",
           }}
         >
