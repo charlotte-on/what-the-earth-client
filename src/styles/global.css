@@ -73,3 +73,10 @@ footer {
   align-items: center;
   padding: 30px 10px;
 }
+
+.MuiFormLabel-root.Mui-focused {
+  color: #87a878 !important;
+}
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #87a878 !important;
+}
