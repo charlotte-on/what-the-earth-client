@@ -104,6 +104,7 @@ export class ProducerDescriptionPage extends Component {
         dataFormatted.userId = {
           firstName: this.props.context.user.firstName,
           image: this.props.context.user.image,
+          _id: this.props.context.user._id,
         };
         this.setState({ comments: [...this.state.comments, dataFormatted] });
       })
