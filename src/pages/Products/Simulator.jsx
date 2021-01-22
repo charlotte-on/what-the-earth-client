@@ -91,7 +91,7 @@ export class Simulator extends Component {
 
   render() {
     return (
-      <div>
+      <div className="simulator-name">
         <div>
           <Link to={"/products"}>
             <h4

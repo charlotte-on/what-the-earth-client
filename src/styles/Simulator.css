@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.ingredients-list {
+  list-style: square;
+}
+
 .input-quantity input {
   width: 55px;
   margin-left: 7px;
@@ -37,8 +41,17 @@
   margin-top: 10px;
 }
 
-p {
+.simulator-page p {
   font-size: 0.95rem;
+}
+
+.result-page {
+  margin: 10px;
+}
+
+.pie-chart {
+  display: flex;
+  flex-direction: column;
 }
 
 .recharts-wrapper {
@@ -47,4 +60,8 @@ p {
   left: 0px;
   bottom: 0;
   padding: 0; */
+}
+
+.result-page .pie-title {
+  text-decoration: underline;
 }

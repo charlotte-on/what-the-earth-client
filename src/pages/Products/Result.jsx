@@ -39,6 +39,11 @@ export class Result extends Component {
     return convertedArray;
   };
 
+  splitName = (string) => {
+    let name = string.split(" ");
+    return name[0].replace(/,/g, "");
+  };
+
   getAllResults = () => {
     let numbers = [
       ...this.convertArray(this.state.recipe.products).map((prod) => {
@@ -49,7 +54,7 @@ export class Result extends Component {
                 prod.impact_environnemental["Score unique EF"].synthese *
                 100
             ) / 100,
-          name: prod.nom_francais,
+          name: this.splitName(prod.nom_francais),
         };
       }),
     ];
@@ -109,68 +114,68 @@ export class Result extends Component {
             Accueil / Produits / Simulateur / Résultat
           </p>
         </div>
-        <h2
-          style={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-        >
-          Résultat de la simulation
-        </h2>
-        <h2>Ingrédients:</h2>
+        <div className="result-page">
+          <h2
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            Résultat de la simulation
+          </h2>
+          <h2>Ingrédients:</h2>
 
-        <ul>
-          {this.convertArray(this.state.recipe.products).map((prod) => {
-            return (
-              <li>
-                {prod.nom_francais}
-                {/* <span style={{ color: this.getRandomColor() }}>
+          <ul className="ingredients-list">
+            {this.convertArray(this.state.recipe.products).map((prod) => {
+              return (
+                <li>
+                  {prod.nom_francais} :{" "}
                   {this.roundNumber(
                     (prod.qty / 1000) *
                       prod.impact_environnemental["Score unique EF"].synthese
                   )}
-                </span> */}
-              </li>
-            );
-          })}
-        </ul>
-        <h3>
-          Score EPF:{" "}
-          <span style={{ color: this.coloredNumber(this.getDividedResult()) }}>
-            {this.roundNumber(this.getDividedResult())}
-          </span>
-        </h3>
+                </li>
+              );
+            })}
+          </ul>
+          <h3>
+            Score EPF total:{" "}
+            <span
+              style={{ color: this.coloredNumber(this.getDividedResult()) }}
+            >
+              {this.roundNumber(this.getDividedResult())}
+            </span>
+          </h3>
 
-        <h4>Score EPF par produit</h4>
-
-        {/* <div style={{ width: "800", height: "50vh" }}>
-          <ResponsiveContainer width="99%" height={"99%"}> */}
-        <PieChart
-          width={800}
-          height={400}
-          style={{ marginRight: "1000w" }}
-          onMouseEnter={this.onPieEnter}
-        >
-          <Pie
-            data={this.getAllResults()}
-            cx={420}
-            cy={200}
-            innerRadius={60}
-            outerRadius={80}
-            fill="#8884d8"
-            paddingAngle={5}
-            label={(entry) => entry.name}
-            dataKey="value"
+          <h3
+            style={{
+              marginTop: "25px",
+              textAlign: "center",
+            }}
+            className="pie-title"
           >
-            {this.getAllResults().map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={this.getRandomColor()} />
-            ))}
-          </Pie>
-        </PieChart>
-        {/* </ResponsiveContainer>
-        </div> */}
+            Répartition par produit
+          </h3>
 
-        {/* <table>
+          <PieChart width={375} height={400} onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={this.getAllResults()}
+              cx={170}
+              cy={140}
+              innerRadius={60}
+              outerRadius={80}
+              fill="#8884d8"
+              paddingAngle={5}
+              label={(entry) => entry.name}
+              dataKey="value"
+            >
+              {this.getAllResults().map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={this.getRandomColor()} />
+              ))}
+            </Pie>
+          </PieChart>
+
+          {/* <table>
           <thead>
             <tr>
               <th>Indicateur</th>
@@ -256,6 +261,7 @@ export class Result extends Component {
             </tr>
           </tbody>
         </table> */}
+        </div>
       </div>
     );
   }
