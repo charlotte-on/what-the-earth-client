@@ -80,7 +80,6 @@ export class ProducerDescriptionPage extends Component {
   handleClickForm = () => {
     if (this.state.visibilityForm === "none") {
       this.setState({ visibilityForm: "flex" });
-      // window.scrollTo(0, document.body.scrollHeight);
     } else {
       this.setState({ visibilityForm: "none" });
     }
@@ -112,7 +111,7 @@ export class ProducerDescriptionPage extends Component {
         console.log(error);
       });
 
-    this.setState({ review: "", rate: 1 });
+    this.setState({ review: "", rate: 1, visibilityForm: "none" });
   };
 
   render() {
@@ -121,6 +120,7 @@ export class ProducerDescriptionPage extends Component {
         <img src="/media/loading.gif" alt="loading icon" className="loading" />
       );
     }
+
     return (
       <div>
         <div style={{ position: "relative" }}>
@@ -234,9 +234,10 @@ export class ProducerDescriptionPage extends Component {
               </p>
               {this.starsRating(comment.rate)}
               <p>{comment.review}</p>
-              {/* {comment.userId && ( */}
-              <DeleteIcon onClick={() => this.handleDelete(comment._id)} />
-              {/* )} */}
+              {this.props.context.user &&
+                this.props.context.user._id === comment.userId._id && (
+                  <DeleteIcon onClick={() => this.handleDelete(comment._id)} />
+                )}
             </div>
           ))
         )}
