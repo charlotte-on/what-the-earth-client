@@ -149,17 +149,22 @@ export class ProducerLandingPage extends Component {
               style={{ position: "relative" }}
               key={producer._id}
             >
-              <div
-                style={{
-                  width: "auto",
-                  height: "125px",
-                  backgroundImage: `url(${producer.bannerImg})`,
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  borderRadius: "4%",
-                }}
-              ></div>
+              <Link
+                className="link-underlined"
+                to={`/producers/${producer._id}`}
+              >
+                <div
+                  style={{
+                    width: "auto",
+                    height: "125px",
+                    backgroundImage: `url(${producer.bannerImg})`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    borderRadius: "4%",
+                  }}
+                ></div>
+              </Link>
               <div style={{ padding: "5px" }}>
                 <h3>{producer.companyName}</h3>
                 <p style={{ color: "#636363" }}>{producer.field}</p>

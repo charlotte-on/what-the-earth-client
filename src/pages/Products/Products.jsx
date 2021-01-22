@@ -46,6 +46,10 @@ export class Products extends Component {
           >
             Tous les produits
           </h2>
+          <p style={{ textAlign: "center" }}>
+            Découvrez l’impact environnemental de votre assiette selon les
+            indicateurs ACV
+          </p>
           <img
             src="/media/loading.gif"
             alt="loading icon"

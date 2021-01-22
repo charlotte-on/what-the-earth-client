@@ -1,6 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { Tooltip } from "@material-ui/core";
 import axios from "axios";
+
+const EPF = `Sans unité, plus le score est bas plus son impact sur l'environnement est faible. Ce score unique est une moyenne pondérée des 16 indicateurs (voir tableau ci-dessous), calculé selon la méthodologie européenne « PEF » (Product Environmental Footprint).`;
+const climateChange = `Indicateur le plus connu, correspond à la modification du climat, affectant l'écosystème global.`;
+const particules = `
+Les particules fines pénètrent dans les organismes, notamment via les poumons. Elles ont un effet sur la santé humaine.`;
+const waterResources = `Correspond à la consommation d'eau et son épuisement dans certaines régions. Cette catégorie tient compte de la rareté (cela a plus d’impact de consommer un litre d'eau au Maroc qu'en Bretagne).`;
+const energyResources = `Correspond à l'épuisement des ressources énergétiques non renouvelables : charbon, gaz, pétrole, uranium, etc.`;
+const landUse = `Les terres sont une ressource finie, qui se partage entre milieux "naturels" (foret), productifs (agricultures) et urbains. L'usage des terres et les habitats déterminent dans une large mesure la biodiversité. Cette catégorie reflète donc l'impact d'une activité sur la dégradation des terres, en référence à « l'état naturel ».`;
+const mineralResoures = `Correspond à l'épuisement des ressources minérales non renouvelables : cuivre, potasse, terres rares, sable, etc.`;
+const ozone = `La couche d'ozone est située en haute altitude dans l'atmosphère, elle protège des rayons ultra-violets solaires. Son appauvrissement augmente l’exposition de l'ensemble des êtres vivants à ces radiations négatives (cancérigènes en particulier).`;
+const acidification = `Résulte d'émissions chimiques dans l'atmosphère qui se redéposent dans les écosystèmes. Cette problématique est connue en particulier via le phénomène des pluies acides.`;
+const radiation = `Correspond aux effets de la radioactivité. Cet impact correspond aux déchets radioactifs résultants de la production de l'électricité nucléaire.`;
+const ionisant = `Correspond aux effets de la radioactivité. Cet impact correspond aux déchets radioactifs résultants de la production de l'électricité nucléaire.`;
+const photochemical = `Correspond à une dégradation de la qualité de l'air, principalement via la formation de brouillard de basse altitude nommé "smog". Il a des conséquences néfastes sur la santé.`;
+const eutrophisationTerr = `Comme dans l'eau, l'eutrophisation terrestre correspond à un enrichissement excessif du milieu, en azote en particulier, conduisant a un déséquilibre et un appauvrissement de l'écosystème. Ceci concerne principalement les sols agricoles.`;
+const eutrophisationMar = `Correspond à un enrichissement excessif des milieux naturels en nutriments, ce qui conduit à une prolifération et une asphyxie (zone morte). C'est ce phénomène qui est à l'origine des algues vertes.`;
+const eutrophisationEau = `Correspond à un enrichissement excessif des milieux naturels en nutriments, ce qui conduit à une prolifération et une asphyxie (zone morte). C'est ce phénomène qui est à l'origine des algues vertes. On peut le retrouver en rivière et en lac également.`;
+const ecotoxicity = `Indicateurs de toxicité via la contamination de l'environnement. Ces indicateurs sont encore peu robustes actuellement.`;
 
 export class ProductPage extends Component {
   state = {
@@ -84,6 +104,9 @@ export class ProductPage extends Component {
                 this.state.product["Score_unique_EF_(mPt/kg_de_produit)"]
               )}
             </span>
+            <Tooltip title={EPF} enterTouchDelay={100} leaveDelay={17000}>
+              <InfoOutlinedIcon fontSize={"small"} />
+            </Tooltip>
           </h3>
         </div>
 
@@ -103,6 +126,9 @@ export class ProductPage extends Component {
                   this.state.product["Score_unique_EF_(mPt/kg_de_produit)"]
                 )}{" "}
                 mPt/kg de produit
+                <Tooltip title={EPF} enterTouchDelay={100} leaveDelay={17000}>
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -114,6 +140,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 kg CO2 eq/kg de produit
+                <Tooltip
+                  title={climateChange}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -125,6 +158,9 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-06 kg CVC11 eq/kg de produit
+                <Tooltip title={ozone} enterTouchDelay={100} leaveDelay={17000}>
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -136,6 +172,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 kBq U-235 eq/kg de produit
+                <Tooltip
+                  title={ionisant}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -147,6 +190,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-03 kg NMVOC eq/kg de produit
+                <Tooltip
+                  title={photochemical}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -158,6 +208,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-06 disease inc./kg de produit
+                <Tooltip
+                  title={particules}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -169,6 +226,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 mol H+ eq/kg de produit
+                <Tooltip
+                  title={acidification}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -180,6 +244,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 mol N eq/kg de produit
+                <Tooltip
+                  title={eutrophisationTerr}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -191,6 +262,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-03 kg P eq/kg de produit
+                <Tooltip
+                  title={eutrophisationEau}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -202,6 +280,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-03 kg N eq/kg de produit
+                <Tooltip
+                  title={eutrophisationMar}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -211,6 +296,13 @@ export class ProductPage extends Component {
                   this.state.product["Utilisation_du_sol_(Pt/kg_de_produit)"]
                 )}{" "}
                 Pt/kg de produit
+                <Tooltip
+                  title={landUse}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -222,6 +314,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 CTUe/kg de produit
+                <Tooltip
+                  title={ecotoxicity}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -233,6 +332,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 m3 depriv./kg de produit
+                <Tooltip
+                  title={waterResources}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -244,6 +350,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 MJ/kg de produit
+                <Tooltip
+                  title={energyResources}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
             <tr>
@@ -255,6 +368,13 @@ export class ProductPage extends Component {
                   ]
                 )}{" "}
                 E-06 kg Sb eq/kg de produit
+                <Tooltip
+                  title={mineralResoures}
+                  enterTouchDelay={100}
+                  leaveDelay={17000}
+                >
+                  <InfoOutlinedIcon fontSize={"small"} />
+                </Tooltip>
               </td>
             </tr>
           </tbody>

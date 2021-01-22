@@ -63,15 +63,15 @@ export class ProducerDescriptionPage extends Component {
   starsRating = (rating) => {
     var ratingRounded = Math.floor(rating);
     if (ratingRounded === 1) {
-      return <p>★☆☆☆☆</p>;
+      return <span>★☆☆☆☆</span>;
     } else if (ratingRounded === 2) {
-      return <p>★★☆☆☆</p>;
+      return <span>★★☆☆☆</span>;
     } else if (ratingRounded === 3) {
-      return <p>★★★☆☆</p>;
+      return <span>★★★☆☆</span>;
     } else if (ratingRounded === 4) {
-      return <p>★★★★☆</p>;
+      return <span>★★★★☆</span>;
     } else if (ratingRounded === 5) {
-      return <p>★★★★★</p>;
+      return <span>★★★★★</span>;
     } else {
       return null;
     }
@@ -80,7 +80,6 @@ export class ProducerDescriptionPage extends Component {
   handleClickForm = () => {
     if (this.state.visibilityForm === "none") {
       this.setState({ visibilityForm: "flex" });
-      // window.scrollTo(0, document.body.scrollHeight);
     } else {
       this.setState({ visibilityForm: "none" });
     }
@@ -112,7 +111,7 @@ export class ProducerDescriptionPage extends Component {
         console.log(error);
       });
 
-    this.setState({ review: "", rate: 1 });
+    this.setState({ review: "", rate: 1, visibilityForm: "none" });
   };
 
   render() {
@@ -121,6 +120,7 @@ export class ProducerDescriptionPage extends Component {
         <img src="/media/loading.gif" alt="loading icon" className="loading" />
       );
     }
+
     return (
       <div>
         <div style={{ position: "relative" }}>
@@ -172,6 +172,7 @@ export class ProducerDescriptionPage extends Component {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
+            margin: "10px",
           }}
         >
           <Button
@@ -227,16 +228,20 @@ export class ProducerDescriptionPage extends Component {
                 alt={comment.userId.firstName}
                 src={comment.userId.image}
               />
-              <p>
-                Par {comment.userId.firstName} — le{" "}
-                <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}
-                <Moment format="HH:mm">{comment.createdAt}</Moment>
-              </p>
-              {this.starsRating(comment.rate)}
+              <div>
+                <p>
+                  Par {comment.userId.firstName} — le{" "}
+                  <Moment format="DD/MM/YYYY">{comment.createdAt}</Moment> à{" "}
+                  <Moment format="HH:mm">{comment.createdAt}</Moment>
+                </p>
+                {this.starsRating(comment.rate)}
+              </div>
+
               <p>{comment.review}</p>
-              {/* {comment.userId && ( */}
-              <DeleteIcon onClick={() => this.handleDelete(comment._id)} />
-              {/* )} */}
+              {this.props.context.user &&
+                this.props.context.user._id === comment.userId._id && (
+                  <DeleteIcon onClick={() => this.handleDelete(comment._id)} />
+                )}
             </div>
           ))
         )}

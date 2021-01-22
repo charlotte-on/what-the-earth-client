@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
 import apiHandler from "../../api/apiHandler";
 import { Link } from "react-router-dom";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { Tooltip } from "@material-ui/core";
+
+const EPF = `Sans unité, plus le score est bas plus son impact sur l'environnement est faible. Ce score unique est une moyenne pondérée des 16 indicateurs (voir tableau ci-dessous), calculé selon la méthodologie européenne « PEF » (Product Environmental Footprint).`;
 
 export class Result extends Component {
   state = {
@@ -143,6 +147,9 @@ export class Result extends Component {
             >
               {this.roundNumber(this.getDividedResult())}
             </span>
+            <Tooltip title={EPF} enterTouchDelay={100} leaveDelay={17000}>
+              <InfoOutlinedIcon fontSize={"small"} />
+            </Tooltip>
           </h3>
 
           <h3
