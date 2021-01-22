@@ -68,4 +68,8 @@ footer {
   background-color: rgb(68, 68, 68);
   color: white;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 10px;
 }

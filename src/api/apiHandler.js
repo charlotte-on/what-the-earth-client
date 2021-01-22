@@ -65,6 +65,13 @@ export default {
       .catch(errorHandler);
   },
 
+  deleteComment(id) {
+    return service
+      .delete("/api/comments/delete/" + id)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   signin(userInfo) {
     return service
       .post("/api/auth/signin", userInfo)

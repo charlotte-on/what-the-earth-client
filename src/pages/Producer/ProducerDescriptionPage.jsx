@@ -19,6 +19,7 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Avatar from "@material-ui/core/Avatar";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const style = {
   background: "#87a878",
@@ -83,6 +84,15 @@ export class ProducerDescriptionPage extends Component {
     } else {
       this.setState({ visibilityForm: "none" });
     }
+  };
+
+  handleDelete = (id) => {
+    apiHandler.deleteComment(id).then(() => {
+      const updatedComments = [...this.state.comments].filter(
+        (comment) => comment._id !== id
+      );
+      this.setState({ comments: updatedComments });
+    });
   };
 
   handleSubmit = (event) => {
@@ -224,6 +234,9 @@ export class ProducerDescriptionPage extends Component {
               </p>
               {this.starsRating(comment.rate)}
               <p>{comment.review}</p>
+              {/* {comment.userId && ( */}
+              <DeleteIcon onClick={() => this.handleDelete(comment._id)} />
+              {/* )} */}
             </div>
           ))
         )}

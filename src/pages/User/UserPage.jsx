@@ -70,15 +70,17 @@ class UserPage extends React.Component {
           Mon profil
         </h2>
         <br />
-        <div className="comments">
+        <div className="comments center-column">
           <Avatar
             src={this.props.context.user.image}
             alt={this.props.context.user.firstName}
             style={{ height: "110px", width: "110px" }}
           />
           <div style={{ display: "inline" }}>
-            <div>{this.props.context.user.firstName}</div>
-            <div>{this.props.context.user.lastName}</div>
+            <p>
+              {this.props.context.user.firstName}{" "}
+              {this.props.context.user.lastName}
+            </p>
             <div>{this.props.context.user.email}</div>
           </div>
 
