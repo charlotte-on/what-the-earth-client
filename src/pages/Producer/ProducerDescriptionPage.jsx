@@ -293,7 +293,11 @@ export class ProducerDescriptionPage extends Component {
               <Button type="submit">Publier</Button>
             </form>
           </div>
-        ) : null}
+        ) : (
+          <p style={{ textAlign: "center" }}>
+            Connectez-vous à votre compte utilisateur pour commenter.
+          </p>
+        )}
       </div>
     );
   }
