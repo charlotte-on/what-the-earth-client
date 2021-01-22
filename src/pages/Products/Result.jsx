@@ -39,6 +39,11 @@ export class Result extends Component {
     return convertedArray;
   };
 
+  splitName = (string) => {
+    let name = string.split(" ");
+    return name[0].replace(/,/g, "");
+  };
+
   getAllResults = () => {
     let numbers = [
       ...this.convertArray(this.state.recipe.products).map((prod) => {
@@ -49,7 +54,7 @@ export class Result extends Component {
                 prod.impact_environnemental["Score unique EF"].synthese *
                 100
             ) / 100,
-          name: prod.nom_francais,
+          name: this.splitName(prod.nom_francais),
         };
       }),
     ];
@@ -120,7 +125,7 @@ export class Result extends Component {
           </h2>
           <h2>Ingrédients:</h2>
 
-          <ul>
+          <ul className="ingredients-list">
             {this.convertArray(this.state.recipe.products).map((prod) => {
               return (
                 <li>
@@ -134,7 +139,7 @@ export class Result extends Component {
             })}
           </ul>
           <h3>
-            Score EPF:{" "}
+            Score EPF total:{" "}
             <span
               style={{ color: this.coloredNumber(this.getDividedResult()) }}
             >
@@ -142,20 +147,21 @@ export class Result extends Component {
             </span>
           </h3>
 
-          <h4>Score EPF par produit</h4>
-
-          {/* <div style={{ width: "800", height: "50vh" }}>
-          <ResponsiveContainer width="99%" height={"99%"}> */}
-          <PieChart
-            width={800}
-            height={400}
-            style={{ marginRight: "1000w" }}
-            onMouseEnter={this.onPieEnter}
+          <h3
+            style={{
+              marginTop: "25px",
+              textAlign: "center",
+            }}
+            className="pie-title"
           >
+            Répartition par produit
+          </h3>
+
+          <PieChart width={375} height={400} onMouseEnter={this.onPieEnter}>
             <Pie
               data={this.getAllResults()}
-              cx={420}
-              cy={200}
+              cx={170}
+              cy={140}
               innerRadius={60}
               outerRadius={80}
               fill="#8884d8"
@@ -168,8 +174,6 @@ export class Result extends Component {
               ))}
             </Pie>
           </PieChart>
-          {/* </ResponsiveContainer>
-        </div> */}
 
           {/* <table>
           <thead>
