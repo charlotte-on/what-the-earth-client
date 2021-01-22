@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 import AgribalyseSorted from "../../data/AgribalyseSorted.json";
 import Button from "@material-ui/core/Button";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { Tooltip } from "@material-ui/core";
 import "../../styles/Simulator.css";
+
+const EPF = `Sans unité, plus le score est bas plus son impact sur l'environnement est faible. Ce score unique est une moyenne pondérée des 16 indicateurs (voir tableau ci-dessous), calculé selon la méthodologie européenne « PEF » (Product Environmental Footprint).`;
 
 const style = {
   background: "#87a878",
@@ -121,13 +125,16 @@ export class Simulator extends Component {
             textAlign: "center",
           }}
         >
-          Simulateur de recette
+          Simulateur
         </h2>
 
         <div className="simulator-page">
           <p style={{ textAlign: "justify" }}>
-            Entrez ici des ingrédients afin de calculer le score EPF de votre
-            recette
+            Entrez ici des ingrédients afin de calculer le score EPF{" "}
+            <Tooltip title={EPF} enterTouchDelay={100} leaveDelay={17000}>
+              <InfoOutlinedIcon fontSize={"small"} />
+            </Tooltip>{" "}
+            total de vos produits
           </p>
           <form onSubmit={this.handleSubmit} className="input center-column">
             <Autocomplete
