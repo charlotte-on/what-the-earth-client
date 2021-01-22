@@ -104,12 +104,11 @@ class UserUpdate extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/profile"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -120,7 +119,6 @@ class UserUpdate extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -128,7 +126,7 @@ class UserUpdate extends Component {
           </p>
         </div>
 
-        <div className="center-column">
+        <div className="center-column" style={{paddingTop: "20%"}}>
           <h3>Modifier mon profil</h3>
 
           <img src={this.state.url} alt="" />

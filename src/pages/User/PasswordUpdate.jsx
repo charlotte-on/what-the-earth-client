@@ -52,12 +52,11 @@ class PasswordUpdate extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/profile/:id"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -68,7 +67,6 @@ class PasswordUpdate extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -77,7 +75,7 @@ class PasswordUpdate extends Component {
           </p>
         </div>
 
-        <div className="center-column">
+        <div className="center-column" style={{paddingTop: "20%"}}>
           <h2>Modifier mon mot de passe</h2>
 
           <TextField

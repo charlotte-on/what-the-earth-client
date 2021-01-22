@@ -88,12 +88,11 @@ class FormRegisterCompany extends Component {
 
     return (
       <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -104,13 +103,16 @@ class FormRegisterCompany extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
             Accueil / Inscription professionnelle
           </p>
         </div>
+        
+
+        <div className="center-column" style={{paddingTop: "20%"}}
+>
         <h2
           style={{
             padding: "10px",
@@ -119,8 +121,6 @@ class FormRegisterCompany extends Component {
         >
           Enregistrer mon commerce
         </h2>
-
-        <div className="center-column">
           <TextField
             style={{ margin: "10px" }}
             variant="outlined"

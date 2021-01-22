@@ -5,12 +5,11 @@ import { Link } from "react-router-dom";
 const Signin = (props) => {
   return (
     <div>
-      <div>
+      <div style={{position: "absolute", padding: "15px",}}>
         <Link to={"/"}>
           <h4
             style={{
               textAlign: "left",
-              top: "calc(2% - 200px)",
               fontSize: "13px",
             }}
           >
@@ -21,14 +20,13 @@ const Signin = (props) => {
         <p
           style={{
             textAlign: "left",
-            top: "calc(2% - 180px)",
             fontSize: "11px",
           }}
         >
           Accueil / Identification professionnelle
         </p>
       </div>
-      <div className="center-column">
+      <div className="center-column" style={{paddingTop: "20%"}}>
         <img
           style={{ width: "50px" }}
           src="/wheat.png"

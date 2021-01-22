@@ -95,12 +95,11 @@ export class Result extends Component {
 
     return (
       <div>
-        <div>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/products/simulator"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -111,7 +110,6 @@ export class Result extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -121,7 +119,7 @@ export class Result extends Component {
         <div className="result-page">
           <h2
             style={{
-              padding: "10px",
+              padding: "20% 20% 0 20%",
               textAlign: "center",
             }}
           >

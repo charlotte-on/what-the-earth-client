@@ -55,13 +55,6 @@ export class Simulator extends Component {
   };
 
   handleValue = (value, name) => {
-    // const foundIndex = this.state.selectedProducts.findIndex(
-    //   (product) => product.nom_francais === name
-    // );
-    // const copy = { ...this.state.selectedProducts[foundIndex] };
-    // copy.qty = value;
-    // const copyArr = [...this.state.selectedProducts];
-    // copyArr[foundIndex] = copy;
     this.setState({
       selectedProducts: this.state.selectedProducts.map((prod) => {
         return prod.nom_francais === name ? { ...prod, qty: value } : prod;
@@ -96,12 +89,11 @@ export class Simulator extends Component {
   render() {
     return (
       <div className="simulator-name">
-        <div>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/products"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -112,7 +104,6 @@ export class Simulator extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -121,7 +112,7 @@ export class Simulator extends Component {
         </div>
         <h2
           style={{
-            padding: "10px 10px 0 10px",
+            padding: "20% 20% 0 20%",
             textAlign: "center",
           }}
         >

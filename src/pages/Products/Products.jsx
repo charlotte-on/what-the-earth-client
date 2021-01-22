@@ -60,12 +60,11 @@ export class Products extends Component {
     }
     return (
       <div className="allProducts">
-        <div>
+        <div style={{position: "absolute", padding: "15px",}}>
           <Link to={"/"}>
             <h4
               style={{
                 textAlign: "left",
-                top: "calc(2% - 200px)",
                 fontSize: "13px",
               }}
             >
@@ -76,7 +75,6 @@ export class Products extends Component {
           <p
             style={{
               textAlign: "left",
-              top: "calc(2% - 180px)",
               fontSize: "11px",
             }}
           >
@@ -85,7 +83,7 @@ export class Products extends Component {
         </div>
         <h2
           style={{
-            padding: "10px",
+            padding: "20%",
             textAlign: "center",
           }}
         >
