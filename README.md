@@ -5,8 +5,8 @@ https://what-the-earth.herokuapp.com/
 
 ### `Features`
 
-- Create an user account.<br />
-- Update an user account.<br />
+- Create a user account.<br />
+- Update a user account.<br />
 - Create a producer account.<br />
 - Update a producer account.<br />
 - Access row and processed products.<br />
@@ -27,7 +27,7 @@ Clone this repo to your desktop and run `npm install` to install all the depende
 
 You might want to look into `package.json`.<br />
 
-Once the dependencies are installed, you can run `npm start` to start the application.You will then be able to access it at `localhost:3000`<br />
+Once the dependencies are installed, you can run `npm start` to start the application.You will then be able to access it at `localhost:3000`.<br />
 
 PORT = ????<br />
 MONGODB_URI = ????<br />
