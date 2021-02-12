@@ -5,8 +5,8 @@ https://what-the-earth.herokuapp.com/
 
 ### `Features`
 
-- Create a user account.<br />
-- Update a user account.<br />
+- Create an user account.<br />
+- Update an user account.<br />
 - Create a producer account.<br />
 - Update a producer account.<br />
 - Access row and processed products.<br />
