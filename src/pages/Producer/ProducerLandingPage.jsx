@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import ScheduleIcon from "@material-ui/icons/Schedule";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -129,6 +128,7 @@ export class ProducerLandingPage extends Component {
             id="selectedFilter"
             name="selectedFilter"
             label="Filtre"
+            defaultValue=""
             onChange={this.handleFilter}
             // value={this.state.selectedFilter}
           >

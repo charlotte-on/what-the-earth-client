@@ -72,7 +72,7 @@ class FormSignup extends Component {
 
     return (
       <div>
-        <div style={{position: "absolute", padding: "15px",}}>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/"}>
             <h4
               style={{
@@ -94,22 +94,20 @@ class FormSignup extends Component {
           </p>
         </div>
 
-        
-
         <form
           className="center-column"
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
-          style={{paddingTop: "20%"}}
+          style={{ paddingTop: "20%" }}
         >
-        <h2
-          style={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-        >
-          Inscrivez-vous pour accéder à votre compte utilisateur
-        </h2>
+          <h2
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            Inscrivez-vous pour accéder à votre compte utilisateur
+          </h2>
           <img src={this.state.url} alt="" />
           <div>
             <input
@@ -134,6 +132,7 @@ class FormSignup extends Component {
           <TextField
             value={this.state.firstName}
             label="Prénom"
+            autoComplete="firstname"
             type="text"
             id="firstName"
             name="firstName"
@@ -143,6 +142,7 @@ class FormSignup extends Component {
           <TextField
             value={this.state.lastName}
             label="Nom de famille"
+            autoComplete="lastname"
             type="text"
             id="lastName"
             name="lastName"
@@ -152,6 +152,7 @@ class FormSignup extends Component {
           <TextField
             value={this.state.email}
             label="Email"
+            autoComplete="username"
             type="email"
             id="email"
             name="email"
@@ -161,6 +162,7 @@ class FormSignup extends Component {
           <TextField
             value={this.state.password}
             label="Mot de passe"
+            autoComplete="current-password"
             type="password"
             id="password"
             name="password"

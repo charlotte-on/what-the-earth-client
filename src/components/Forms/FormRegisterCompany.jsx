@@ -6,7 +6,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import LocationAutoComplete from "./LocationAutoComplete";
@@ -61,7 +60,7 @@ class FormRegisterCompany extends Component {
     // console.log(Object.fromEntries(fd));
 
     if (this.imageRef.current.files[0]) {
-      console.log(this.imageRef.current.files[0]);
+      //console.log(this.imageRef.current.files[0]);
       fd.append("bannerImg", this.imageRef.current.files[0]);
     }
 
@@ -88,7 +87,7 @@ class FormRegisterCompany extends Component {
 
     return (
       <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <div style={{position: "absolute", padding: "15px",}}>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/"}>
             <h4
               style={{
@@ -109,18 +108,16 @@ class FormRegisterCompany extends Component {
             Accueil / Inscription professionnelle
           </p>
         </div>
-        
 
-        <div className="center-column" style={{paddingTop: "20%"}}
->
-        <h2
-          style={{
-            padding: "10px",
-            textAlign: "center",
-          }}
-        >
-          Enregistrer mon commerce
-        </h2>
+        <div className="center-column" style={{ paddingTop: "20%" }}>
+          <h2
+            style={{
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            Enregistrer mon commerce
+          </h2>
           <TextField
             style={{ margin: "10px" }}
             variant="outlined"
@@ -129,6 +126,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="companyName"
             name="companyName"
+            autoComplete="name"
           />
           <LocationAutoComplete name="location" onSelect={this.handlePlace} />
           <TextField
@@ -139,6 +137,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="firstName"
             name="firstName"
+            autoComplete="firstname"
           />
           <TextField
             style={{ margin: "10px" }}
@@ -148,6 +147,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="lastName"
             name="lastName"
+            autoComplete="lastname"
           />
           <TextField
             style={{ margin: "10px" }}
@@ -157,6 +157,7 @@ class FormRegisterCompany extends Component {
             type="email"
             id="email"
             name="email"
+            autoComplete="username"
           />
           <TextField
             style={{ margin: "10px" }}
@@ -166,6 +167,7 @@ class FormRegisterCompany extends Component {
             type="password"
             id="password"
             name="password"
+            autoComplete="current-password"
           />
           <TextField
             style={{ margin: "10px" }}
@@ -175,6 +177,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="phoneNumber"
             name="phoneNumber"
+            autoComplete="phone"
           />
           <TextField
             style={{ margin: "10px" }}
@@ -184,6 +187,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="schedule"
             name="schedule"
+            autoComplete="schedule"
           />
           <FormControl style={{ margin: "10px" }} variant="outlined">
             <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
@@ -193,6 +197,7 @@ class FormRegisterCompany extends Component {
               name="field"
               value={this.state.field}
               label="Type"
+              autoComplete="type"
               onChange={this.handleChange}
             >
               <MenuItem value="">
@@ -217,6 +222,7 @@ class FormRegisterCompany extends Component {
             type="text"
             id="description"
             name="description"
+            autoComplete="description"
           />
           <img src={this.state.url} alt="" />
           <div className="center-column">

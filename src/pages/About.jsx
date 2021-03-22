@@ -63,10 +63,10 @@ const About = () => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>Impact écologique</Typography>
+            <Typography component="span">Impact écologique</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography component="span">
               Pour ceux qui veulent connaître l'impact environnemental de leur
               alimentation et agir en conséquence.
             </Typography>
@@ -79,10 +79,10 @@ const About = () => {
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
-            <Typography>Prise de conscience</Typography>
+            <Typography component="span">Prise de conscience</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography component="span">
               Pour ceux qui ont pris conscience qu'ils pouvaient mieux consommer
               et manger : local, frais, fermier.
             </Typography>
@@ -95,10 +95,10 @@ const About = () => {
             aria-controls="panel3a-content"
             id="panel4a-header"
           >
-            <Typography>Petits producteurs</Typography>
+            <Typography component="span">Petits producteurs</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography component="span">
               Pour ceux qui souhaitent acheter en direct des producteurs.
             </Typography>
           </AccordionDetails>
@@ -110,10 +110,10 @@ const About = () => {
             aria-controls="panel4a-content"
             id="panel4a-header"
           >
-            <Typography>Équipe engagée</Typography>
+            <Typography component="span">Équipe engagée</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography component="span">
               <div
                 style={{
                   borderRadius: "4%",
@@ -131,11 +131,11 @@ const About = () => {
                 <h4>Co-Founder</h4>
                 <div>
                   <a href="https://github.com/Calyaln">
-                    <i class="fab fa-github"></i>
+                    <i className="fab fa-github"></i>
                   </a>{" "}
                   |{" "}
                   <a href="https://www.linkedin.com/in/calypso-asline-3b616b78/">
-                    <i class="fab fa-linkedin"></i>
+                    <i className="fab fa-linkedin"></i>
                   </a>
                 </div>
               </div>
@@ -157,11 +157,11 @@ const About = () => {
                 <h4>Co-Founder</h4>
                 <div>
                   <a href="https://github.com/charlotte-on">
-                    <i class="fab fa-github"></i>
+                    <i className="fab fa-github"></i>
                   </a>{" "}
                   |{" "}
                   <a href="https://www.linkedin.com/in/charlotte-oury-8866621a3/">
-                    <i class="fab fa-linkedin"></i>
+                    <i className="fab fa-linkedin"></i>
                   </a>
                 </div>
               </div>
@@ -183,11 +183,11 @@ const About = () => {
                 <h4>Co-Founder</h4>
                 <div>
                   <a href="https://github.com/vicpzn">
-                    <i class="fab fa-github"></i>
+                    <i className="fab fa-github"></i>
                   </a>{" "}
                   |{" "}
                   <a href="https://www.linkedin.com/in/victorienprovenzano/">
-                    <i class="fab fa-linkedin"></i>
+                    <i className="fab fa-linkedin"></i>
                   </a>
                 </div>
               </div>

@@ -25,7 +25,7 @@ class PasswordUpdate extends Component {
       apiHandler
         .updateUserPassword({ new_password, old_password })
         .then((data) => {
-          console.dir(data);
+          //console.dir(data);
           console.log("password changed");
         })
         .catch((error) => {
@@ -52,7 +52,7 @@ class PasswordUpdate extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{position: "absolute", padding: "15px",}}>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/profile/:id"}>
             <h4
               style={{
@@ -75,7 +75,14 @@ class PasswordUpdate extends Component {
           </p>
         </div>
 
-        <div className="center-column" style={{paddingTop: "20%"}}>
+        <div className="center-column" style={{ paddingTop: "20%" }}>
+          <input
+            id="userName"
+            name="username"
+            autoComplete="username"
+            style={{ display: "none" }}
+          />
+
           <h2>Modifier mon mot de passe</h2>
 
           <TextField
@@ -84,6 +91,7 @@ class PasswordUpdate extends Component {
             type="password"
             id="old_password"
             name="old_password"
+            autoComplete="current-password"
             variant="outlined"
             style={{ margin: "10px" }}
             onChange={this.handleChange}
@@ -95,6 +103,7 @@ class PasswordUpdate extends Component {
             type="password"
             id="new_password"
             name="new_password"
+            autoComplete="new-password"
             variant="outlined"
             style={{ margin: "10px" }}
             onChange={this.handleChange}
@@ -106,6 +115,7 @@ class PasswordUpdate extends Component {
             type="password"
             id="confirmed_password"
             name="confirmed_password"
+            autoComplete="new-password"
             variant="outlined"
             style={{ margin: "10px" }}
             onChange={this.handleChange}

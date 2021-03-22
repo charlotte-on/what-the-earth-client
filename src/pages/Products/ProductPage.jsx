@@ -14,7 +14,6 @@ const landUse = `Les terres sont une ressource finie, qui se partage entre milie
 const mineralResoures = `Correspond à l'épuisement des ressources minérales non renouvelables : cuivre, potasse, terres rares, sable, etc.`;
 const ozone = `La couche d'ozone est située en haute altitude dans l'atmosphère, elle protège des rayons ultra-violets solaires. Son appauvrissement augmente l’exposition de l'ensemble des êtres vivants à ces radiations négatives (cancérigènes en particulier).`;
 const acidification = `Résulte d'émissions chimiques dans l'atmosphère qui se redéposent dans les écosystèmes. Cette problématique est connue en particulier via le phénomène des pluies acides.`;
-const radiation = `Correspond aux effets de la radioactivité. Cet impact correspond aux déchets radioactifs résultants de la production de l'électricité nucléaire.`;
 const ionisant = `Correspond aux effets de la radioactivité. Cet impact correspond aux déchets radioactifs résultants de la production de l'électricité nucléaire.`;
 const photochemical = `Correspond à une dégradation de la qualité de l'air, principalement via la formation de brouillard de basse altitude nommé "smog". Il a des conséquences néfastes sur la santé.`;
 const eutrophisationTerr = `Comme dans l'eau, l'eutrophisation terrestre correspond à un enrichissement excessif du milieu, en azote en particulier, conduisant a un déséquilibre et un appauvrissement de l'écosystème. Ceci concerne principalement les sols agricoles.`;
