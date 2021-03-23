@@ -91,8 +91,6 @@ export class Result extends Component {
       );
     }
 
-    //console.log(this.getAllResults());
-
     return (
       <div>
         <div style={{ position: "absolute", padding: "15px" }}>

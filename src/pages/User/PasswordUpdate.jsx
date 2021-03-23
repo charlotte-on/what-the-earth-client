@@ -25,7 +25,6 @@ class PasswordUpdate extends Component {
       apiHandler
         .updateUserPassword({ new_password, old_password })
         .then((data) => {
-          //console.dir(data);
           console.log("password changed");
         })
         .catch((error) => {

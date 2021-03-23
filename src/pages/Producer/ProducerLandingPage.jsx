@@ -69,7 +69,6 @@ export class ProducerLandingPage extends Component {
     return (
       <div>
         <Map
-          // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
             height: "50vh",
@@ -130,7 +129,6 @@ export class ProducerLandingPage extends Component {
             label="Filtre"
             defaultValue=""
             onChange={this.handleFilter}
-            // value={this.state.selectedFilter}
           >
             <MenuItem value={false}>Tous les commerces</MenuItem>
             <MenuItem value={"Boucherie"}>Boucheries</MenuItem>

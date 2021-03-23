@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-// import { Redirect } from "react-router-dom";
-// import "../../styles/User.css";
 import TextField from "@material-ui/core/TextField";
 
 const style = {
@@ -104,7 +102,7 @@ class UserUpdate extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div style={{position: "absolute", padding: "15px",}}>
+        <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/profile"}>
             <h4
               style={{
@@ -126,7 +124,7 @@ class UserUpdate extends Component {
           </p>
         </div>
 
-        <div className="center-column" style={{paddingTop: "20%"}}>
+        <div className="center-column" style={{ paddingTop: "20%" }}>
           <h3>Modifier mon profil</h3>
 
           <img src={this.state.url} alt="" />

@@ -9,7 +9,6 @@ import AddIcon from "@material-ui/icons/Add";
 import { withUser } from "../../components/Auth/withUser";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
@@ -199,7 +198,6 @@ export class ProducerDescriptionPage extends Component {
           {this.state.producer.formattedAddress}
         </p>
         <Map
-          // eslint-disable-next-line
           style="mapbox://styles/mapbox/light-v10"
           containerStyle={{
             height: "30vh",
