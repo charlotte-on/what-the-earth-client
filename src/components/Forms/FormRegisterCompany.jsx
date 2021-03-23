@@ -85,6 +85,7 @@ class FormRegisterCompany extends Component {
 
     return (
       <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        {/* breadcrumbs */}
         <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/"}>
             <h4

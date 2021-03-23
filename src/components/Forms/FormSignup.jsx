@@ -44,7 +44,6 @@ class FormSignup extends Component {
     }
 
     if (this.imageRef.current.files[0]) {
-      console.log(this.imageRef.current.files[0]);
       fd.append("image", this.imageRef.current.files[0]);
     }
 
@@ -72,6 +71,7 @@ class FormSignup extends Component {
 
     return (
       <div>
+        {/* breadcrumbs */}
         <div style={{ position: "absolute", padding: "15px" }}>
           <Link to={"/"}>
             <h4

@@ -35,7 +35,6 @@ class FormSignin extends Component {
       })
       .catch((error) => {
         console.log(error);
-        // Display error message here, if you set the state
       });
   };
 
